@@ -50,7 +50,7 @@ Scope: `skill`, `gotchas`, `references`, `diagnostics`, `templates`, `meta`
 
 ## Release process
 
-Releases follow `vMAJOR.MINOR.PATCH`. The full ship sequence is in `../azimuth-launch-kit/01-CLAUDE-CODE-HANDOFF.md`. Key steps:
+Releases follow `vMAJOR.MINOR.PATCH`. Key steps:
 
 1. Validate all four checks above
 2. `git add` only the changed files (never `.omc/`)
@@ -69,6 +69,17 @@ Three skills live in `.claude/skills/` for maintainer use. They are not installe
 | `gap-scanner` | Cross-references SKILL.md coverage claims against actual reference, diagnostic, and template files | "run the gap scanner" |
 
 Staged research findings live in `research/staged-findings.md`. The research-scout writes there; you promote to `references/base-rates.md` via the PROMOTE mode.
+
+## Obsidian vault
+
+Project notes live in a local Obsidian vault under `Writ_vault/azimuth/`. Subfolders: `notes/`, `references/`, `outputs/`.
+
+## Environment notes (Windows)
+
+- `jq` is not available — use `node -e` for all JSON manipulation
+- `cmd /c` wrapper required for npx-based MCP servers (set in `~/.claude.json` args array as `["/c", "npx", "-y", ...]`)
+- `CLAUDE_PLUGIN_ROOT` env var expansion breaks in bash — use absolute paths directly
+- `~/.claude/.omc-config.json` may be emptied by hooks — always write it via the Write tool rather than shell read+patch
 
 ## What not to touch
 

@@ -129,12 +129,14 @@ The implication: most new-hire failure is *not* about skill mismatch. It's about
 
 **Cloud migration overruns**: A meaningful share of cloud migration projects exceed budget or timeline. Specific percentages vary across vendor and consulting studies (Gartner, Flexera *State of the Cloud Report*); treat the directional claim as solid but the specific numbers as advisory.
 
+**Post-cutover operational cost overruns**: Cloud migrations often surface ongoing spend management problems separate from migration project delivery. Flexera's *State of the Cloud* 2025 (750+ respondents, vendor-sponsored survey with self-selecting audience toward organizations with spend issues) reports 84% of organizations struggle to manage cloud spend, with annual cloud budgets routinely exceeded by double-digit percentages. The directional claim is solid; specific numbers are advisory.
+
 **Data migration defects**: Data migration projects routinely surface defects during or after migration, most commonly from undocumented data dependencies or schema mismatches. The 20–40% defect-discovery range is commonly cited in vendor literature; treat as directional.
 
 **Zero-downtime migration on first attempt**: Successful zero-downtime cutovers on first attempt are uncommon in surveyed enterprise environments. Multiple staged attempts are the norm rather than the exception.
 
 **Sources**
-- Flexera, *State of the Cloud Report* (annual).
+- Flexera, *State of the Cloud Report* 2025. https://resources.flexera.com/web/pdf/Flexera-State-of-the-Cloud-Report-2025.pdf
 - Gartner research notes on cloud migration (multiple years).
 
 ---
