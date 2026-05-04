@@ -33,6 +33,21 @@ Fix: after the failure paths, identify which two listed risks together produce n
 
 ---
 
+## v1.2.0 — Structured self-validation pass
+
+After generating a verdict, the skill checks its own output against a defined rule set before presenting it. Catches the most common output discipline failures without requiring the verdict-auditor skill to be run separately.
+
+Rules checked inline:
+- Output leads with verdict (not preamble)
+- No section header with empty content
+- No weak mitigations ("communicate better," "monitor closely") in Highest-Leverage Fixes
+- Confidence level stated with a reason, not just a label
+- If domain matches base-rates.md coverage, at least one rate was cited
+
+This is the same check set as the `verdict-auditor` maintainer skill, collapsed into the skill's own output loop. Not a gate that blocks the verdict — a self-audit line appended at the end: `[Self-check: N flags]` with brief notes if flags exist.
+
+---
+
 ## v1.2.0 — Evidence tags
 
 Output assumptions and risks have no source. Reader can't tell what came from the user, what came from base-rates, what came from a gotcha pattern, what's inferred. That's hidden authority.
