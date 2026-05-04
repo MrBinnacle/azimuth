@@ -58,6 +58,18 @@ Releases follow `vMAJOR.MINOR.PATCH`. The full ship sequence is in `../azimuth-l
 4. `gh release create` using the CHANGELOG entry as release notes
 5. Verify install: `npx skills add https://github.com/MrBinnacle/azimuth --skill azimuth -a claude-code -y`
 
+## Maintenance skill stack
+
+Three skills live in `.claude/skills/` for maintainer use. They are not installed by `npx skills add` — they travel with the repo for whoever works on it.
+
+| Skill | Purpose | Invoke |
+|-------|---------|--------|
+| `research-scout` | Tracks 8 citation source families; stages updates to `references/base-rates.md` | "run the research scout" / "promote staged findings" |
+| `verdict-auditor` | Stress-tests a real AZIMUTH output against the skill's own structural rules | "audit this output" (paste output first) |
+| `gap-scanner` | Cross-references SKILL.md coverage claims against actual reference, diagnostic, and template files | "run the gap scanner" |
+
+Staged research findings live in `research/staged-findings.md`. The research-scout writes there; you promote to `references/base-rates.md` via the PROMOTE mode.
+
 ## What not to touch
 
 - `.omc/` — session state, never commit
