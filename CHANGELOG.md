@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [Unreleased]
+
+Planned. See `ROADMAP.md` for the why on each.
+
+- **v1.1.1 — Insufficient Signal verdict.** Skill can refuse to return a verdict when input doesn't support one.
+- **v1.1.x — Counterfactual layer.** Module 2 adds falsifiers for strong-evidence assumptions.
+- **v1.1.x — Coupling pass.** Module 6 adds pair-interaction failure analysis.
+- **v1.2.0 — Evidence tags.** Every output claim carries a provenance tag.
+- **v1.2.0 — Audit trail.** Output lists modules run and what each surfaced.
+
+---
+
 ## [1.1.0] — 2026-05-04
 
 This release implements the full set of fixes surfaced in the v1.0.0 independent audit. No breaking changes for users invoking the skill manually; behavior changes apply to automatic invocation and to default output structure.
