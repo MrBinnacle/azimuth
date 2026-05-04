@@ -1,0 +1,65 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## What this repo is
+
+AZIMUTH is a pure-markdown AI agent skill — no build system, no dependencies, no tests. There is nothing to compile or run. All "development" is editing `.md` files and validating their content against the constraints below.
+
+## Repo structure
+
+```
+azimuth/
+├── SKILL.md                     # Core skill entry point — frontmatter + 10-module analysis engine
+├── gotchas.md                   # Must contain exactly 8 numbered sections (## 1. … ## 8.)
+├── references/                  # Loaded on demand in STANDARD/DEEP mode
+├── diagnostics/                 # Deep-mode diagnostic modules
+└── templates/                   # Pasteable output templates for specific decision types
+```
+
+All paths referenced inside `SKILL.md` must exist as real files. The install tool (`npx skills add`) copies the entire directory tree.
+
+## Validation checks (run before every commit)
+
+```bash
+# 1. SKILL.md frontmatter description must be exactly 489 chars
+awk '/^description: /{flag=1} flag{print; if(/"$/) flag=0}' SKILL.md | tr -d '\n' | wc -c
+
+# 2. gotchas.md must have exactly 8 numbered sections
+grep -E '^## [0-9]+\.' gotchas.md | wc -l
+
+# 3. No "precommitment" (must be "pre-commitment") outside CHANGELOG
+grep -rn precommitment . --include="*.md" | grep -v CHANGELOG.md
+
+# 4. All paths referenced in SKILL.md must exist
+grep -oE '(references|diagnostics|templates)/[^ \n"]+\.md' SKILL.md | sort -u | while read f; do
+  test -f "$f" && echo "OK: $f" || echo "MISSING: $f"
+done
+```
+
+All four checks must pass before committing. If the description char count drifts from 489, the `npx skills add` install will surface a validation warning.
+
+## Commit conventions
+
+```
+type(scope): description
+```
+
+Types: `feat`, `fix`, `docs`, `refactor`  
+Scope: `skill`, `gotchas`, `references`, `diagnostics`, `templates`, `meta`
+
+## Release process
+
+Releases follow `vMAJOR.MINOR.PATCH`. The full ship sequence is in `../azimuth-launch-kit/01-CLAUDE-CODE-HANDOFF.md`. Key steps:
+
+1. Validate all four checks above
+2. `git add` only the changed files (never `.omc/`)
+3. `git tag -a vX.Y.Z -m "..."` and push both master and the tag
+4. `gh release create` using the CHANGELOG entry as release notes
+5. Verify install: `npx skills add https://github.com/MrBinnacle/azimuth --skill azimuth -a claude-code -y`
+
+## What not to touch
+
+- `.omc/` — session state, never commit
+- `LICENSE` — MIT, do not modify
+- `MARKETING.md` — aggregator submission copy, edit only for positioning changes
