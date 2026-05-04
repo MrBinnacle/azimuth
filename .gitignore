@@ -8,6 +8,12 @@ research/
 # Internal strategy docs — not for public repo
 MARKETING.md
 
+# Agent skill install artifacts — local only
+.agents/
+.continue/
+.windsurf/
+skills-lock.json
+
 # OS metadata
 .DS_Store
 Thumbs.db

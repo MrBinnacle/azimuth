@@ -68,6 +68,14 @@ Three skills live in `.claude/skills/` for maintainer use. They are not installe
 | `verdict-auditor` | Stress-tests a real AZIMUTH output against the skill's own structural rules | "audit this output" (paste output first) |
 | `gap-scanner` | Cross-references SKILL.md coverage claims against actual reference, diagnostic, and template files | "run the gap scanner" |
 
+## Installed external skills
+
+| Skill | Source | Purpose | Invoke |
+|-------|--------|---------|--------|
+| `ui-ux-pro-max` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) (73K stars) | UI/UX design intelligence — 50+ styles, 97 palettes, 57 font pairings, 99 UX guidelines. Use for README visual design and presentation work. | `/ui-ux-pro-max` |
+
+Installed to `.agents/skills/ui-ux-pro-max/`, symlinked into Claude Code.
+
 Staged research findings live in `research/staged-findings.md`. The research-scout writes there; you promote to `references/base-rates.md` via the PROMOTE mode.
 
 ## Obsidian vault
@@ -85,4 +93,4 @@ Project notes live in a local Obsidian vault under `Writ_vault/azimuth/`. Subfol
 
 - `.omc/` — session state, never commit
 - `LICENSE` — MIT, do not modify
-- `MARKETING.md` — aggregator submission copy, edit only for positioning changes
+- `MARKETING.md` — internal strategy doc, gitignored (local only, not in public repo)

@@ -1,22 +1,83 @@
 # AZIMUTH
 
-> Verify your direction before you commit movement. Wrong bearing at the start compounds into wrong objective at the end.
+> *An azimuth is the bearing you lock in before you step off. Wrong by a few degrees at the start — miles from your objective by the end.*
 
 **Decision-quality pre-commitment analysis for operators who can't afford to be wrong about direction.**
 
-An azimuth is a navigational bearing — the angle you lock in before you step off. Get it wrong by a few degrees at the start and you're miles from your objective by the end. AZIMUTH the skill does the same thing for decisions: it finds the drift, the false assumptions, and the structural failure modes before you're committed and downrange.
+Built for Claude Code, Claude.ai, Codex, Gemini CLI, Cursor, and all major AI coding agents. Designed for operators, PMs, founders, and senior engineers making go/no-go calls with real downside.
 
-Built for **Claude Code, Claude.ai, Codex, Gemini CLI, Cursor, and all major AI coding agents.** Designed for operators, PMs, founders, and senior engineers making decisions with real downside — not just code review.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
-## What this is
+## See it in action
 
-Most code-focused agent skills answer one question: *will this code break?*
+**Input:** *"We're planning to rewrite our legacy billing service in Q3. 8 weeks, 2 engineers."*
 
-This one answers a different question: *should we do this at all, and if so, what needs to change before we commit?*
+```
+Azimuth Verdict
+High-risk. Scope and timeline are inconsistent with known base rates for legacy rewrites.
+Do not proceed without scope reduction and a validated rollback strategy.
 
-It covers the full decision surface — technical *and* strategic:
+Recommended Decision: PILOT FIRST
+Rewrite one isolated billing module with full rollback. Validate assumptions about
+coupling before committing full scope.
+
+Confidence: High — base rate for legacy rewrites exceeding estimate: 70–80%.
+No evidence present that shifts this.
+
+Critical Risks
+1. Integration tax — Parallel-running old and new systems historically extends to 3–5×
+   estimated cutover time. No hard deprecation date defined.
+2. Knowledge concentration — Single-person domain knowledge on billing logic creates
+   SPOF. No fallback owner named.
+3. Scope creep under deadline — "While we're at it" rewrites reliably overload scope.
+   No change control mechanism defined.
+
+Likely Failure Paths
+- Billing edge cases surface in testing → scope expands → 8 weeks becomes 20 →
+  old system maintenance + new system debt → both teams overloaded → defects in prod
+```
+
+---
+
+## Install
+
+```bash
+npx skills add https://github.com/MrBinnacle/azimuth
+```
+
+<details>
+<summary>Manual install / other agents</summary>
+
+```bash
+git clone https://github.com/MrBinnacle/azimuth.git
+mkdir -p ~/.claude/skills
+cp -r azimuth ~/.claude/skills/
+```
+
+For Codex, Gemini CLI, Cursor, Copilot — copy the `azimuth/` directory to your agent's skills folder.
+
+</details>
+
+After install, invoke directly:
+
+```
+/azimuth We're launching the new product next week
+/azimuth Should we rewrite the legacy service?
+/azimuth I'm considering making this hire
+/azimuth Pressure test our Q3 timeline
+```
+
+**Compatible with:** Claude Code · Claude.ai · Codex · Gemini CLI · Cursor · GitHub Copilot · Windsurf · OpenCode
+
+---
+
+## What it covers
+
+Most agent skills answer: *will this code break?*
+
+This one answers: *should we do this at all — and if so, what needs to change before we commit?*
 
 | Scenario | What you get |
 |----------|-------------|
@@ -29,51 +90,17 @@ It covers the full decision surface — technical *and* strategic:
 
 ---
 
-## Install
-
-**Claude Code / Claude.ai skills:**
-
-```bash
-npx skills add https://github.com/MrBinnacle/azimuth
-```
-
-Or manually:
-
-```bash
-git clone https://github.com/MrBinnacle/azimuth.git
-mkdir -p ~/.claude/skills
-cp -r azimuth ~/.claude/skills/
-```
-
-**Codex, Gemini CLI, Cursor, Copilot:**
-
-```bash
-git clone https://github.com/MrBinnacle/azimuth.git
-# Copy azimuth/ to your agent's skills directory
-```
-
-After install, the skill activates automatically on decision-quality queries. Or invoke directly:
-
-```
-/azimuth We're launching the new product next week
-/azimuth Should we rewrite the legacy service?
-/azimuth I'm considering making this hire
-/azimuth Pressure test our Q3 timeline
-```
-
----
-
 ## How it works
 
-Three operating modes auto-selected by stakes and context:
+Three modes, auto-selected by stakes and context:
 
 ```
-FAST    → Objective Check + Top 3 Failure Paths + Verdict
-STANDARD → Full 10-module analysis (default)
-DEEP    → All modules + loads domain reference files + gotchas
+FAST      → Objective Check + Top 3 Failure Paths + Verdict
+STANDARD  → Full 10-module analysis (default)
+DEEP      → All modules + domain reference files + gotchas
 ```
 
-The 10-module core analysis:
+The 10-module core:
 
 1. **Objective Integrity Check** — Is this the right problem or symptom treatment?
 2. **Assumption Audit** — What must be true for success? Classified: strong / partial / unsupported / contradicted
@@ -97,84 +124,36 @@ azimuth/
 ├── references/
 │   ├── base-rates.md                 # Historical failure rates: software, startups, launches, hiring, M&A
 │   ├── startup-failures.md           # 8 startup-specific failure patterns with diagnostic questions
-│   ├── software-failure-patterns.md  # 10 engineering failure patterns with azimuth questions
+│   ├── software-failure-patterns.md  # 10 engineering failure patterns
 │   └── launch-risks.md               # Pre/during/post launch risk zones with signal and mitigation
 ├── diagnostics/
 │   ├── assumption-audit.md           # 5-step process: extract → classify → risk-score → validate → gate
 │   ├── dependency-map.md             # Full inventory, assessment matrix, concentration risk
 │   ├── incentive-conflicts.md        # 7 conflict categories, severity classification
 │   └── fragility-scan.md            # 6 structural fragility indicators → LOW/MEDIUM/HIGH/CRITICAL score
-└── templates/
-    ├── executive-azimuth.md        # 1-page format for leadership briefings
-    ├── codebase-azimuth.md         # Refactor/migration/rewrite template
-    ├── product-launch-azimuth.md   # Launch readiness gate matrix + rollback protocol
-    └── hiring-azimuth.md           # Role definition audit + candidate failure path analysis
+├── templates/
+│   ├── executive-azimuth.md          # 1-page format for leadership briefings
+│   ├── codebase-azimuth.md           # Refactor/migration/rewrite template
+│   ├── product-launch-azimuth.md     # Launch readiness gate matrix + rollback protocol
+│   └── hiring-azimuth.md             # Role definition audit + candidate failure path analysis
+└── evals/                            # Falsifiable test cases gating v1.1.x changes
 ```
 
 ---
 
-## Example output
+## Why this is different
 
-**Input:** *"We're planning to rewrite our legacy billing service in Q3. 8 weeks, 2 engineers."*
+Most pre-commitment skills for AI agents are built around code review — they ask *what's wrong with this implementation?* This skill asks *what's wrong with this decision?*
 
-**Output (abbreviated):**
+It covers the full stack of how initiatives fail: incentive misalignment, political timelines, unvalidated demand, dependency concentration, and the 8 structural gotchas that survive standard checklists.
 
-```
-## Azimuth Verdict
-High-risk. Scope and timeline are inconsistent with known base rates for legacy rewrites.
-Do not proceed without scope reduction and a validated rollback strategy.
-
-## Critical Risks
-1. Integration tax — Parallel-running old and new systems historically extends to 3–5×
-   estimated cutover time. No hard deprecation date defined.
-2. Knowledge concentration — Single-person domain knowledge on billing logic creates
-   SPOF. No fallback owner named.
-3. Scope creep under deadline — "While we're at it" rewrites reliably overload scope.
-   No change control mechanism defined.
-
-## Likely Failure Paths
-- Billing edge cases surface in testing → scope expands → 8 weeks becomes 20 →
-  old system maintenance + new system debt → both teams overloaded → defects in prod
-
-## Recommended Decision
-PILOT FIRST — Rewrite one isolated billing module with full rollback. Validate
-assumptions about coupling before committing full scope.
-
-## Confidence Level
-High — base rate for legacy rewrites exceeding estimate: 70–80%. No evidence present
-that shifts this.
-```
-
----
-
-## Core anti-patterns this skill rejects
+**What it explicitly rejects:**
 
 - Generic risk lists padded to 10+ items
 - Weak mitigations ("communicate better," "monitor closely")
 - Treating all risks as equally probable
 - Defaulting to PROCEED when evidence is thin
 - Recommending "proceed with caution" when the right call is stop
-
----
-
-## Why this is different from code-focused agent skills
-
-Most pre-commitment and risk-analysis skills for AI agents are built around code and PR review — they ask "what's wrong with this implementation?" This skill asks "what's wrong with this decision?" It covers the full stack of how initiatives fail: incentive misalignment, political timelines, unvalidated demand, dependency concentration, and the 8 structural gotchas that survive standard checklists.
-
----
-
-## Compatibility
-
-| Agent | Supported |
-|-------|-----------|
-| Claude Code | ✓ |
-| Claude.ai | ✓ |
-| Codex (OpenAI) | ✓ |
-| Gemini CLI | ✓ |
-| Cursor | ✓ |
-| GitHub Copilot | ✓ |
-| Windsurf | ✓ |
-| OpenCode | ✓ |
 
 ---
 
@@ -190,6 +169,4 @@ MIT
 
 ---
 
-*Built on Gary Klein's prospective hindsight methodology and structured analytic technique traditions. The name comes from land navigation: an azimuth is the bearing you verify before you step off. Get it wrong at the start and no amount of execution excellence puts you on the right objective.*
-
-*Designed for operators making irreversible decisions under uncertainty.*
+*Built on Gary Klein's prospective hindsight methodology and structured analytic technique traditions. Designed for operators making irreversible decisions under uncertainty.*
