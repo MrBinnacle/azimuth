@@ -1,6 +1,6 @@
 ---
 name: azimuth
-description: "Decision-quality precommitment analysis. Use this skill before launches, refactors, hires, partnerships, migrations, timelines, strategic bets, or any initiative with meaningful downside. Also invoke when the user sounds overconfident, vague, rushed, or politically constrained — even if they haven't explicitly asked for one. Diagnoses whether a plan already contains seeds of failure and what must change before commitment. Trigger on phrases like: should we do this, pressure test, what could go wrong, are we ready, go/no-go, validate our plan, review this before we commit, timeline check, or any request to evaluate a decision with real downside."
+description: "Decision-quality pre-commitment analysis for initiative-level go/no-go calls with meaningful downside and limited reversibility — launches, rewrites, key hires, partnerships, strategic bets, timelines. Invoke when the user explicitly asks to pressure test, validate, or evaluate such a decision (e.g. 'should we do this,' 'pressure test,' 'go/no-go,' 'are we ready'). Do NOT invoke for routine code review, sub-task planning, reversible tactical choices, or pure ideation."
 ---
 
 # Mission
@@ -58,35 +58,72 @@ Also invoke when user sounds overconfident, vague, rushed, or politically constr
 
 # Operating Modes
 
-## FAST
+## Mode Selection — Use These Signals
 
-Use for low-medium stakes or sparse context.
+Pick mode from the strongest applicable signal. When in doubt, ask one clarifying question rather than guessing.
+
+**Use FAST when:**
+- Decision is single-team, reversible, scope < 2 weeks of effort
+- Sparse context — user supplied only a one-line plan
+- User asked for a "quick check," "sanity check," or "gut check"
+- No headcount, vendor contract, public commitment, or capital outlay involved
+
+**Use STANDARD (default) when:**
+- Cross-team or multi-stakeholder decision
+- Scope between 2 weeks and 1 quarter
+- Reversal is possible but costly (rework, re-planning, schedule cost)
+- User supplied a structured plan with timeline, scope, and owners
+
+**Use DEEP when ANY of the following are true:**
+- Decision is irreversible or has high reversal cost (vendor contract signed, public announcement made, headcount changes, data migrations)
+- Capital outlay above the user's stated decision-authority threshold
+- Public-facing launch with brand/reputation exposure
+- Headcount changes (hire / layoff / org restructure)
+- Multi-quarter timeline
+- User explicitly says "high stakes," "we can't afford to be wrong," or equivalent
+
+If signals conflict, escalate (FAST → STANDARD, STANDARD → DEEP). Never silently downgrade.
+
+---
+
+## Mode Behaviors
+
+### FAST
 
 Run:
 - Objective Check
-- Assumption Audit
+- Assumption Audit (top 3 assumptions only)
 - Top 3 Failure Paths
 - Verdict
 
-## STANDARD
+Do not load diagnostics or references.
 
-Default.
+### STANDARD
 
-Run all core modules.
+Default. Run all 10 core modules.
 
-## DEEP
+**Diagnostic loading in STANDARD is conditional, not automatic.** Load a diagnostic file only when the corresponding module surfaces a high-severity finding the user would benefit from drilling into:
 
-Use for high-stakes / expensive / irreversible decisions.
+- Module 2 surfaces 3+ unsupported assumptions or any contradicted assumption → load `diagnostics/assumption-audit.md`
+- Module 4 surfaces a governance-level incentive conflict → load `diagnostics/incentive-conflicts.md`
+- Module 5 surfaces a critical SPOF or concentration risk → load `diagnostics/dependency-map.md`
+- Module 8 surfaces high irreversibility + late detectability → load `diagnostics/fragility-scan.md`
 
-Run all modules + load:
-- `references/base-rates.md`
-- `diagnostics/` — load all four files
+Load `references/base-rates.md` only when the user's plan involves a category covered by the file (software project, startup, launch, hire, M&A, migration, org change) AND the user's stated estimates appear to deviate from typical historical ranges.
+
+### DEEP
+
+Use for high-stakes / expensive / irreversible decisions per signals above.
+
+Run all 10 modules + load:
 - `gotchas.md`
+- `references/base-rates.md`
+- All four `diagnostics/` files
 
 Also load the relevant domain reference:
-- Tech/engineering → `references/software-failure-patterns.md`
-- Product/launch → `references/launch-risks.md`
-- Startup/venture → `references/startup-failures.md`
+- Tech / engineering → `references/software-failure-patterns.md`
+- Product / launch → `references/launch-risks.md`
+- Startup / venture → `references/startup-failures.md`
 
 ---
 
@@ -147,7 +184,7 @@ Mark each:
 
 Prioritize unsupported assumptions.
 
-For deep runs, load `diagnostics/assumption-audit.md`.
+Diagnostic load: see Operating Modes for when to load `diagnostics/assumption-audit.md`.
 
 ---
 
@@ -187,7 +224,7 @@ Check:
 
 If incentives conflict with success, elevate severity.
 
-For deep runs, load `diagnostics/incentive-conflicts.md`.
+Diagnostic load: see Operating Modes for when to load `diagnostics/incentive-conflicts.md`.
 
 ---
 
@@ -210,7 +247,7 @@ For each critical dependency assess:
 - lead time?
 - fallback exists?
 
-For deep runs, load `diagnostics/dependency-map.md`.
+Diagnostic load: see Operating Modes for when to load `diagnostics/dependency-map.md`.
 
 ---
 
@@ -240,7 +277,7 @@ If similar efforts exist, ask:
 
 Use historical/common patterns over imagination.
 
-For deep runs, load appropriate file from `references/`.
+Reference load: see Operating Modes for when to load `references/base-rates.md` and the relevant domain pattern file.
 
 If no data available, state uncertainty.
 
@@ -257,7 +294,7 @@ For top risks assess:
 
 Risks detected late and hard to reverse are priority risks.
 
-For deep runs, load `diagnostics/fragility-scan.md`.
+Diagnostic load: see Operating Modes for when to load `diagnostics/fragility-scan.md`.
 
 ---
 
@@ -301,37 +338,67 @@ Must explain why.
 
 ---
 
+# Module Output Reduction
+
+Modules 2, 5, 6, 7, and 8 share an underlying register of assumptions, dependencies, and risks. They are not independent reports — they are passes that contribute to the same register and surface different facets of it.
+
+Rules:
+
+1. Maintain a single internal register across modules. Each entry includes: source module(s), severity, evidence classification, dominant constraint touched, and reversibility.
+2. When the same assumption or risk is surfaced by more than one module, do **not** repeat it in the output. Cite it once in the most relevant section and reference it elsewhere by short tag (e.g. "see Critical Risk #2") if needed.
+3. The Critical Risks section is the deduplicated, severity-ordered output of the register. It is not a per-module dump.
+4. The Weak Assumptions section is the subset of the register classified UNSUPPORTED or CONTRADICTED in Module 2, ordered by Risk Score.
+5. The Likely Failure Paths section reuses register entries — it does not introduce new risks not already in the register.
+
+If the register has fewer than 3 critical risks, do not pad to three. State the register honestly.
+
+---
+
 # Output Format (Default)
+
+**Two non-negotiable output rules:**
+
+1. **Lead with the verdict.** The first three lines of every output must be the verdict line, the recommended decision, and the confidence level. Anything else comes after. The reader must be able to act on the first paragraph alone.
+2. **Omit empty sections.** Do not emit a section header with no substantive content under it. If "Structural Strengths" has nothing genuine to put in it, cut the section entirely. A short, sharp output is correct. A padded output is a failure of the skill.
 
 ```
 ## Azimuth Verdict
-(one line)
+(one line — clear position, no hedging)
 
-## Structural Strengths
-- ...
+## Recommended Decision
+(PROCEED / PROCEED WITH SAFEGUARDS / PILOT FIRST / REDUCE SCOPE / DELAY PENDING EVIDENCE / REJECT)
+Rationale: (one to two sentences)
+
+## Confidence Level
+Low / Medium / High + why
+
+---
 
 ## Critical Risks
+(Severity-ordered, from the register. 1–5 entries. Do not pad.)
 1. ...
 2. ...
 3. ...
 
 ## Weak Assumptions
+(UNSUPPORTED or CONTRADICTED entries from Module 2. Omit section if none.)
 - ...
 
 ## Likely Failure Paths
-- Trigger → Cascade → Cost
+(Trigger → Cascade → Visible Failure → Business Cost. Reuses register entries; no new risks.)
+- ...
 
 ## Highest-Leverage Fixes
+(Structural changes only. Weak mitigations rejected.)
 - ...
 
 ## Early Warning Indicators
+(What to monitor that would signal a risk activating. Omit if not applicable.)
 - ...
 
-## Recommended Decision
-(PROCEED / PILOT / etc.)
-
-## Confidence Level
-Low / Medium / High + why
+## Structural Strengths
+(Optional. Include only if genuine and material to the decision.)
+- ...
 ```
 
 ---

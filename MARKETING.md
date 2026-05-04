@@ -134,7 +134,7 @@ Realistic 90-day target: **100–150 stars.** Possible upside if a PM newsletter
 
 ## The Unfair Advantage
 
-The existing azimuth skills were built by devs for devs. The language, framing, and output format are all code-brained. This skill was built by someone who thinks in terms of institutional failure, incentive misalignment, and historical base rates — and that shows in the output. That's the moat. The PM and founder audience will recognize it immediately.
+The existing code-focused premortem skills were built by devs for devs. The language, framing, and output format are all code-brained. This skill was built by someone who thinks in terms of institutional failure, incentive misalignment, and historical base rates — and that shows in the output. That's the moat. The PM and founder audience will recognize it immediately.
 
 ---
 

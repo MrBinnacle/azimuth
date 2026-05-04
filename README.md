@@ -12,7 +12,7 @@ Built for **Claude Code, Claude.ai, Codex, Gemini CLI, Cursor, and all major AI 
 
 ## What this is
 
-Most azimuth tools for AI agents answer one question: *will this code break?*
+Most code-focused agent skills answer one question: *will this code break?*
 
 This one answers a different question: *should we do this at all, and if so, what needs to change before we commit?*
 
@@ -93,7 +93,7 @@ The 10-module core analysis:
 ```
 azimuth/
 ├── SKILL.md                          # Core skill — 10-module analysis engine
-├── gotchas.md                        # 12 structural failure patterns that evade standard checklists
+├── gotchas.md                        # 8 structural failure patterns that evade standard checklists
 ├── references/
 │   ├── base-rates.md                 # Historical failure rates: software, startups, launches, hiring, M&A
 │   ├── startup-failures.md           # 8 startup-specific failure patterns with diagnostic questions
@@ -157,9 +157,9 @@ that shifts this.
 
 ---
 
-## Why this is different from code-focused azimuths
+## Why this is different from code-focused agent skills
 
-Most azimuth skills for AI agents are built around code and PR review — they ask "what's wrong with this implementation?" This skill asks "what's wrong with this decision?" It covers the full stack of how initiatives fail: incentive misalignment, political timelines, unvalidated demand, dependency concentration, and the 12 structural gotchas that survive standard checklists.
+Most pre-commitment and risk-analysis skills for AI agents are built around code and PR review — they ask "what's wrong with this implementation?" This skill asks "what's wrong with this decision?" It covers the full stack of how initiatives fail: incentive misalignment, political timelines, unvalidated demand, dependency concentration, and the 8 structural gotchas that survive standard checklists.
 
 ---
 
