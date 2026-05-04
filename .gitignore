@@ -1,0 +1,20 @@
+# Session state — never commit
+.omc/
+
+# Maintenance tooling — local-only, not part of the public skill
+.claude/
+research/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor temp files
+*.swp
+*.swo
+*~
+
+# Editor configs
+.vscode/
+.idea/
