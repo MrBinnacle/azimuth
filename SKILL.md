@@ -185,6 +185,13 @@ Mark each:
 
 Prioritize unsupported assumptions.
 
+**Counterfactual pass (run after classification):**
+
+For every assumption marked strong evidence or partial evidence:
+- Name the falsifier: what specific, observable evidence would prove this assumption wrong?
+- Falsifiers must be concrete and measurable — not "if it doesn't work" but "output metric X below baseline at 90 days" or "voluntary opt-out rate above Y%"
+- Do not add a falsifier for UNSUPPORTED assumptions — those are already flagged as requiring validation before proceeding
+
 Diagnostic load: see Operating Modes for when to load `diagnostics/assumption-audit.md`.
 
 ---
@@ -265,6 +272,12 @@ Prefer realistic chains such as:
 `Scope creep → delays → rushed QA → defects → trust loss`
 
 Avoid dramatic fiction unless evidence supports it.
+
+**Coupling pass:**
+
+Review the failure chains constructed above. Identify pair-interactions where two risks activating together produce a materially worse outcome than either produces alone. This is not "these are both risky" — it is "when A and B both fire, the failure mechanism changes: B's recovery path is blocked by A, or A's visible signal is masked by B."
+
+Limit to 3-5 pair interactions maximum. Do not pad. If no genuine multiplicative interactions exist, omit the section.
 
 ---
 
@@ -409,10 +422,20 @@ Low / Medium / High + why
 (Omit this section when verdict is INSUFFICIENT SIGNAL)
 - ...
 
+## Falsifiers
+(For each STRONG or PARTIAL assumption: what observable evidence would prove it wrong? Omit section if no strong or partial assumptions exist.)
+(Omit this section when verdict is INSUFFICIENT SIGNAL)
+- [Assumption name]: [specific, observable falsifier]
+
 ## Likely Failure Paths
 (Trigger → Cascade → Visible Failure → Business Cost. Reuses register entries; no new risks.)
 (Omit this section when verdict is INSUFFICIENT SIGNAL)
 - ...
+
+## Interaction Effects
+(Pair-interactions where two risks together produce nonlinear failure. 2-5 entries max. Omit section if no genuine multiplicative interactions exist — do not pad.)
+(Omit this section when verdict is INSUFFICIENT SIGNAL)
+- [Risk A] + [Risk B]: [specific mechanism by which their combination is worse than either alone]
 
 ## Highest-Leverage Fixes
 (Structural changes only. Weak mitigations rejected.)
