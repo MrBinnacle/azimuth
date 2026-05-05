@@ -124,6 +124,7 @@ Also load the relevant domain reference:
 - Tech / engineering → `references/software-failure-patterns.md`
 - Product / launch → `references/launch-risks.md`
 - Startup / venture → `references/startup-failures.md`
+- M&A / partnerships → `references/ma-partnership-patterns.md`
 
 ---
 
@@ -432,6 +433,14 @@ Use for: beta launches, v1 releases, feature rollouts with user-facing risk.
 Load `templates/hiring-azimuth.md`.
 
 Use for: key hire decisions, contractor engagements, partnership roles.
+
+---
+
+# Output Format (Partnership / M&A)
+
+Load `templates/partnership-azimuth.md`.
+
+Use for: mergers, acquisitions, strategic partnerships, joint ventures, significant vendor relationships with multi-quarter or multi-year commitment.
 
 ---
 
