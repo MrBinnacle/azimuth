@@ -8,10 +8,21 @@ All notable changes to this project will be documented in this file.
 
 Planned. See `ROADMAP.md` for the why on each.
 
-- **v1.1.x — Counterfactual layer.** Module 2 adds falsifiers for strong-evidence assumptions.
-- **v1.1.x — Coupling pass.** Module 6 adds pair-interaction failure analysis.
 - **v1.2.0 — Evidence tags.** Every output claim carries a provenance tag.
 - **v1.2.0 — Audit trail.** Output lists modules run and what each surfaced.
+
+### Added — domain coverage (unversioned, shipped between releases)
+
+- **`templates/secondaries-ic-azimuth.md`** — IC recommendation template for PE secondaries investment partners evaluating GP-led continuation vehicles, direct secondaries, and minority recaps. Includes: adverse selection gate (run before committing diligence resources), process integrity gate with ILPA 2023 minimum standards (binary kill gate independent of asset quality), NAV reliability assessment with Whitehorse Liquidity Partners 28%-uplift finding, GP quality and alignment signals with relationship bias check, and pricing discipline table with stress-case IRR modeling. Verdict taxonomy: COMMIT-AT-PRICE / BID-BELOW-INDICATED (auction) / COUNTER-AT-PRICE (bilateral) / CONDITIONAL-ON-TERMS / PASS-PROCESS / PASS-PRICING. PASS-PROCESS legal grounding: ADIC v. EMG, C.A. No. 2025-1389-NAC (Del. Ch. December 2025).
+
+---
+
+## [1.1.2] — 2026-05-05
+
+### Added
+
+- **Counterfactual layer (Module 2).** After classifying assumptions as strong / partial / unsupported, Module 2 now runs a Falsifiers pass: for each strong or partial assumption, names the specific, observable evidence that would prove it wrong. Falsifiers must be concrete and measurable — not "if it doesn't work" but a named metric and threshold. Unsupported assumptions are excluded (already flagged for validation). Output: new Falsifiers section, positioned after Weak Assumptions, with standard omit-if-empty rule.
+- **Coupling pass (Module 6).** After constructing the 3 most plausible independent failure chains, Module 6 now identifies pair-interactions where two risks activating together produce a materially worse outcome than either alone. The mechanism must be specific: one risk blocks the other's recovery path, or one masks the other's visible signal. 3–5 interactions maximum; omit if no genuine multiplicative interactions exist. Output: new Interaction Effects section, positioned after Likely Failure Paths, with standard omit-if-empty rule.
 
 ---
 
