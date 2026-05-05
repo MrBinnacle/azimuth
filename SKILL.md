@@ -477,6 +477,14 @@ Use for: mergers, acquisitions, strategic partnerships, joint ventures, signific
 
 ---
 
+# Output Format (PE Secondaries IC)
+
+Load `templates/secondaries-ic-azimuth.md`.
+
+Use for: PE secondaries investment committee decisions — GP-led continuation vehicles, direct secondary LP stake acquisitions, minority recaps / structured liquidity. Primary user is the IC investment partner, not the fund CFO.
+
+---
+
 # Anti-Slop Rules
 
 Never:
