@@ -4,9 +4,30 @@
 
 **Decision-quality pre-commitment analysis for operators who can't afford to be wrong about direction.**
 
+![Version](https://img.shields.io/badge/version-v1.1.2-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-blueviolet) ![Works with](https://img.shields.io/badge/works_with-Codex_%7C_Gemini_%7C_Cursor_%7C_Copilot-lightgrey)
+
 An azimuth is a navigational bearing — the angle you lock in before you step off. Get it wrong by a few degrees at the start and you're miles from your objective by the end. AZIMUTH the skill does the same thing for decisions: it finds the drift, the false assumptions, and the structural failure modes before you're committed and downrange.
 
 Built for **Claude Code, Claude.ai, Codex, Gemini CLI, Cursor, and all major AI coding agents.** Designed for operators, PMs, founders, and senior engineers making decisions with real downside — not just code review.
+
+---
+
+## Quick Start
+
+```
+npx skills add https://github.com/MrBinnacle/azimuth
+```
+
+Then invoke on any decision:
+
+```
+/azimuth We're launching the new product next week
+/azimuth Should we rewrite the legacy service?
+/azimuth I'm considering making this hire
+/azimuth Pressure test our Q3 timeline
+```
+
+The skill activates automatically on decision-quality queries. No configuration required.
 
 ---
 
@@ -30,40 +51,6 @@ It covers the full decision surface — technical *and* strategic:
 
 ---
 
-## Install
-
-**Claude Code / Claude.ai skills:**
-
-```
-npx skills add https://github.com/MrBinnacle/azimuth
-```
-
-Or manually:
-
-```
-git clone https://github.com/MrBinnacle/azimuth.git
-mkdir -p ~/.claude/skills
-cp -r azimuth ~/.claude/skills/
-```
-
-**Codex, Gemini CLI, Cursor, Copilot:**
-
-```
-git clone https://github.com/MrBinnacle/azimuth.git
-# Copy azimuth/ to your agent's skills directory
-```
-
-After install, the skill activates automatically on decision-quality queries. Or invoke directly:
-
-```
-/azimuth We're launching the new product next week
-/azimuth Should we rewrite the legacy service?
-/azimuth I'm considering making this hire
-/azimuth Pressure test our Q3 timeline
-```
-
----
-
 ## How it works
 
 Three operating modes auto-selected by stakes and context:
@@ -77,11 +64,13 @@ DEEP    → All modules + loads domain reference files + gotchas
 The 10-module core analysis:
 
 1. **Objective Integrity Check** — Is this the right problem or symptom treatment?
-2. **Assumption Audit** — What must be true for success? Classified: strong / partial / unsupported / contradicted. Includes **counterfactual pass**: for each strong or partial assumption, names the specific observable evidence that would prove it wrong.
+2. **Assumption Audit** — Classified: strong / partial / unsupported / contradicted
+   → **Falsifiers pass**: names the specific observable evidence that would prove each strong or partial assumption wrong
 3. **Constraint Reality Check** — Which constraint most likely dominates outcome?
 4. **Incentive Scan** — Who benefits from poor decisions, drift, or concealment?
 5. **Dependency Fragility Map** — What's a single point of failure? What's actually secured vs. assumed?
-6. **Failure Path Construction** — Trigger → Cascade → Visible Failure → Business Cost. Includes **coupling pass**: identifies pair-interactions where two risks together produce nonlinear failure.
+6. **Failure Path Construction** — Trigger → Cascade → Visible Failure → Business Cost
+   → **Coupling pass**: identifies pair-interactions where two risks together produce nonlinear failure
 7. **Base Rate Reality Check** — How do similar initiatives actually fail historically?
 8. **Detectability & Recovery** — Which risks are found late and hard to reverse?
 9. **Mitigation Design** — Structural changes only. Weak mitigations rejected.
@@ -105,37 +94,10 @@ INSUFFICIENT SIGNAL is not DELAY PENDING EVIDENCE. DELAY means the decision is p
 
 ---
 
-## What's inside
-
-```
-azimuth/
-├── SKILL.md                          # Core skill — 10-module analysis engine
-├── gotchas.md                        # 8 structural failure patterns that evade standard checklists
-├── references/
-│   ├── base-rates.md                 # Historical failure rates: software, startups, launches, hiring, M&A
-│   ├── startup-failures.md           # 8 startup-specific failure patterns with diagnostic questions
-│   ├── software-failure-patterns.md  # 10 engineering failure patterns with azimuth questions
-│   ├── launch-risks.md               # Pre/during/post launch risk zones with signal and mitigation
-│   └── ma-partnership-patterns.md    # 8 M&A and partnership failure patterns with diagnostic questions
-├── diagnostics/
-│   ├── assumption-audit.md           # 5-step process: extract → classify → risk-score → validate → gate
-│   ├── dependency-map.md             # Full inventory, assessment matrix, concentration risk
-│   ├── incentive-conflicts.md        # 7 conflict categories, severity classification
-│   └── fragility-scan.md            # 6 structural fragility indicators → LOW/MEDIUM/HIGH/CRITICAL score
-├── templates/
-│   ├── executive-azimuth.md          # 1-page format for leadership briefings
-│   ├── codebase-azimuth.md           # Refactor/migration/rewrite template
-│   ├── product-launch-azimuth.md     # Launch readiness gate matrix + rollback protocol
-│   ├── hiring-azimuth.md             # Role definition audit + candidate failure path analysis
-│   ├── partnership-azimuth.md        # M&A, acquisitions, strategic partnerships, vendor relationships
-│   └── secondaries-ic-azimuth.md     # PE secondaries IC recommendation template
-└── examples/
-    └── case-study-healthcare-gov.md  # Healthcare.gov DEEP mode run — 5/6 recall, 0 false positives
-```
-
----
-
 ## Example output
+
+<details>
+<summary>Legacy billing rewrite — PILOT FIRST verdict</summary>
 
 **Input:** *"We're planning to rewrite our legacy billing service in Q3. 8 weeks, 2 engineers."*
 
@@ -178,6 +140,8 @@ No evidence present that shifts this.
   old system maintenance + new system debt → both teams overloaded → defects in prod
 ```
 
+</details>
+
 ---
 
 ## Core anti-patterns this skill rejects
@@ -188,6 +152,72 @@ No evidence present that shifts this.
 * Defaulting to PROCEED when evidence is thin
 * Substituting DELAY PENDING EVIDENCE for INSUFFICIENT SIGNAL when the problem is missing input, not missing time
 * Returning a verdict when analysis would require inventing facts the user did not supply
+
+---
+
+## What's inside
+
+<details>
+<summary>Full file tree</summary>
+
+```
+azimuth/
+├── SKILL.md                          # Core skill — 10-module analysis engine
+├── gotchas.md                        # 8 structural failure patterns that evade standard checklists
+├── references/
+│   ├── base-rates.md                 # Historical failure rates: software, startups, launches, hiring, M&A
+│   ├── startup-failures.md           # 8 startup-specific failure patterns with diagnostic questions
+│   ├── software-failure-patterns.md  # 10 engineering failure patterns with azimuth questions
+│   ├── launch-risks.md               # Pre/during/post launch risk zones with signal and mitigation
+│   └── ma-partnership-patterns.md    # 8 M&A and partnership failure patterns with diagnostic questions
+├── diagnostics/
+│   ├── assumption-audit.md           # 5-step process: extract → classify → risk-score → validate → gate
+│   ├── dependency-map.md             # Full inventory, assessment matrix, concentration risk
+│   ├── incentive-conflicts.md        # 7 conflict categories, severity classification
+│   └── fragility-scan.md            # 6 structural fragility indicators → LOW/MEDIUM/HIGH/CRITICAL score
+├── templates/
+│   ├── executive-azimuth.md          # 1-page format for leadership briefings
+│   ├── codebase-azimuth.md           # Refactor/migration/rewrite template
+│   ├── product-launch-azimuth.md     # Launch readiness gate matrix + rollback protocol
+│   ├── hiring-azimuth.md             # Role definition audit + candidate failure path analysis
+│   ├── partnership-azimuth.md        # M&A, acquisitions, strategic partnerships, vendor relationships
+│   └── secondaries-ic-azimuth.md     # PE secondaries IC recommendation template
+└── examples/
+    └── case-study-healthcare-gov.md  # Healthcare.gov DEEP mode run — 5/6 recall, 0 false positives
+```
+
+</details>
+
+---
+
+## Install
+
+**Claude Code / Claude.ai skills:**
+
+```
+npx skills add https://github.com/MrBinnacle/azimuth
+```
+
+Or manually:
+
+```
+git clone https://github.com/MrBinnacle/azimuth.git
+mkdir -p ~/.claude/skills
+cp -r azimuth ~/.claude/skills/
+```
+
+**Codex, Gemini CLI, Cursor, Copilot:**
+
+```
+git clone https://github.com/MrBinnacle/azimuth.git
+# Copy azimuth/ to your agent's skills directory
+```
+
+---
+
+## Contributing
+
+Issues and PRs welcome. Priority areas: additional domain templates, base rate data improvements with primary source citations, and domain-specific gotchas grounded in documented failure cases.
 
 ---
 
@@ -203,12 +233,6 @@ No evidence present that shifts this.
 | GitHub Copilot | ✓ |
 | Windsurf | ✓ |
 | OpenCode | ✓ |
-
----
-
-## Contributing
-
-Issues and PRs welcome. Priority areas: additional domain templates, base rate data improvements with primary source citations, and domain-specific gotchas grounded in documented failure cases.
 
 ---
 
