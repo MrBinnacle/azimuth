@@ -8,11 +8,27 @@ All notable changes to this project will be documented in this file.
 
 Planned. See `ROADMAP.md` for the why on each.
 
-- **v1.1.1 — Insufficient Signal verdict.** Skill can refuse to return a verdict when input doesn't support one.
 - **v1.1.x — Counterfactual layer.** Module 2 adds falsifiers for strong-evidence assumptions.
 - **v1.1.x — Coupling pass.** Module 6 adds pair-interaction failure analysis.
 - **v1.2.0 — Evidence tags.** Every output claim carries a provenance tag.
 - **v1.2.0 — Audit trail.** Output lists modules run and what each surfaced.
+
+---
+
+## [1.1.1] — 2026-05-05
+
+### Added
+
+- **INSUFFICIENT SIGNAL verdict state.** Module 10 now refuses to return a verdict when the input is too sparse, vague, or contradictory to support honest analysis. Trigger conditions defined: missing core inputs (objective, scope, reversibility, downside), undefined objective that blocks assumption audit, internal contradiction requiring user resolution, or any standard verdict requiring invented facts. Returns only a Missing Inputs section — no verdict, no confidence level, no mitigations.
+- **Output format annotations.** All sections that must be omitted on INSUFFICIENT SIGNAL are now marked explicitly in the output format block.
+- **Anti-slop rule.** Prohibits substituting DELAY PENDING EVIDENCE for INSUFFICIENT SIGNAL when the block is missing input, not missing time.
+- **Escalation Logic entry.** INSUFFICIENT SIGNAL gets its own escalation rule: if input is too sparse to ground any verdict, return INSUFFICIENT SIGNAL; do not soften into DELAY PENDING EVIDENCE.
+
+### Added — domain coverage
+
+- **`references/ma-partnership-patterns.md`** — 8 M&A and partnership failure patterns with diagnostic questions: Strategic Rationale Substitution, Integration Timeline Compression, Synergy Overestimation, Key Talent Flight, Due Diligence Gap, Partnership Incentive Drift, Dependency Lock-In, Governance Vacuum Post-Close.
+- **`templates/partnership-azimuth.md`** — Analysis template for M&A, acquisitions, strategic partnerships, and significant vendor relationships.
+- **`SKILL.md` DEEP mode routing** — M&A / partnerships now routes to `references/ma-partnership-patterns.md`; Output Format section now includes Partnership / M&A format pointing to `templates/partnership-azimuth.md`.
 
 ---
 

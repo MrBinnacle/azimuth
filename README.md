@@ -111,7 +111,7 @@ The 10-module core:
 7. **Base Rate Reality Check** — How do similar initiatives actually fail historically?
 8. **Detectability & Recovery** — Which risks are found late and hard to reverse?
 9. **Mitigation Design** — Structural changes only. Weak mitigations rejected.
-10. **Decision Verdict** — PROCEED / PILOT FIRST / REDUCE SCOPE / DELAY / REJECT
+10. **Decision Verdict** — PROCEED / PILOT FIRST / REDUCE SCOPE / DELAY / REJECT / INSUFFICIENT SIGNAL
 
 ---
 
@@ -125,7 +125,8 @@ azimuth/
 │   ├── base-rates.md                 # Historical failure rates: software, startups, launches, hiring, M&A
 │   ├── startup-failures.md           # 8 startup-specific failure patterns with diagnostic questions
 │   ├── software-failure-patterns.md  # 10 engineering failure patterns
-│   └── launch-risks.md               # Pre/during/post launch risk zones with signal and mitigation
+│   ├── launch-risks.md               # Pre/during/post launch risk zones with signal and mitigation
+│   └── ma-partnership-patterns.md    # 8 M&A and partnership failure patterns with diagnostic questions
 ├── diagnostics/
 │   ├── assumption-audit.md           # 5-step process: extract → classify → risk-score → validate → gate
 │   ├── dependency-map.md             # Full inventory, assessment matrix, concentration risk
@@ -135,8 +136,11 @@ azimuth/
 │   ├── executive-azimuth.md          # 1-page format for leadership briefings
 │   ├── codebase-azimuth.md           # Refactor/migration/rewrite template
 │   ├── product-launch-azimuth.md     # Launch readiness gate matrix + rollback protocol
-│   └── hiring-azimuth.md             # Role definition audit + candidate failure path analysis
-└── evals/                            # Falsifiable test cases gating v1.1.x changes
+│   ├── hiring-azimuth.md             # Role definition audit + candidate failure path analysis
+│   └── partnership-azimuth.md        # M&A and partnership analysis template
+├── examples/
+│   └── case-study-healthcare-gov.md  # Healthcare.gov October 2013 — DEEP mode retrospective
+└── evals/                            # Falsifiable test cases and scored baselines gating v1.1.x changes
 ```
 
 ---
@@ -159,7 +163,7 @@ It covers the full stack of how initiatives fail: incentive misalignment, politi
 
 ## Contributing
 
-Issues and PRs welcome. Priority areas: additional domain templates (M&A, compliance, infrastructure), base rate data improvements, and domain-specific gotchas.
+Issues and PRs welcome. Priority areas: additional domain templates (compliance, infrastructure, org change), base rate data improvements, and domain-specific gotchas.
 
 ---
 
