@@ -1,6 +1,9 @@
 # Session state — never commit
 .omc/
 
+# Graphify knowledge graph — local only, rebuilt from source
+graphify-out/
+
 # Maintenance tooling — local-only, not part of the public skill
 .claude/
 research/

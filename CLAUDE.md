@@ -82,6 +82,37 @@ Staged research findings live in `research/staged-findings.md`. The research-sco
 
 Project notes live in a local Obsidian vault under `Writ_vault/azimuth/`. Subfolders: `notes/`, `references/`, `outputs/`.
 
+## Graphify knowledge graph
+
+A navigable knowledge graph of the full repo is maintained in `graphify-out/` and mirrored into the Obsidian vault.
+
+**Graph location:** `graphify-out/graph.json` — 208 nodes, 296 edges, 14 communities  
+**Obsidian vault:** `C:\Users\mlpgr\Writ_vault\graphify\azimuth\` — 222 notes, open as vault in Obsidian  
+**HTML graph:** `graphify-out/graph.html` — open in browser, no server needed  
+**Python interpreter:** `C:\Python313\python.exe`
+
+**Before answering questions about module relationships, loading conditions, template routing, or skill architecture — check the graph first:**
+
+```
+/graphify query "diagnostic load triggers"
+/graphify query "template routing by decision type"
+/graphify query "SKILL.md module loading conditions"
+```
+
+**God nodes (best traversal entry points):**
+- `v1.1.0 Baseline Eval Results` (degree 19)
+- `PE Secondaries IC Template` (degree 19)
+- `AZIMUTH` skill (degree 17)
+- `W Capital Partners` (degree 13)
+
+**Rebuild after any significant file changes:**
+```bash
+/graphify . --obsidian --obsidian-dir "C:\Users\mlpgr\Writ_vault\graphify\azimuth"
+```
+
+Full integration guide: `graphify-out/OBSIDIAN_INTEGRATION.md`  
+Query cheat sheet: `graphify-out/GRAPHIFY_CHEATSHEET.md`
+
 ## Environment notes (Windows)
 
 - `jq` is not available — use `node -e` for all JSON manipulation
