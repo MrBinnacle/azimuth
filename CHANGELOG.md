@@ -13,6 +13,26 @@ Planned. See `ROADMAP.md` for the why on each.
 
 ---
 
+## [1.2.1] — 2026-05-07
+
+### Fixed
+
+- **SKILL.md: section padding — inline omit reminders added to three output sections.** Likely Failure Paths, Early Warning Indicators, and Structural Strengths now carry inline instructions at the point of template use. Root cause: a model filling the output template without having loaded and internalized the global "omit empty sections" non-negotiable (line 616) will populate all 9 headers. The global rule remains; the fix adds redundancy at the sections most susceptible to thin content. Source: live invocation finding F5/F8/F14 (`evals/results/2026-05-07-live-invocation-findings.md`).
+
+- **SKILL.md: Module 4 self-proposal pre-check.** Pre-question check added before the Module 4 interview. Determines whether the AI assistant in the conversation proposed or advocated for the option under analysis. If yes, Module 4 runs on the assistant with that framing explicitly named — questions [ACCOUNTABILITY] and [DISSENT] apply to whether the assistant's recommendation was challenged or corrected. Root cause: bypass language and Question 1 [IDENTITY] assume the proposer is an external human actor; multi-turn advocacy by the assistant before invocation was not covered. Source: live invocation findings F11/F13.
+
+- **SKILL.md: same-decision re-analysis carry-forward.** New conditional block in Bypass Handling for second invocations on the same decision. Produces a differential analysis (prior run detected → verdict at confidence on date → what changed) rather than a full re-derivation. Distinct from the existing Carry Forward block, which handles sequential path-selection → domain-analysis handoffs. Source: live invocation finding F17.
+
+### Meta
+
+- **Live invocation findings document.** `evals/results/2026-05-07-live-invocation-findings.md` — honest disposition of 19 analyst self-report findings from a live AZIMUTH invocation on a greenfield substrate decision. Breakdown: 5 structural fixes available (3 actioned above, 2 subsumed), 8 honest limitations documented without softening, 2 eval impact findings, 3 out-of-scope / correct-behavior.
+
+- **Eval load condition notes.** Load condition caveat added to `evals/results/2026-05-07-v1.2.0-hook-validation.md` and `evals/results/2026-05-07-v1.2.0-confidence-ceiling-and-m7-retest.md`. Both evals tested hook behavior with hook text present in agent context — valid for that condition. What they do not test: hook behavior when SKILL.md is accessed as a file and truncation occurs before line 225 in a long conversation. In the live invocation, SKILL.md truncated at line 225; all bias externalization hooks are at lines 308+ and were not loaded. Hook efficacy under partial-load conditions is currently unanswered.
+
+- **Named architectural finding — SKILL.md truncation risk.** SKILL.md's 810-line length means all module instructions, bias externalizations, and output format rules are past the truncation point in long conversations. The three structural fixes above are improvements on the assumption of full load. Under partial load, they do not reach the analyst. The appropriate response is documented: (a) the fixes are made and their post-line-225 status is noted in the findings document; (b) a partial-load characterization test is identified as the next eval priority before any further hook additions.
+
+---
+
 ## [1.2.0] — 2026-05-07
 
 ### Added

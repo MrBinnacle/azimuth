@@ -144,6 +144,14 @@ If the user provides structured context without routing:
 4. If Module 4 tier is YELLOW or RED: note the tier and apply its tiering consequences to the domain analysis without re-running the interview
 5. Treat the top unresolved assumption from the Carry Forward as the first candidate for UNSUPPORTED classification in Module 2
 
+**Same-Decision Re-analysis:** If the context includes a prior AZIMUTH output on the same decision (labeled `AZIMUTH PRIOR RUN: [date]` or identifiable from the conversation):
+
+1. State: "Prior run detected: [verdict] at [confidence] on [date]. Running differential analysis."
+2. Module 2: focus on assumptions whose evidence classification has changed since the prior run. Do not re-audit assumptions already marked STRONG with no new contrary evidence.
+3. Module 4: carry forward prior tier unless proposer identity or governance has changed.
+4. Module 10: compare new verdict to prior. If verdict changed, name the specific evidence delta that drove the change. If verdict is the same, state: "Verdict unchanged. [X] assumptions remain UNSUPPORTED."
+5. Do not re-derive failure paths already in the register unless new evidence changes their probability or mechanism.
+
 ---
 
 # Core Principles
@@ -365,6 +373,8 @@ Do not list all equally.
 **Interview first, then analyze.** Incentive context the user supplies is more reliable than what can be inferred from a plan document. Run 7 structured questions before the incentive analysis. Ask one at a time.
 
 ### Interview
+
+**[PRE-CHECK — SELF-PROPOSAL]** Before conducting the interview, determine: did the AI assistant in this conversation propose, recommend, or advocate for the option now under analysis? If yes, note: "Proposer is the assistant. Module 4 runs on the assistant. Questions [ACCOUNTABILITY] and [DISSENT] apply to whether the assistant's recommendation was challenged or corrected in the conversation." Proceed with the interview using this framing. Do not skip Module 4 because the proposer is not a human stakeholder.
 
 1. **[IDENTITY]** Who first proposed or originated this decision — and are they part of the team running or reviewing this analysis?
 2. **[ACCOUNTABILITY]** If this fails, what happens to the person or team who proposed it?
@@ -647,7 +657,7 @@ Low / Medium / High + why
 - [Assumption name]: [specific, observable falsifier]
 
 ## Likely Failure Paths
-(Trigger → Cascade → Visible Failure → Business Cost. Reuses register entries; no new risks.)
+(Trigger → Cascade → Visible Failure → Business Cost. Reuses register entries; no new risks. If failure paths are fully captured by Critical Risks, omit this section — do not restate in narrative form what the register already shows.)
 (Omit this section when verdict is INSUFFICIENT SIGNAL)
 - ...
 
@@ -662,12 +672,12 @@ Low / Medium / High + why
 - ...
 
 ## Early Warning Indicators
-(What to monitor that would signal a risk activating. Omit if not applicable.)
+(Omit if indicators are generic to all projects in the domain. Include only if monitoring a specific indicator would change a real action.)
 (Omit this section when verdict is INSUFFICIENT SIGNAL)
 - ...
 
 ## Structural Strengths
-(Optional. Include only if genuine and material to the decision.)
+(Include only if a structural feature of this plan materially reduces a Critical Risk or changes the verdict. If nothing rises to that bar, omit. Do not include to balance the output.)
 (Omit this section when verdict is INSUFFICIENT SIGNAL)
 - ...
 
