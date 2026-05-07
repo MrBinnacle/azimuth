@@ -110,8 +110,10 @@ Ask:
 - 3 → load `templates/hiring-azimuth.md`
 - 4 → load `templates/partnership-azimuth.md`
 - 5 → load `templates/secondaries-ic-azimuth.md`
-- 6 → load `references/org-change-patterns.md`; use default template
+- 6 → default template (org change / restructure domain — reference files load per mode rules)
 - 7 → default template
+
+**Default template:** use the Output Format (Default) section of this skill. No additional template file is loaded. Domain reference files load per mode rules (DEEP: unconditional; STANDARD: conditional on module findings).
 
 ---
 

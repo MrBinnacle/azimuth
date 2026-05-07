@@ -141,9 +141,9 @@ Do not wait for 90-day review to act on these signals.
 **RECOMMENDED DECISION**
 
 ☐ PROCEED — Hire this candidate
-☐ PROCEED WITH ONBOARDING SAFEGUARDS — Specific onboarding requirements (listed above)
-☐ EXTEND PROCESS — Validate [specific gap] before offer
-☐ DELAY HIRE — Role definition needs clarification first
+☐ PROCEED WITH SAFEGUARDS — Proceed with specific onboarding requirements (listed above)
+☐ PILOT FIRST — Validate [specific gap] before offer
+☐ DELAY PENDING EVIDENCE — Role definition needs clarification first
 ☐ REJECT — [Candidate or process issue]
 
 **Decision basis**: [What evidence most influenced this recommendation?]

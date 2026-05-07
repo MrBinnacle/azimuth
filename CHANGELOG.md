@@ -33,11 +33,31 @@ Planned. See `ROADMAP.md` for the why on each.
 
 - **Structured Failure Analysis section in `references/base-rates.md`.** Empirical grounding for premortem-class analysis: Fasolo, Heard & Scopelliti 2025 (debiasing taxonomy, scope conditions, evidence ceiling — Journal of Management); Roose, Lehman & Veinott 2023 (17.8 failure reasons/session, 16.7 mitigations/session, plan-revision gap — Human Factors).
 
+- **WRONG TOOL verdict.** Module 10 now refuses to produce go/no-go analysis when the input is not a pre-commitment decision question. Trigger conditions: architecture review, code quality assessment, fact-finding, or pure exploration with no concrete plan to evaluate. Module 1 classifies the input type; pre-verdict check item 4 gates the verdict. When returned: states what the input is and what AZIMUTH requires — no analysis, no risks, no alternative framings.
+
+- **RESIDUAL-RISK-REGISTER verdict.** Module 10 now refuses to produce go/no-go analysis when the decision is already made or execution is substantially underway. Trigger conditions: vendor contracted, announcement made, team restructured, migration begun, or user asking "how do we manage this" rather than "should we do this." Module 1 classifies post-commitment inputs; pre-verdict check item 5 gates the verdict. When returned: states that the decision is closed and this pipeline produces go/no-go analysis — no verdict, no reframe suggestion.
+
+- **Module 1 input classification.** Objective Integrity Check now explicitly determines whether the input is a pre-commitment decision question, a post-commitment inquiry, or a non-decision request. Classification drives pre-verdict check items 4 and 5 in Module 10.
+
+- **Module 10 pre-verdict check expanded to 5 items.** Items 4 and 5 added: (4) is this a pre-commitment decision question? if not → WRONG TOOL; (5) has the decision already been made? if yes → RESIDUAL-RISK-REGISTER.
+
+- **Module 7 backpropagation check.** After grounding in base rates, Module 7 now reviews Module 6's failure chains. If the most historically common failure mode for this category is not represented in the three constructed chains — and would have been plausible for this decision — it is added to the register with source noted. Closes the structural gap where availability bias in failure path selection could not be corrected after the fact.
+
+- **Module 4 Incentive Alignment Scan adapted for three templates.** `codebase-azimuth.md`, `product-launch-azimuth.md`, and `hiring-azimuth.md` previously had no incentive scan. Each now has a domain-adapted actor matrix with engineering-, launch-, and hiring-specific incentive actors, key questions, a flag condition, and a confidence ceiling consequence. `partnership-azimuth.md` already had an adapted scan; `secondaries-ic-azimuth.md` has structural GP-alignment gates that serve the same function.
+
+- **Market Timing and External Conditions gate in `product-launch-azimuth.md`.** New section covering competitive timing, regulatory/compliance clearance, platform dependencies, and market condition changes. Any "Unknown" is flagged explicitly — unknown competitive or regulatory timing is an information gap, not a safe default.
+
+- **`references/org-change-patterns.md`.** Six structural failure patterns for restructures, role eliminations, and organizational change programs. Distinct from Kotter's process failure modes (already in `base-rates.md`) and from `references/ma-partnership-patterns.md`. Patterns: Symbolic Restructure, Change Fatigue Stacking, Informal Authority Network Destruction, Communication Sequencing Failure, Behavioral Change Timeline Compression, Accountability Transfer Gap.
+
+- **Layer 3 routing: domain option 6 — Org change / restructure.** DEEP mode loads `references/org-change-patterns.md` for this domain. Default template (Output Format Default) applies until a dedicated template is built.
+
 ### Changed
 
 - **`gotchas.md` §7: Survivorship Framing → Plan-Revision Gap.** Survivorship Framing is substantively covered by Module 7 (Base Rate Reality Check) and the availability bias externalization added this release. Plan-revision gap has zero coverage elsewhere and HIGH empirical confidence (Roose 2023, N=68 real teams): surfacing a risk is not the same as acting on it. Teams consistently identify risks and generate mitigations but fail to revise plans when remediation requires reducing scope.
 
 - **Routing redirects tightened.** Out-of-scope responses state only what AZIMUTH cannot do and why. No alternative framings offered, no guidance on deriving missing information. AZIMUTH is not an oracle.
+
+- **Verdict taxonomy standardized across templates.** `product-launch-azimuth.md` used SOFT LAUNCH (→ PILOT FIRST) and CANCEL (→ REJECT). `hiring-azimuth.md` used EXTEND PROCESS (→ PILOT FIRST) and DELAY HIRE (→ DELAY PENDING EVIDENCE) and PROCEED WITH ONBOARDING SAFEGUARDS (→ PROCEED WITH SAFEGUARDS). All templates now use the Module 10 canonical verdict names with domain-specific context in the description.
 
 ### Added — domain coverage (unversioned, shipped between releases)
 

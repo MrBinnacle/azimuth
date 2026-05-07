@@ -147,9 +147,9 @@ Mitigation: [Action.]
 
 ☐ PROCEED — All gates cleared; launch ready
 ☐ PROCEED WITH SAFEGUARDS — Partial gates; documented exceptions accepted
-☐ SOFT LAUNCH — Limited rollout to [segment] before full launch
-☐ DELAY — [Specific gate or risk requiring resolution; estimated date]
-☐ CANCEL — [Rationale]
+☐ PILOT FIRST — Limited rollout to [segment] before full launch
+☐ DELAY PENDING EVIDENCE — [Specific gate or risk requiring resolution; estimated date]
+☐ REJECT — Cancel this launch; [rationale]
 
 **Must-resolve before launch:**
 1. [item] — Owner: [name] — By: [date]
