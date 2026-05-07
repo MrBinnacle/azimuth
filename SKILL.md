@@ -102,7 +102,8 @@ Ask:
 > **4.** Partnership, M&A, or significant vendor relationship  
 > **5.** PE secondaries or investment committee  
 > **6.** Organizational restructure or change management  
-> **7.** Other
+> **7.** Build vs. buy vs. partner (strategic path selection)  
+> **8.** Other
 
 **Route:**
 - 1 → load `templates/codebase-azimuth.md`
@@ -111,7 +112,8 @@ Ask:
 - 4 → load `templates/partnership-azimuth.md`
 - 5 → load `templates/secondaries-ic-azimuth.md`
 - 6 → load `templates/org-change-azimuth.md`
-- 7 → default template
+- 7 → load `templates/build-buy-partner-azimuth.md`
+- 8 → default template
 
 **Default template:** use the Output Format (Default) section of this skill. No additional template file is loaded. Domain reference files load per mode rules (DEEP: unconditional; STANDARD: conditional on module findings).
 
@@ -133,6 +135,14 @@ If the user provides structured context without routing:
 2. Infer domain and template
 3. State before analysis: "Routing inference: [MODE] mode, [TEMPLATE or default]. Say 'route me' if wrong."
 4. Proceed to Module 4 interview before full analysis
+
+**Carry Forward handling:** If the context includes an `AZIMUTH CARRY FORWARD` block (output from a completed Build/Buy/Partner path-selection analysis):
+
+1. Recognize the selected path and load the corresponding domain template (`templates/codebase-azimuth.md` for Build; `templates/partnership-azimuth.md` for Buy or Partner)
+2. State: "Carry Forward detected: [path] path selected at [Module 4 tier] confidence. Loading [template]."
+3. If Module 4 tier is GREEN: skip Module 4 re-interview; use proposer identity and context from the Carry Forward block as Module 4 input
+4. If Module 4 tier is YELLOW or RED: note the tier and apply its tiering consequences to the domain analysis without re-running the interview
+5. Treat the top unresolved assumption from the Carry Forward as the first candidate for UNSUPPORTED classification in Module 2
 
 ---
 
