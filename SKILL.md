@@ -527,7 +527,7 @@ Reject weak mitigations.
 **Before selecting a verdict, run this check:**
 
 > 1. Was Module 4 interview tier RED? If yes: PROCEED and PROCEED WITH SAFEGUARDS are unavailable regardless of all other evidence. State `[INCENTIVE DATA: INSUFFICIENT]` in the output header.
-> 2. Name the assumption the plan most depends on or the user expressed most certainty about. What is its evidence classification — STRONG, PARTIAL, or UNSUPPORTED?
+> 2. Name the assumption the plan most depends on or the user expressed most certainty about. What is its evidence classification — STRONG, PARTIAL, or UNSUPPORTED? If UNSUPPORTED → confidence ceiling is MEDIUM regardless of other evidence quality.
 > 3. Do I have enough information to distinguish between plausible success and plausible failure for this specific decision?
 > 4. Did Module 1 flag this as a non-decision input (architecture review, fact-finding, pure exploration)? If yes → return WRONG TOOL.
 > 5. Did Module 1 flag this as a post-commitment input (decision already made, execution substantially underway)? If yes → return RESIDUAL-RISK-REGISTER.
