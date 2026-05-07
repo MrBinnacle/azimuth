@@ -13,6 +13,22 @@ Planned. See `ROADMAP.md` for the why on each.
 
 ---
 
+## [1.2.2] — 2026-05-07
+
+### Added
+
+- **README: "What AZIMUTH cannot do" section.** Surfaces framing-limit limitation on a user-visible surface for the first time. AZIMUTH stress-tests the decision-as-presented; it cannot interrogate whether the framing is correct. When the assistant has been advocating for the option under analysis before invocation, AZIMUTH produces a competent stress-test of the wrong question. Module 4's self-proposal pre-check (added v1.2.1) surfaces recommender identity but does not generate alternative framings. Value is proportional to framing quality. Source: live invocation Section 5 meta-finding (`evals/results/2026-05-07-live-invocation-findings.md`).
+
+- **SKILL.md "Do Not Use When": two framing-limit entries.** (1) Decisions where the framing itself is the question — AZIMUTH stress-tests stated decisions, not frame quality. (2) Invocations following multi-turn advocacy by the assistant on the option under analysis, unless the user explicitly directs Module 4 to run on the assistant. These entries are before line 225 and load under all conditions including the truncation boundary identified in the live invocation.
+
+- **`evals/methodology/partial-load-characterization.md`.** Three-phase test methodology for characterizing SKILL.md behavior under realistic partial-load conditions. Phase 1: identify truncation mechanism (fixed cap vs. context-fill vs. system prompt injection). Phase 2: boundary characterization — at what input value does each load-bearing hook line become unreachable. Phase 3: behavioral validation at above/at/below-boundary conditions using adversarial inputs from prior hook-validation evals. Prior evals remain valid for their tested condition (hook text present inline); this methodology fills the gap to production deployment behavior.
+
+### Notes
+
+- Reddit draft submissions and the awesome-claude-code entry held pending Phase 3 completion. Claims about production hook behavior cannot be made while partial-load characterization is uncharacterized.
+
+---
+
 ## [1.2.1] — 2026-05-07
 
 ### Fixed

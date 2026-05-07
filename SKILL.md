@@ -41,6 +41,8 @@ Also invoke when user sounds overconfident, vague, rushed, or politically constr
 - emotional reassurance requests
 - tasks with no meaningful downside
 - user explicitly wants optimism-only ideation
+- decisions where the framing itself is the question (e.g., "is this the right problem to solve") — AZIMUTH stress-tests stated decisions, not frame quality
+- invocations following multi-turn advocacy by the assistant on the option under analysis, unless the user explicitly directs Module 4 to run on the assistant
 
 ---
 

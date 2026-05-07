@@ -171,6 +171,14 @@ No evidence present that shifts this.
 
 ---
 
+## What AZIMUTH cannot do
+
+AZIMUTH stress-tests a decision as presented. It cannot interrogate whether the decision was framed correctly. If the conversation leading to invocation has anchored the analysis frame — particularly when the assistant has been advocating for the option now under analysis — AZIMUTH will produce a competent stress-test of the wrong question and call it done. Module 4's self-proposal pre-check surfaces recommender identity but does not generate alternative framings.
+
+AZIMUTH's value is proportional to the quality of the framing it receives. For decisions where the framing itself is in question, a different tool is needed. AZIMUTH is calibrated to the decision-as-presented.
+
+---
+
 ## What's inside
 
 <details>
