@@ -4,11 +4,11 @@
 
 **Decision-quality pre-commitment analysis for operators who can't afford to be wrong about direction.**
 
-![Version](https://img.shields.io/badge/version-v1.2.0-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-blueviolet) ![Works with](https://img.shields.io/badge/works_with-Codex_%7C_Gemini_%7C_Cursor_%7C_Copilot-lightgrey)
+![Version](https://img.shields.io/badge/version-v1.2.0-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-blueviolet) ![Claude.ai](https://img.shields.io/badge/Claude.ai-compatible-blueviolet)
 
 An azimuth is a navigational bearing — the angle you lock in before you step off. Get it wrong by a few degrees at the start and you're miles from your objective by the end. AZIMUTH the skill does the same thing for decisions: it finds the drift, the false assumptions, and the structural failure modes before you're committed and downrange.
 
-Built for **Claude Code, Claude.ai, Codex, Gemini CLI, Cursor, and all major AI coding agents.** Designed for operators, PMs, founders, and senior engineers making decisions with real downside — not just code review.
+Built for **Claude Code and Claude.ai.** Designed for operators, PMs, founders, and senior engineers making decisions with real downside — not just code review.
 
 ---
 
@@ -225,13 +225,6 @@ mkdir -p ~/.claude/skills
 cp -r azimuth ~/.claude/skills/
 ```
 
-**Codex, Gemini CLI, Cursor, Copilot:**
-
-```
-git clone https://github.com/MrBinnacle/azimuth.git
-# Copy azimuth/ to your agent's skills directory
-```
-
 ---
 
 ## Compatibility
@@ -240,12 +233,8 @@ git clone https://github.com/MrBinnacle/azimuth.git
 | --- | --- |
 | Claude Code | ✓ |
 | Claude.ai | ✓ |
-| Codex (OpenAI) | ✓ |
-| Gemini CLI | ✓ |
-| Cursor | ✓ |
-| GitHub Copilot | ✓ |
-| Windsurf | ✓ |
-| OpenCode | ✓ |
+
+Auto-invocation, intake routing, and template activation depend on the Claude skills system. Other agents can read the markdown files as reference material, but that is not equivalent to running AZIMUTH.
 
 ---
 
