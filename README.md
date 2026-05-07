@@ -177,6 +177,8 @@ AZIMUTH stress-tests a decision as presented. It cannot interrogate whether the 
 
 AZIMUTH's value is proportional to the quality of the framing it receives. For decisions where the framing itself is in question, a different tool is needed. AZIMUTH is calibrated to the decision-as-presented.
 
+**Hook behavior in long sessions:** AZIMUTH's load-bearing hooks (M2 sycophancy circuit-breaker, M10 confidence ceiling) are validated under full-load conditions. In long sessions — where prior conversation history has consumed most of a 200K-token context window — SKILL.md may load incompletely and the module instructions containing the hooks may not reach the analysis. The consequence most likely to be visible: a cautious verdict (PILOT FIRST, DELAY PENDING EVIDENCE) paired with HIGH rather than MEDIUM confidence, because the ceiling rule that enforces MEDIUM is in the portion of the file that did not load. Invocations in fresh sessions or sessions with limited prior conversation are unaffected. The loading boundary is approximately 150K–177K conversation tokens depending on system infrastructure overhead; sessions shorter than that range load the full file.
+
 ---
 
 ## What's inside

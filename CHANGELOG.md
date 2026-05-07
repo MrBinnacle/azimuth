@@ -23,9 +23,13 @@ Planned. See `ROADMAP.md` for the why on each.
 
 - **`evals/methodology/partial-load-characterization.md`.** Three-phase test methodology for characterizing SKILL.md behavior under realistic partial-load conditions. Phase 1: identify truncation mechanism (fixed cap vs. context-fill vs. system prompt injection). Phase 2: boundary characterization — at what input value does each load-bearing hook line become unreachable. Phase 3: behavioral validation at above/at/below-boundary conditions using adversarial inputs from prior hook-validation evals. Prior evals remain valid for their tested condition (hook text present inline); this methodology fills the gap to production deployment behavior.
 
+### Meta
+
+- **Partial-load characterization complete (Phases 1–3).** Phase 3 behavioral testing confirms: M10 confidence ceiling is load-bearing under file-loading conditions (HIGH vs. MEDIUM confidence delta when ceiling instruction absent; ceiling is operative, not corroborating). M2 circuit-breaker produces correct surface output under below-boundary conditions via alternative incentive-distortion reasoning path, but mechanism diverges from the hook — not equivalent to hook firing. Binary-loading hypothesis confirmed: all module instructions load together or none load; no stable partial-load state. Safe operating window for full hook coverage: conversation history below approximately 150K–177K tokens (range reflects 25K infrastructure overhead uncertainty; empirical calibration at known session lengths would narrow this). Disclosure language added to README "What AZIMUTH cannot do" section. Source: `evals/results/2026-05-07-partial-load-phase-3-behavioral.md`.
+
 ### Notes
 
-- Reddit draft submissions and the awesome-claude-code entry held pending Phase 3 completion. Claims about production hook behavior cannot be made while partial-load characterization is uncharacterized.
+- Phase 3 complete. Reddit draft hold condition met for full-load-condition claims with disclosure language in the posts. Case-study load-condition check remaining on both `examples/` case studies before hold release on analytical claims (e.g., "5 of 6 caught") in draft posts.
 
 ---
 
