@@ -38,6 +38,29 @@ Before evaluating any candidate, assess whether the role itself is well-defined:
 
 ---
 
+**INCENTIVE ALIGNMENT SCAN**
+
+Before evaluating any candidate, determine whether this hire is being driven by genuine business need.
+
+| Actor | Their Incentive | Aligned with Hire Quality? | Notes |
+|-------|----------------|---------------------------|-------|
+| Hiring manager | [Team expansion / vacancy filled quickly / span of control / frustration with gap] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Executive sponsor | [Headcount approval / org structure preference / political commitment to hire] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Recruiter / HR | [Placement metric / time-to-fill pressure / candidate pipeline] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Candidate (if identified) | [Specific role attributes needed / departure from current role / compensation gap] | ☐ Yes / ☐ No / ☐ Unknown | |
+
+**Key questions:**
+- Was this role created for a business outcome, or to solve an internal political or staffing problem?
+- Is urgency real (critical vacancy impacting delivery) or manufactured (impatience, backfill pressure)?
+- Who pre-selected the references — and can independent references be reached outside the candidate-provided list?
+- Are the 90/180-day success criteria defined by the same person who will conduct the performance review?
+
+**Flag if:** the hiring manager benefits more from filling the seat quickly than from filling it correctly; the role was created for organizational or political reasons not tied to a business outcome; the reference pool is entirely candidate-selected with no independent outreach.
+
+If flagged: require structured assessment and work sample before offer. Reduce confidence ceiling to MEDIUM until independent validation of candidate quality is established.
+
+---
+
 **TOP 3 HIRING RISKS**
 
 **1. [Risk Name]** — e.g., "Role definition is unclear; candidate will inherit unclear expectations"

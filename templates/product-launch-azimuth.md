@@ -26,6 +26,43 @@ Use this template when:
 
 ---
 
+**INCENTIVE ALIGNMENT SCAN**
+
+Before readiness assessment, determine whether this launch date reflects technical readiness or external pressure.
+
+| Actor | Their Incentive | Aligned with Launch Readiness? | Notes |
+|-------|----------------|--------------------------------|-------|
+| Launch sponsor / PM | [Delivery milestone / performance review / roadmap commitment] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Marketing / comms | [Pre-built campaign investment / press commitment] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Sales / revenue | [Pipeline dependent on launch date / quota pressure] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Investor / board | [Funding milestone / demo day / investor update tied to launch] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Engineering | [Ship pressure vs. quality signal] | ☐ Yes / ☐ No / ☐ Unknown | |
+
+**Key questions:**
+- Was the launch date set by technical readiness assessment or external commitment (board, press, campaign)?
+- Has a public announcement, marketing campaign, or sales promise been made that makes delay politically costly?
+- Who owns accountability if this launch fails — and is it the same person driving the date?
+- Are launch success metrics defined by the team that benefits from a "shipped" outcome?
+
+**Flag if:** launch date is externally committed before readiness is confirmed; marketing spend or sales pipeline is already dependent on the launch proceeding; accountability for failure is diffuse or absent.
+
+If flagged: treat deadline politics as the primary failure risk, ahead of technical readiness. Escalate any ⚠ readiness gate to ✗ status for verdict purposes.
+
+---
+
+**MARKET TIMING AND EXTERNAL CONDITIONS**
+
+| Condition | Assessment | Notes |
+|-----------|------------|-------|
+| Competitive: is a competitor launching something materially similar in this window? | ☐ Known clear / ☐ At risk / ☐ Unknown | |
+| Regulatory / compliance: does this launch require review or clearance that is pending? | ☐ Clear / ☐ Pending / ☐ Unknown | |
+| Platform dependency: is this launch dependent on a third-party platform change or API not under your control? | ☐ Stable / ☐ At risk / ☐ Unknown | |
+| Market conditions: has the target market or user context materially changed since the launch was committed? | ☐ Stable / ☐ Changed / ☐ Unknown | |
+
+**Any "Unknown" is an information gap, not a safe default.** For a public-facing launch, unknown competitive or regulatory timing must be flagged explicitly — not left blank.
+
+---
+
 **READINESS ASSESSMENT**
 
 Rate each gate: ✓ READY | ⚠ PARTIAL | ✗ NOT READY

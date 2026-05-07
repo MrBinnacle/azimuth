@@ -28,6 +28,29 @@ If no measurable technical objective is defined: flag this as the primary risk b
 
 ---
 
+**INCENTIVE ALIGNMENT SCAN**
+
+Before technical analysis, determine whether this initiative is being pursued for the right reasons.
+
+| Actor | Their Incentive | Aligned with Technical Merit? | Notes |
+|-------|----------------|-------------------------------|-------|
+| Proposer (engineer / architect) | [Career / technical preference / frustration with current system / resume building] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Team that owns current system | [Protect existing work / avoid disruption / maintain domain authority] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Engineering manager / sponsor | [Headcount justification / technical credibility / delivery pressure] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Vendor or tooling provider (if applicable) | [Platform adoption / migration services revenue] | ☐ Yes / ☐ No / ☐ Unknown | |
+
+**Key questions:**
+- Who first proposed this rewrite or migration — and what do they gain if it proceeds regardless of outcome?
+- Has prior effort been spent on this initiative that makes stopping politically difficult?
+- Is the success metric defined by the same team that proposed the change?
+- Is there a vendor or tooling relationship creating pressure toward a particular technical direction?
+
+**Flag if:** proposer benefits from the choice of technology or vendor independent of project outcome; sunk cost is materially influencing the proceed/stop decision; success metrics are self-assessed by the proposing team.
+
+If flagged: treat proposer incentive misalignment as the primary risk, ahead of technical breakpoints. Escalate verdict confidence ceiling to MEDIUM unless independent technical validation is provided.
+
+---
+
 **BREAKPOINT ZONES**
 
 Sections of the plan where failure is most likely to originate:
