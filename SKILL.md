@@ -162,6 +162,11 @@ Pick mode from the strongest applicable signal. When in doubt, ask one clarifyin
 - Reversal is possible but costly (rework, re-planning, schedule cost)
 - User supplied a structured plan with timeline, scope, and owners
 
+**Use RAPID when:**
+- Decision must be made within 24 hours
+- Decision is high-stakes or irreversible despite the time constraint
+- User signals "we need to decide tonight," "competitor forcing timeline," or equivalent
+
 **Use DEEP when ANY of the following are true:**
 - Decision is irreversible or has high reversal cost (vendor contract signed, public announcement made, headcount changes, data migrations)
 - Capital outlay above the user's stated decision-authority threshold
@@ -186,6 +191,8 @@ Run:
 
 Do not load diagnostics or references.
 
+Module 4 interview not conducted. Incentive misalignment is unverified in this output. If incentive conflicts are a material concern, rerun in STANDARD or RAPID mode.
+
 ### STANDARD
 
 Default. Run all 10 core modules.
@@ -198,6 +205,31 @@ Default. Run all 10 core modules.
 - Module 8 surfaces high irreversibility + late detectability → load `diagnostics/fragility-scan.md`
 
 Load `references/base-rates.md` only when the user's plan involves a category covered by the file (software project, startup, launch, hire, M&A, migration, org change) AND the user's stated estimates appear to deviate from typical historical ranges.
+
+Also load `gotchas.md` when either of these conditions fires:
+- Module 4 interview returns RED tier, OR any incentive conflict is governance-level
+- Module 6 failure chains all match canonical patterns (scope creep, resource shortage, stakeholder misalignment) with no plan-specific trigger — availability inversion required
+
+### RAPID
+
+Use for high-stakes or irreversible decisions made under time pressure (hours, not days).
+
+Run at full depth:
+- Module 1 — Objective Integrity Check
+- Module 4 — Incentive Scan & Interview (full 7-question interview; do not abbreviate)
+- Module 8 — Detectability & Recovery
+- Module 10 — Decision Verdict
+
+Run abbreviated:
+- Module 2 — top 3 assumptions and falsifiers only
+- Module 3 — dominant constraint only; no enumeration
+- Module 5 — critical SPOFs only; no full inventory
+- Module 6 — top 1 failure chain; coupling pass skipped
+- Module 9 — one highest-leverage fix only
+
+Do not load diagnostics or domain references.
+
+Rationale: Time pressure amplifies deadline-politics incentive distortion and concentrates the value of reversibility analysis. Modules 4 and 8 must run at full depth precisely because they are harder to recover from when skipped under pressure.
 
 ### DEEP
 
@@ -471,10 +503,11 @@ Reject weak mitigations.
 
 **Before selecting a verdict, run this check:**
 
-> 1. Name the assumption the plan most depends on or the user expressed most certainty about. What is its evidence classification — STRONG, PARTIAL, or UNSUPPORTED?
-> 2. Do I have enough information to distinguish between plausible success and plausible failure for this specific decision?
+> 1. Was Module 4 interview tier RED? If yes: PROCEED and PROCEED WITH SAFEGUARDS are unavailable regardless of all other evidence. State `[INCENTIVE DATA: INSUFFICIENT]` in the output header.
+> 2. Name the assumption the plan most depends on or the user expressed most certainty about. What is its evidence classification — STRONG, PARTIAL, or UNSUPPORTED?
+> 3. Do I have enough information to distinguish between plausible success and plausible failure for this specific decision?
 
-If the answer is no — if producing a verdict would require fabricating reasoning, inventing assumptions, or selecting a direction without a basis — return INSUFFICIENT SIGNAL. Do not force a verdict.
+If the answer to #3 is no — if producing a verdict would require fabricating reasoning, inventing assumptions, or selecting a direction without a basis — return INSUFFICIENT SIGNAL. Do not force a verdict.
 
 Choose one:
 

@@ -66,13 +66,15 @@ The success metric is defined at plan inception. By the time the initiative conc
 
 ---
 
-## 7. Survivorship Framing
+## 7. The Plan-Revision Gap
 
-Analogies to successful prior initiatives ("we did X and it worked, so Y will too") ignore the structural differences. The successful case may have had better timing, more resources, a smaller scope, a stronger team, or plain luck. Citing success cases without examining the failure distribution is not evidence.
+Surfacing a risk is not the same as acting on it. Teams that run structured failure analysis consistently identify failure reasons and generate mitigations — and then fail to revise the plan when remediation would require reducing scope. The output of the analysis lands; the plan does not change.
 
-**Signal**: Justification includes "we did this before" or "company X pulled this off."
+**Signal**: Analysis produced a clear finding (structural risk, scope too large, dependency SPOF) but the plan's timeline, scope, or resource allocation remained unchanged after review.
 
-**Check**: What were the failure cases that look similar? What distinguishes this case from those?
+**Check**: Name one concrete change to the plan that directly addresses the highest-severity finding. If no plan element changed, the analysis produced awareness, not decision quality. Awareness alone does not reduce downside.
+
+*Source: Roose, Lehman & Veinott (2023), Human Factors — 10 real game-development teams; failure reasons identified at average 17.8 per session; plan-revision rates remained low particularly when remediation required scope reduction.*
 
 ---
 
