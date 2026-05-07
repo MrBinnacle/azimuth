@@ -66,8 +66,8 @@ Ask:
 
 **Route:**
 - **A or B** → Layer 2
-- **C** → "Wrong tool. AZIMUTH stress-tests commitments before they are made. If you want a failure analysis of an existing decision to improve execution, confirm that framing. Otherwise, return when the next commitment is in front of you."
-- **D** → "Come back when the plan has a shape. AZIMUTH stress-tests defined commitments, not open possibilities. If useful now: identify the highest-risk assumptions to validate before the plan solidifies — confirm to proceed with that narrower framing."
+- **C** → "AZIMUTH analyzes commitments before they are made. It cannot produce meaningful output for a decision already locked."
+- **D** → "AZIMUTH requires a concrete plan with enough definition to stress-test. There is no defined commitment to analyze here."
 - **E** → FAST mode. Skip Layers 2 and 3. Go to Required Inputs.
 
 ---
