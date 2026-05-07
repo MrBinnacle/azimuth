@@ -202,7 +202,8 @@ azimuth/
 │   ├── org-change-azimuth.md             # Restructure, consolidation, role elimination, leadership transition
 │   └── build-buy-partner-azimuth.md      # Path selection: build vs. buy vs. partner with domain handoff
 └── examples/
-    └── case-study-healthcare-gov.md      # Healthcare.gov DEEP mode run — 5/6 recall, 0 false positives
+    ├── case-study-healthcare-gov.md      # Healthcare.gov DEEP mode run — 5/6 recall, 0 false positives
+    └── case-study-open-source-launch-timing.md  # STANDARD mode — solo dev timing a repo launch during job search
 ```
 
 </details>
