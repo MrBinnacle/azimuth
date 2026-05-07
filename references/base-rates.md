@@ -159,6 +159,31 @@ The implication: most new-hire failure is *not* about skill mismatch. It's about
 
 ---
 
+## Structured Failure Analysis
+
+**Classification**: Premortem-class techniques (prospective hindsight, structured failure analysis) fall in the **debiasing** category of bias-mitigation interventions — not choice architecture. The distinction matters for scope: debiasing requires active decision-maker involvement; choice architecture modifies the environment without it.
+
+**When debiasing is indicated** (Fasolo, Heard & Scopelliti, 2025 — integrative review of 100 experimental studies, Journal of Management):
+- Early stage of decision-making (pre-commitment, information search, option identification)
+- High uncertainty / novel / complex / unstructured decisions
+- Organizations with diverse goals, low pre-existing trust, or high-agency cultures
+- Decisions where planning fallacy is the primary risk — planning fallacy has no choice-architecture remedy in this review; debiasing is the only empirically supported approach
+
+**Evidence ceiling**: This is an integrative review, not a meta-analysis. No aggregate effect sizes are reported. Fasolo 2025 supports the taxonomy and scope conditions; effect-size claims must be sourced from primary studies.
+
+**Output rates** (Roose, Lehman & Veinott, 2023 — 10 real game development teams, N=68, Human Factors, Sage):
+- Teams identified an average of 17.8 unique failure reasons per session
+- Teams generated an average of 16.7 corresponding mitigations per session
+- **Plan-revision gap**: despite identifying risks and mitigations, surprisingly few teams revised their plans to address the most commonly flagged structural risk (scope complexity). Surfacing failure reasons does not automatically produce plan changes — especially when remediation requires reducing scope rather than improving execution.
+
+Domain caveat: student game-development context; n=10 teams. Directional signal is solid; enterprise generalizability requires independent replication.
+
+**Sources**
+- Fasolo, Heard & Scopelliti. *Mitigating Cognitive Bias to Improve Organizational Decisions: An Integrative Review, Framework, and Research Agenda.* Journal of Management, 2025. DOI: 10.1177/01492063241287188. Open access: https://eprints.lse.ac.uk/125404/
+- Roose, Lehman & Veinott. *Premortems in Game Development Teams: Impact and Potential.* Human Factors, Sage, 2023. DOI: 10.1177/21695067231193680.
+
+---
+
 ## How to Use These Rates
 
 1. Identify which category best matches the initiative.
