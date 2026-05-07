@@ -49,7 +49,7 @@ Planned. See `ROADMAP.md` for the why on each.
 
 - **`references/org-change-patterns.md`.** Six structural failure patterns for restructures, role eliminations, and organizational change programs. Distinct from Kotter's process failure modes (already in `base-rates.md`) and from `references/ma-partnership-patterns.md`. Patterns: Symbolic Restructure, Change Fatigue Stacking, Informal Authority Network Destruction, Communication Sequencing Failure, Behavioral Change Timeline Compression, Accountability Transfer Gap.
 
-- **Layer 3 routing: domain option 6 — Org change / restructure.** DEEP mode loads `references/org-change-patterns.md` for this domain. Default template (Output Format Default) applies until a dedicated template is built.
+- **Layer 3 routing: domain options 6 and 7 — Org change / restructure; Build vs. Buy vs. Partner.** DEEP mode loads `references/org-change-patterns.md` for org change. Build/buy/partner routes to `templates/build-buy-partner-azimuth.md`, which emits a CARRY FORWARD block for handoff to `templates/codebase-azimuth.md` or `templates/partnership-azimuth.md` after path selection.
 
 ### Changed
 
@@ -62,6 +62,10 @@ Planned. See `ROADMAP.md` for the why on each.
 ### Added — domain coverage (unversioned, shipped between releases)
 
 - **`templates/secondaries-ic-azimuth.md`** — IC recommendation template for PE secondaries investment partners evaluating GP-led continuation vehicles, direct secondaries, and minority recaps. Includes: adverse selection gate (run before committing diligence resources), process integrity gate with ILPA 2023 minimum standards (binary kill gate independent of asset quality), NAV reliability assessment with Whitehorse Liquidity Partners 28%-uplift finding, GP quality and alignment signals with relationship bias check, and pricing discipline table with stress-case IRR modeling. Verdict taxonomy: COMMIT-AT-PRICE / BID-BELOW-INDICATED (auction) / COUNTER-AT-PRICE (bilateral) / CONDITIONAL-ON-TERMS / PASS-PROCESS / PASS-PRICING. PASS-PROCESS legal grounding: ADIC v. EMG, C.A. No. 2025-1389-NAC (Del. Ch. December 2025).
+
+- **`templates/org-change-azimuth.md`** — Pre-commitment analysis template for restructures, consolidations, role eliminations, and leadership transitions. Pre-commitment gates (3 binary checks: announcement fixed → RESIDUAL-RISK-REGISTER; no measurable metric → INSUFFICIENT SIGNAL; designer accountability gap → flagged). Incentive alignment scan with 6 actor matrix (proposer, HR, senior leaders gaining/losing authority, external consultants, middle management). Sections: Change Context, Failure Path Analysis drawing from `references/org-change-patterns.md`, Behavioral Change Readiness (structural vs. behavioral change gap), Communication Plan Readiness with manager preparation as highest-trust channel, Accountability Transfer table. Verdict taxonomy: Module 10 canonical names.
+
+- **`templates/build-buy-partner-azimuth.md`** — Path selection template for capability acquisition decisions. Anchoring assessment forces comparative analysis when Module 4 returns YELLOW or RED on [IDENTITY] or [DISSENT]. Module 4 runs once with path-advocate matrix (6 actors: proposer, engineering/CTO, corp dev/M&A, BD/partnerships, finance, board). Three sequential path viability gates (Build: skills + differentiation + timeline + opportunity cost; Buy: target availability + integration plan + deal thesis + talent retention; Partner: aligned partners + switching cost + IP ownership + dependency asymmetry). Comparative analysis across 7 dimensions. Verdict format: `RECOMMENDED PATH: [BUILD / BUY / PARTNER] — [standard verdict]`. CARRY FORWARD block transfers Module 4 context (tier, proposer identity, top unresolved assumption) to the domain template (`templates/codebase-azimuth.md` or `templates/partnership-azimuth.md`) and triggers Bypass Handling to skip Module 4 re-interview on GREEN tier.
 
 ---
 
