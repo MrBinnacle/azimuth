@@ -8,8 +8,36 @@ All notable changes to this project will be documented in this file.
 
 Planned. See `ROADMAP.md` for the why on each.
 
-- **v1.2.0 — Evidence tags.** Every output claim carries a provenance tag.
-- **v1.2.0 — Audit trail.** Output lists modules run and what each surfaced.
+- **Evidence tags.** Every output claim carries a provenance tag.
+- **Audit trail.** Output lists modules run and what each surfaced.
+
+---
+
+## [1.2.0] — 2026-05-07
+
+### Added
+
+- **Intake Routing (pre-analysis triage).** Three-layer triage fires before the 10-module pipeline: Layer 1 maps situation type to mode (stress-test → proceed; post-decision validation or pre-plan exploration → firm out-of-scope exits); Layer 2 maps stakes and reversibility to FAST / STANDARD / DEEP / RAPID; Layer 3 routes domain to the correct template. Bypass handling for users who supply structured context directly: infers mode and template, states inference explicitly, proceeds to Module 4 interview before full analysis.
+
+- **Module 4 expanded to Incentive Scan & Interview.** Seven structured questions collect incentive context directly from the user before any inference from plan text. GREEN / YELLOW / RED response tiering with enforced consequences: RED tier (proposer identity skipped or fewer than 5 of 7 answered) locks Module 10 verdict confidence at LOW and removes PROCEED and PROCEED WITH SAFEGUARDS as available verdicts. Output quality is proportional to what the user brings — by design.
+
+- **Module 10 RED-tier enforcement.** Pre-verdict check now tests Module 4 interview tier before verdict selection. PROCEED verdicts are blocked at Module 10, not just declared in Module 4.
+
+- **RAPID mode.** For high-stakes or irreversible decisions under 24-hour time constraints. Modules 1, 4, 8, 10 at full depth; Modules 2, 3, 5, 6, 9 abbreviated. Rationale: time pressure amplifies deadline-politics incentive distortion and concentrates the value of reversibility analysis — the modules that matter most under pressure are the ones FAST omits.
+
+- **FAST mode disclosure.** FAST outputs now explicitly state that Module 4 interview was not conducted and incentive misalignment is unverified.
+
+- **LLM bias externalizations at four modules.** Inline, mechanism-specific callouts above section content (not footer disclaimers): sycophancy circuit-breaker at Module 2 (treat the assumption the plan most depends on as first candidate for UNSUPPORTED), availability inversion at Module 6 (after 3 canonical chains, construct one that routes around all of them), domain calibration boundary at Module 7 (degrade to directional-only when domain match is poor), verdict softening pre-check at Module 10 (name the most commitment-coupled assumption and its evidence classification before selecting the verdict).
+
+- **STANDARD mode conditional `gotchas.md` load.** gotchas.md now loads in STANDARD when Module 4 returns RED tier or when Module 6 failure chains match only canonical patterns. DEEP mode retains always-load. Audit finding: the 8 gotchas are most operative for motivated-reasoning inputs — precisely the inputs DEEP mode is hardest to trigger for.
+
+- **Structured Failure Analysis section in `references/base-rates.md`.** Empirical grounding for premortem-class analysis: Fasolo, Heard & Scopelliti 2025 (debiasing taxonomy, scope conditions, evidence ceiling — Journal of Management); Roose, Lehman & Veinott 2023 (17.8 failure reasons/session, 16.7 mitigations/session, plan-revision gap — Human Factors).
+
+### Changed
+
+- **`gotchas.md` §7: Survivorship Framing → Plan-Revision Gap.** Survivorship Framing is substantively covered by Module 7 (Base Rate Reality Check) and the availability bias externalization added this release. Plan-revision gap has zero coverage elsewhere and HIGH empirical confidence (Roose 2023, N=68 real teams): surfacing a risk is not the same as acting on it. Teams consistently identify risks and generate mitigations but fail to revise plans when remediation requires reducing scope.
+
+- **Routing redirects tightened.** Out-of-scope responses state only what AZIMUTH cannot do and why. No alternative framings offered, no guidance on deriving missing information. AZIMUTH is not an oracle.
 
 ### Added — domain coverage (unversioned, shipped between releases)
 
