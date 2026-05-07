@@ -131,8 +131,8 @@ Support readiness was documented as a gap in the launch-risks reference file but
 
 ## Sources
 
-- HHS Office of Inspector General, *An Overview of 50 Potentially Ineligible Individuals Who Received $23 Million in Subsidies* (post-launch, but pre-launch audit documented separately)
-- OIG, *CMS Did Not Always Manage and Oversee Contractor Performance for the Federal Marketplace* (2015, drawing on pre-launch documentation)
+- U.S. Government Accountability Office, *HealthCare.gov: CMS Has Taken Steps to Address Problems, but Needs to Further Develop Oversight and Contingency Planning* (GAO-14-694, September 2014) — canonical post-mortem; primary source for contractor structure, testing gaps, and lack of prime integrator findings
+- OIG, *CMS Did Not Always Manage and Oversee Contractor Performance for the Federal Marketplace* (OEI-03-14-00220, 2015, drawing on pre-launch documentation) — contractor oversight and coordination failures
 - House Energy & Commerce Committee hearings, October–November 2013 (public testimony from CMS and contractors)
 - David Simas, White House ACA implementation memos (publicly referenced in post-mortems)
 - Haislmaier & Moffit, Heritage Foundation, *How Congress Should Handle the HealthCare.gov Debacle* (2013) — for contractor count and integration structure

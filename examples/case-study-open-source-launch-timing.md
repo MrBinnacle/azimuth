@@ -131,3 +131,9 @@ The README has a CI badge linking to GitHub Actions. If Actions history isn't pu
 - Did not pad to fill all sections. The output has no "Base Rate Reality Check" section because there's no meaningful historical base rate for "solo developer open-source launch timing." Omitting it is correct per the output format rules.
 - Did not force a binary PROCEED/REJECT. PROCEED WITH SAFEGUARDS is the honest verdict — the asset is strong, the context needs cleanup, and the gates are concrete and achievable.
 - Did not produce generic mitigations. "Communicate your timeline" and "monitor closely" would both be slop here. The fixes are structural: decouple, clean, verify, timebox.
+
+**Load condition note:**
+
+The confidence label in this output reads "Medium-High." The canonical AZIMUTH confidence scale is HIGH / MEDIUM / LOW. "Medium-High" is not in the taxonomy. Under full-load conditions, the M10 output format rules (SKILL.md line 611+) enforce the canonical scale. The non-canonical label is consistent with generation under below-boundary conditions (long multi-agent session) where the output format rules did not reach the analysis.
+
+Impact: minor. The effective confidence is approximately MEDIUM, which is what the M10 ceiling would independently enforce — the top assumption ("landing page must precede launch") is UNSUPPORTED, so the ceiling caps at MEDIUM regardless of other evidence quality. The agent arrived at ~MEDIUM through self-assessment rather than the ceiling rule. Direction of deviation is not harmful and the analytical substance is unaffected. This output is documented as-generated; the confidence label deviation is a format artifact of the generation session, not a structural error in the analysis.
