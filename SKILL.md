@@ -101,7 +101,8 @@ Ask:
 > **3.** Hiring, contractor, or key role  
 > **4.** Partnership, M&A, or significant vendor relationship  
 > **5.** PE secondaries or investment committee  
-> **6.** Other
+> **6.** Organizational restructure or change management  
+> **7.** Other
 
 **Route:**
 - 1 → load `templates/codebase-azimuth.md`
@@ -109,7 +110,8 @@ Ask:
 - 3 → load `templates/hiring-azimuth.md`
 - 4 → load `templates/partnership-azimuth.md`
 - 5 → load `templates/secondaries-ic-azimuth.md`
-- 6 → default template
+- 6 → load `references/org-change-patterns.md`; use default template
+- 7 → default template
 
 ---
 
@@ -245,6 +247,7 @@ Also load the relevant domain reference:
 - Product / launch → `references/launch-risks.md`
 - Startup / venture → `references/startup-failures.md`
 - M&A / partnerships → `references/ma-partnership-patterns.md`
+- Org change / restructure → `references/org-change-patterns.md`
 
 ---
 
