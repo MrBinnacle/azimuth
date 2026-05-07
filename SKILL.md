@@ -280,6 +280,12 @@ Determine:
 
 If objective is fuzzy, flag immediately.
 
+Also determine:
+
+- Is this a pre-commitment decision question, or a fact-finding, diagnostic, or post-commitment inquiry?
+- If the decision appears already made or execution substantially underway: note "post-commitment input — pipeline will produce RESIDUAL-RISK-REGISTER, not go/no-go analysis."
+- If the input is not a decision question at all (architecture review, code quality assessment, candidate evaluation as fact-finding, pure exploration): note "input is not a pre-commitment decision — Module 10 will return WRONG TOOL."
+
 ---
 
 ## 2. Assumption Audit
@@ -455,6 +461,8 @@ Reference load: see Operating Modes for when to load `references/base-rates.md` 
 
 If no data available, state uncertainty.
 
+**Backpropagation check:** After grounding in base rates, review Module 6's failure chains. If the most historically common failure mode for this category is not represented in any of the three chains — and would have been plausible for this specific decision — add it to the register and note the source. Base rate grounding runs after failure path selection and cannot reorder the chains, but it can fill the gap the availability bias created.
+
 ---
 
 ## 8. Detectability & Recovery
@@ -506,6 +514,8 @@ Reject weak mitigations.
 > 1. Was Module 4 interview tier RED? If yes: PROCEED and PROCEED WITH SAFEGUARDS are unavailable regardless of all other evidence. State `[INCENTIVE DATA: INSUFFICIENT]` in the output header.
 > 2. Name the assumption the plan most depends on or the user expressed most certainty about. What is its evidence classification — STRONG, PARTIAL, or UNSUPPORTED?
 > 3. Do I have enough information to distinguish between plausible success and plausible failure for this specific decision?
+> 4. Did Module 1 flag this as a non-decision input (architecture review, fact-finding, pure exploration)? If yes → return WRONG TOOL.
+> 5. Did Module 1 flag this as a post-commitment input (decision already made, execution substantially underway)? If yes → return RESIDUAL-RISK-REGISTER.
 
 If the answer to #3 is no — if producing a verdict would require fabricating reasoning, inventing assumptions, or selecting a direction without a basis — return INSUFFICIENT SIGNAL. Do not force a verdict.
 
@@ -518,6 +528,8 @@ Choose one:
 - **DELAY PENDING EVIDENCE** — the decision is premature; specific information is needed before analysis is meaningful
 - **REJECT** — evidence or structure does not support proceeding
 - **INSUFFICIENT SIGNAL** — the input is too sparse, vague, or contradictory to produce a meaningful verdict; proceeding would substitute fabrication for analysis
+- **WRONG TOOL** — the input is not a pre-commitment decision question; this pipeline produces go/no-go verdicts and cannot produce meaningful output for fact-finding, diagnostic, or exploratory inputs
+- **RESIDUAL-RISK-REGISTER** — the decision is already made or execution is substantially underway; this pipeline produces go/no-go verdicts, not post-commitment risk audits
 
 **INSUFFICIENT SIGNAL trigger conditions (any one is sufficient):**
 
@@ -532,6 +544,34 @@ Choose one:
 - Do not produce a verdict, confidence level, or mitigation list
 - Do not pad the output with generic risk observations
 - Ask only the minimum questions needed to unblock the analysis — prioritized by which missing input has the highest impact on the verdict
+
+**WRONG TOOL trigger conditions (any one is sufficient):**
+
+- Input is a request for architecture review, code quality assessment, or technical fact-finding with no pre-commitment decision to make
+- Input is pure exploration or ideation without a concrete plan to evaluate
+- Input is candidate evaluation framed as fact-finding rather than a hire/no-hire decision
+- Module 1 determined the input is not a pre-commitment decision question
+
+**When returning WRONG TOOL:**
+
+- State what the input is (fact-finding, diagnostic, exploration, or other non-decision)
+- State that AZIMUTH requires a concrete plan with a pre-commitment decision to stress-test
+- Do not produce analysis, risks, or mitigations
+- Do not suggest alternative framings or guide the user toward a solvable input
+
+**RESIDUAL-RISK-REGISTER trigger conditions (any one is sufficient):**
+
+- The decision has been made — vendor contracted, announcement made, team restructured, migration begun
+- Execution is substantially underway and reversal is not on the table
+- The user is asking "how do we manage this now" rather than "should we do this"
+- Module 1 determined the input is a post-commitment inquiry
+
+**When returning RESIDUAL-RISK-REGISTER:**
+
+- State that the decision is closed and this pipeline produces go/no-go analysis, not post-commitment audit
+- Do not produce a verdict, confidence level, or recommendation to proceed or reject
+- Do not suggest the user reframe as a pre-commitment decision — that framing is no longer accurate
+- Do not produce go/no-go analysis
 
 Must explain why for all verdict types.
 
@@ -565,7 +605,7 @@ If the register has fewer than 3 critical risks, do not pad to three. State the 
 (one line — clear position, no hedging)
 
 ## Recommended Decision
-(PROCEED / PROCEED WITH SAFEGUARDS / PILOT FIRST / REDUCE SCOPE / DELAY PENDING EVIDENCE / REJECT / INSUFFICIENT SIGNAL)
+(PROCEED / PROCEED WITH SAFEGUARDS / PILOT FIRST / REDUCE SCOPE / DELAY PENDING EVIDENCE / REJECT / INSUFFICIENT SIGNAL / WRONG TOOL / RESIDUAL-RISK-REGISTER)
 Rationale: (one to two sentences)
 
 ## Confidence Level
@@ -724,6 +764,14 @@ If downside severe and evidence thin:
 If input is too sparse to ground any verdict:
 
 > return INSUFFICIENT SIGNAL. Do not soften this into DELAY PENDING EVIDENCE.
+
+If input is not a pre-commitment decision question:
+
+> return WRONG TOOL. Do not force a go/no-go verdict on a fact-finding, diagnostic, or exploratory request.
+
+If the decision is already made or execution is substantially underway:
+
+> return RESIDUAL-RISK-REGISTER. Do not produce a go/no-go verdict for a closed decision.
 
 ---
 
