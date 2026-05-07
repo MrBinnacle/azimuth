@@ -59,7 +59,7 @@ Planned. See `ROADMAP.md` for the why on each.
 
 - **Verdict taxonomy standardized across templates.** `product-launch-azimuth.md` used SOFT LAUNCH (→ PILOT FIRST) and CANCEL (→ REJECT). `hiring-azimuth.md` used EXTEND PROCESS (→ PILOT FIRST) and DELAY HIRE (→ DELAY PENDING EVIDENCE) and PROCEED WITH ONBOARDING SAFEGUARDS (→ PROCEED WITH SAFEGUARDS). All templates now use the Module 10 canonical verdict names with domain-specific context in the description.
 
-### Added — domain coverage (unversioned, shipped between releases)
+### Added — domain templates
 
 - **`templates/secondaries-ic-azimuth.md`** — IC recommendation template for PE secondaries investment partners evaluating GP-led continuation vehicles, direct secondaries, and minority recaps. Includes: adverse selection gate (run before committing diligence resources), process integrity gate with ILPA 2023 minimum standards (binary kill gate independent of asset quality), NAV reliability assessment with Whitehorse Liquidity Partners 28%-uplift finding, GP quality and alignment signals with relationship bias check, and pricing discipline table with stress-case IRR modeling. Verdict taxonomy: COMMIT-AT-PRICE / BID-BELOW-INDICATED (auction) / COUNTER-AT-PRICE (bilateral) / CONDITIONAL-ON-TERMS / PASS-PROCESS / PASS-PRICING. PASS-PROCESS legal grounding: ADIC v. EMG, C.A. No. 2025-1389-NAC (Del. Ch. December 2025).
 
