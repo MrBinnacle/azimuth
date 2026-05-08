@@ -3,14 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AZIMUTH — Decision Analysis Skill for Claude Code</title>
-  <meta name="description" content="A Claude Code skill that pressure-tests decisions before you commit to them. Pre-commitment analysis for launches, hires, rewrites, and strategic bets." />
-  <meta property="og:title" content="AZIMUTH — Decision Analysis Skill for Claude Code" />
+  <title>AZIMUTH — Decision Analysis for Claude Code and Claude.ai</title>
+  <meta name="description" content="A Claude skill that pressure-tests decisions before you commit to them. Pre-commitment analysis for launches, hires, rewrites, and strategic bets." />
+  <meta property="og:title" content="AZIMUTH — Decision Analysis for Claude Code and Claude.ai" />
   <meta property="og:description" content="Pressure-test decisions before you commit. Pre-commitment analysis for launches, hires, rewrites, and strategic bets." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mrbinnacle.github.io/azimuth/" />
+  <meta property="og:image" content="https://mrbinnacle.github.io/azimuth/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AZIMUTH — Decision Analysis for Claude Code and Claude.ai" />
+  <meta name="twitter:description" content="Pressure-test decisions before you commit." />
+  <meta name="twitter:image" content="https://mrbinnacle.github.io/azimuth/og-image.png" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -44,6 +53,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
+      min-height: 100svh;
     }
 
     /* Subtle grid texture */
@@ -191,8 +201,9 @@
       background: var(--surface-2);
       border: none;
       border-left: 1px solid var(--border);
-      color: var(--text-2);
+      color: var(--text);
       padding: 0 18px;
+      min-height: 44px;
       cursor: pointer;
       font-family: var(--mono);
       font-size: 11px;
@@ -203,12 +214,13 @@
     }
 
     .copy-btn:hover { background: var(--border-2); color: var(--text); }
+    .copy-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .copy-btn.copied { color: var(--green); }
 
     .install-note {
       font-family: var(--mono);
       font-size: 12px;
-      color: var(--text-muted);
+      color: var(--text-2);
     }
 
     /* ── Section chrome ──────────────────── */
@@ -220,7 +232,7 @@
     .section-label {
       font-family: var(--mono);
       font-size: 11px;
-      color: var(--accent-dim);
+      color: var(--accent);
       letter-spacing: 0.14em;
       text-transform: uppercase;
       margin-bottom: 10px;
@@ -356,16 +368,18 @@
     .t-false-mark { color: #7EC4A0; }
     .t-path { color: #9090B4; }
 
-    .t-footer {
-      border-top: 1px solid var(--border);
-      background: var(--surface);
-      padding: 13px 28px;
+    .domains-note {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text-2);
+      margin-top: 22px;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
     }
 
-    .t-footer p {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--text-muted);
+    .domains-note strong {
+      color: var(--text);
+      font-weight: 500;
     }
 
     /* ── Signals list ────────────────────── */
@@ -441,7 +455,7 @@
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--text-2);
       text-align: left;
       padding: 13px 22px;
       background: var(--surface);
@@ -472,7 +486,7 @@
     .v-reduce  { color: #C9A04A; }
     .v-delay   { color: #8888B0; }
     .v-reject  { color: #C45C5C; }
-    .v-null    { color: var(--text-muted); }
+    .v-null    { color: var(--text-2); }
 
     /* ── Footer ──────────────────────────── */
     footer {
@@ -510,14 +524,76 @@
     .footer-links a {
       font-family: var(--mono);
       font-size: 12px;
-      color: var(--text-muted);
+      color: var(--text-2);
       text-decoration: none;
       letter-spacing: 0.04em;
       transition: color 0.15s;
     }
 
-    .footer-links a:hover { color: var(--text-2); }
+    .footer-links a:hover { color: var(--text); }
     .footer-links span { color: var(--border-2); }
+
+    /* ── Case study callout ─────────────────── */
+    .cs-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--accent-bg);
+      padding: 32px 0;
+    }
+
+    .cs-inner {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .cs-stat {
+      font-family: var(--display);
+      font-size: 52px;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .cs-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cs-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .cs-text {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .cs-link {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+
+    .cs-link:hover { text-decoration: underline; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
 
     /* ── Responsive ──────────────────────── */
     @media (max-width: 640px) {
@@ -558,7 +634,7 @@
           <div class="install-cmd">
             <span class="prompt">$ </span>npx skills add https://github.com/MrBinnacle/azimuth
           </div>
-          <button class="copy-btn" onclick="copyInstall(this)">Copy</button>
+          <button class="copy-btn" type="button" aria-label="Copy install command" onclick="copyInstall(this)">Copy</button>
         </div>
         <p class="install-note">Compatible with Claude Code and Claude.ai</p>
       </div>
@@ -623,6 +699,21 @@
     </div>
   </section>
 
+  <!-- Signals -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Signals</p>
+      <h2>How to know it's working</h2>
+      <ul class="signals">
+        <li>Assumptions you treated as given are being validated, not accepted</li>
+        <li>The verdict surprises you — or confirms what you suspected but couldn't articulate</li>
+        <li>The failure paths describe something that has actually happened to similar decisions</li>
+        <li>The incentive scan names a conflict you hadn't explicitly surfaced</li>
+        <li>You change the plan before committing, not after</li>
+      </ul>
+    </div>
+  </section>
+
   <!-- Example output -->
   <section class="section" id="example">
     <div class="container">
@@ -668,27 +759,24 @@ No evidence present that shifts this.
 <span class="t-path">Billing edge cases surface → scope expands → 8 weeks becomes 20 →
 old system maintenance + new system debt → both teams overloaded → defects in prod</span>
         </div>
-        <div class="t-footer">
-          <p>Works on launches, hires, partnerships, org changes, build/buy decisions, and strategic bets.</p>
-        </div>
       </div>
+      <p class="domains-note">Works on <strong>launches</strong> · <strong>hires</strong> · <strong>service rewrites</strong> · <strong>build vs. buy decisions</strong> · <strong>org changes</strong> · <strong>strategic bets</strong></p>
     </div>
   </section>
 
-  <!-- Signals -->
-  <section class="section">
+  <!-- Healthcare.gov case study callout -->
+  <div class="cs-strip">
     <div class="container">
-      <p class="section-label">Signals</p>
-      <h2>How to know it's working</h2>
-      <ul class="signals">
-        <li>Assumptions you treated as given are being validated, not accepted</li>
-        <li>The verdict surprises you — or confirms what you suspected but couldn't articulate</li>
-        <li>The failure paths describe something that has actually happened to similar decisions</li>
-        <li>The incentive scan names a conflict you hadn't explicitly surfaced</li>
-        <li>You change the plan before committing, not after</li>
-      </ul>
+      <div class="cs-inner">
+        <div class="cs-stat">5 / 6</div>
+        <div class="cs-body">
+          <span class="cs-label">Healthcare.gov · DEEP mode · 2013</span>
+          <span class="cs-text">AZIMUTH surfaced 5 of the 6 documented root causes with 0 false positives.</span>
+          <a href="https://github.com/MrBinnacle/azimuth/blob/master/examples/case-study-healthcare-gov.md" target="_blank" rel="noopener noreferrer" class="cs-link">Read the case study →</a>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 
   <!-- Quick start -->
   <section class="section">
@@ -776,14 +864,34 @@ old system maintenance + new system debt → both teams overloaded → defects i
 
 <script>
   function copyInstall(btn) {
-    navigator.clipboard.writeText('npx skills add https://github.com/MrBinnacle/azimuth').then(function() {
-      btn.textContent = 'Copied';
+    var text = 'npx skills add https://github.com/MrBinnacle/azimuth';
+    var flash = function(label) {
+      btn.textContent = label;
       btn.classList.add('copied');
       setTimeout(function() {
         btn.textContent = 'Copy';
+        btn.setAttribute('aria-label', 'Copy install command');
         btn.classList.remove('copied');
       }, 2000);
-    });
+    };
+    var fallback = function() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:absolute;left:-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); flash('Copied'); }
+      catch(e) { flash('Ctrl+C'); }
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text)
+        .then(function() { flash('Copied'); })
+        .catch(fallback);
+    } else {
+      fallback();
+    }
   }
 </script>
 
