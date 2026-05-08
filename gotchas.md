@@ -1,6 +1,6 @@
 # Gotchas
 
-Load this file for high-stakes, expensive, or irreversible decisions — especially when the plan sounds unusually clean or the user is confident.
+In DEEP mode, this file loads unconditionally. In STANDARD mode, load only when a trigger fires (Module 4 RED tier or governance-level incentive conflict; OR Module 6 chains all match canonical patterns requiring availability inversion). Do not apply patterns absent a fired trigger, even if this file is visible in context.
 
 These are 8 failure patterns that consistently evade standard risk checklists. They are not dramatic; they are structural and predictable in hindsight. They are intentionally distinct from the failure modes covered in `references/software-failure-patterns.md`, `references/launch-risks.md`, and the diagnostic files — those references cover failure modes that are technical or domain-specific. The patterns below are organizational, behavioral, or temporal failure modes that recur across domains.
 

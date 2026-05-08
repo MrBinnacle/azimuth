@@ -13,6 +13,52 @@ Planned. See `ROADMAP.md` for the why on each.
 
 ---
 
+## [1.3.0] — 2026-05-08
+
+### Routing and mode selection
+
+- **Phrasing vs. stakes tiebreaker.** When user phrasing requests FAST ("quick check," "sanity check") but decision content signals warrant a higher mode — irreversible action, capital outlay, headcount, public commitment — stakes signals win. No user confirmation required. Output prefixed with escalation header: `[MODE: DEEP — escalated from user-requested FAST; stakes signals override phrasing]`. Applies in both interactive and non-interactive contexts. Resolves the previously open design question: stakes always override phrasing; override is always visible.
+
+- **Layer 1 E exception clause.** Layer 1 E ("Fast check") is now advisory, not binding. If Required Inputs or supplied context reveal material stakes, irreversibility, or time-pressure phrasing, the tiebreaker overrides E and escalates to the warranted mode.
+
+- **Time-pressure phrasing takes precedence over Layer 1 E.** If both the E selection and time-pressure phrasing fire simultaneously (e.g., user picks E and their text contains "decide tonight"), RAPID wins. Escalation header produced.
+
+- **RAPID interview refusal — named behavior.** When a user pushes back on the Module 4 7-question interview citing time pressure, the skill now explicitly states the stakes of refusing (LOW confidence locked, PROCEED unavailable), prioritizes Q1 [IDENTITY] and Q4 [DISSENT] if the user can only answer some questions, then proceeds under whichever tier the answered count produces. Time-pressure refusal is not an exception to the RED tier rules.
+
+### Verdict semantics
+
+- **Verdict trichotomy named in Module 10.** Nine verdicts explicitly categorized into three structurally distinct types: (1) action verdicts — PROCEED through REJECT, a go/no-go position on a pre-commitment decision; (2) refusal verdicts — INSUFFICIENT SIGNAL, WRONG TOOL, produced when analysis cannot be grounded; (3) alternative-deliverable verdict — RESIDUAL-RISK-REGISTER, which produces analysis for a closed decision rather than refusing. Users receiving RESIDUAL-RISK-REGISTER now have an explicit signal that they are getting a different kind of output, not lesser output.
+
+- **RESIDUAL-RISK-REGISTER: positive output spec added.** Previously specified only what not to produce (no verdict, no go/no-go analysis). Now produces a residual risk register: 3–5 risks the user can still act on post-commitment, ordered by detectability and recoverability, with leading indicator, escalation trigger, and suggested owner for each. Moved from the refusal category to the alternative-deliverable category.
+
+- **PROCEED WITH SAFEGUARDS: cap added.** If more than 3 structural changes are required, or if any required change touches scope, budget, or headcount, the verdict is unavailable — use REDUCE SCOPE or REJECT instead. Prevents verdict laundering where accumulating safeguards effectively substitutes for a harder verdict.
+
+### Adversarial robustness
+
+- **Reframe-to-WRONG-TOOL escape closed.** Adversarial reframe gate added in Module 1. Once a user has supplied analysis-ready inputs or engaged in routing, WRONG TOOL is no longer available as an exit path. A downstream attempt to reframe as exploration, fact-finding, or architecture review is named explicitly, and the verdict proceeds on the original decision. WRONG TOOL is a correct verdict for genuinely non-decision inputs; it is not a bypass route.
+
+### Module logic
+
+- **Module Output Reduction: Module 4 and Module 9 roles specified.** Module 4 contributes incentive-conflict entries to the shared register with severity inherited from the response tier (RED → HIGH minimum). Module 9 reads from the register and produces mitigations — it adds no new register entries. Previously both were unspecified in the reduction rules.
+
+- **RAPID mode: Module 7 omission made explicit.** Module 7 (Base Rate Reality Check) was previously silently absent from RAPID's module list. Now explicitly omitted with rationale: base-rate calibration is low-yield under hours-of-time-pressure relative to incentive (Module 4) and recoverability (Module 8) work.
+
+- **DEEP mode: gotchas.md activation rule made explicit.** Loading is unconditional in DEEP; firing each of the 8 patterns is still trigger-gated (cite a pattern only when a plan-specific trigger fires). Previously the activation discipline was only stated for STANDARD mode, leaving DEEP ambiguous.
+
+- **Interaction Effects count: aligned to 1–5.** Module 6 said "3–5"; output template said "2–5." Both now 1–5, consistent with the omit-if-none rule handling the zero case.
+
+- **FAST mode PRE-CHECK disclosure extended.** "Module 4 interview not conducted" disclosure now explicitly names the self-proposal gap: if the assistant previously advocated for the option under analysis, that incentive bias is unaudited in FAST mode.
+
+### Output format
+
+- **Escalation header positioned in output template.** Added as a zeroth line above the three-line verdict/decision/confidence lead. Non-negotiable output rule updated: "first three substantive lines" — mode-escalation headers prefix the output and do not count against the three-line rule. Full format spec and stacking instruction for simultaneous escalation triggers included.
+
+### Reference files
+
+- **gotchas.md header rewritten.** Previous header said to load for high-stakes decisions — conflicting with SKILL.md's conditional activation discipline for STANDARD mode. Now states: DEEP loads unconditionally; STANDARD loads only on named triggers; patterns are not applied absent a fired trigger even when the file is visible.
+
+---
+
 ## [1.2.3] — 2026-05-07
 
 ### Meta — eval and characterization

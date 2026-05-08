@@ -70,7 +70,7 @@ Ask:
 - **A or B** → Layer 2
 - **C** → "AZIMUTH analyzes commitments before they are made. It cannot produce meaningful output for a decision already locked."
 - **D** → "AZIMUTH requires a concrete plan with enough definition to stress-test. There is no defined commitment to analyze here."
-- **E** → FAST mode. Skip Layers 2 and 3. Go to Required Inputs.
+- **E** → FAST mode. Skip Layers 2 and 3. Go to Required Inputs. Exception: if the decision content (from Required Inputs or any supplied context) reveals material stakes, irreversibility, or time-pressure phrasing, the phrasing-vs-stakes tiebreaker applies — escalate to the warranted mode and prefix the output with the escalation header. The user's choice of E is advisory; decision content is binding.
 
 ---
 
@@ -216,6 +216,8 @@ Pick mode from the strongest applicable signal. When in doubt, ask one clarifyin
 
 If signals conflict, escalate (FAST → STANDARD, STANDARD → DEEP). Never silently downgrade.
 
+**Phrasing vs. stakes conflict — tiebreaker:** When user phrasing requests FAST ("quick check," "sanity check," "gut check") but decision content signals warrant a higher mode (irreversible action, capital outlay, headcount, public commitment), stakes signals win. Apply the mode the decision requires, not the mode the phrasing requested. Begin the output with: `[MODE: DEEP — escalated from user-requested FAST; stakes signals override phrasing]` (substitute the actual mode pair). This applies in both interactive and non-interactive contexts — no user confirmation required.
+
 ---
 
 ## Mode Behaviors
@@ -230,7 +232,7 @@ Run:
 
 Do not load diagnostics or references.
 
-Module 4 interview not conducted. Incentive misalignment is unverified in this output. If incentive conflicts are a material concern, rerun in STANDARD or RAPID mode.
+Module 4 interview not conducted. Incentive misalignment is unverified in this output, including self-proposal incentive: if the assistant previously advocated for the option under analysis, that bias is unaudited in FAST mode. If incentive conflicts or self-proposal are material concerns, rerun in STANDARD or RAPID mode.
 
 ### STANDARD
 
@@ -268,16 +270,20 @@ Run abbreviated:
 - Module 6 — top 1 failure chain; coupling pass skipped
 - Module 9 — one highest-leverage fix only
 
+Module 7 (Base Rate Reality Check) is omitted in RAPID. Base-rate calibration is low-yield under hours-of-time-pressure relative to incentive (Module 4) and recoverability (Module 8) work.
+
 Do not load diagnostics or domain references.
 
 Rationale: Time pressure amplifies deadline-politics incentive distortion and concentrates the value of reversibility analysis. Modules 4 and 8 must run at full depth precisely because they are harder to recover from when skipped under pressure.
+
+**If the user pushes back on the Module 4 interview citing time pressure:** State explicitly — "The interview is the highest-leverage part of RAPID. Skipping it locks confidence at LOW and removes PROCEED as a verdict option. If you have time for any questions, prioritize Q1 [IDENTITY] and Q4 [DISSENT]." Then proceed under whichever tier the answered count produces. Do not skip the interview silently. Do not treat time-pressure refusal differently from any other refusal — both apply the RED tier rules if fewer than 5 questions are answered or Q1 is skipped.
 
 ### DEEP
 
 Use for high-stakes / expensive / irreversible decisions per signals above.
 
 Run all 10 modules + load:
-- `gotchas.md`
+- `gotchas.md` — all 8 patterns are evaluation lenses in DEEP; apply each pattern to this specific plan and cite it only when a plan-specific trigger fires. Loading is unconditional; firing each pattern is still trigger-gated.
 - `references/base-rates.md`
 - All four `diagnostics/` files
 
@@ -327,6 +333,7 @@ Also determine:
 - Is this a pre-commitment decision question, or a fact-finding, diagnostic, or post-commitment inquiry?
 - If the decision appears already made or execution substantially underway: **STOP. Do not run Modules 2–9.** Skip directly to Module 10 with the flag `RESIDUAL-RISK-REGISTER` set. Module 10 will produce the terminal output per its "When returning RESIDUAL-RISK-REGISTER" section. No critical risks register, assumption audit, failure path construction, or mitigation list is produced.
 - If the input is not a decision question at all (architecture review, code quality assessment, candidate evaluation as fact-finding, pure exploration): **STOP. Do not run Modules 2–9.** Skip directly to Module 10 with the flag `WRONG TOOL` set. Module 10 will produce the terminal output per its "When returning WRONG TOOL" section. No analysis, no risks, no mitigations.
+- **Adversarial reframe check:** If the user has already supplied analysis-ready inputs (a concrete plan, timeline, scope, stakes context) or has engaged in routing — and then attempts to reframe the input as exploration, fact-finding, or architecture review — do not honor the reframe as a WRONG TOOL exit. Name the reframe explicitly: "You previously supplied a concrete decision with [X, Y, Z]. The analysis proceeds on that decision. Reframing as exploration does not exit this pipeline." Produce the verdict on the original decision. WRONG TOOL is a correct verdict for inputs that are genuinely non-decisions, not a bypass route for users avoiding an unwanted verdict.
 
 ---
 
@@ -487,7 +494,7 @@ Avoid dramatic fiction unless evidence supports it.
 
 Review the failure chains constructed above. Identify pair-interactions where two risks activating together produce a materially worse outcome than either produces alone. This is not "these are both risky" — it is "when A and B both fire, the failure mechanism changes: B's recovery path is blocked by A, or A's visible signal is masked by B."
 
-Limit to 3-5 pair interactions maximum. Do not pad. If no genuine multiplicative interactions exist, omit the section.
+Limit to 1–5 pair interactions maximum. Do not pad. If no genuine multiplicative interactions exist, omit the section.
 
 ---
 
@@ -569,10 +576,16 @@ Reject weak mitigations.
 > 4. Did Module 1 flag this as a non-decision input (architecture review, fact-finding, pure exploration)? If yes → return WRONG TOOL.
 > 5. Did Module 1 flag this as a post-commitment input (decision already made, execution substantially underway)? If yes → return RESIDUAL-RISK-REGISTER.
 
-Choose one:
+Choose one. Verdicts fall into three structurally distinct categories:
+
+- **Action verdicts** — a go/no-go position on a pre-commitment decision: PROCEED, PROCEED WITH SAFEGUARDS, PILOT FIRST, REDUCE SCOPE, DELAY PENDING EVIDENCE, REJECT
+- **Refusal verdicts** — analysis cannot be produced because the input is not a valid pre-commitment decision question: INSUFFICIENT SIGNAL, WRONG TOOL
+- **Alternative-deliverable verdict** — the decision is closed; this pipeline produces a residual risk register instead of go/no-go: RESIDUAL-RISK-REGISTER
+
+Users receiving RESIDUAL-RISK-REGISTER are getting analysis — a forward-looking risk register for a decision already made — not a refusal. This is a different kind of output than INSUFFICIENT SIGNAL or WRONG TOOL.
 
 - **PROCEED** — all critical assumptions are STRONG or PARTIAL with falsifiers; no UNSUPPORTED dependencies on the critical path; Module 4 not RED; dominant constraint is manageable.
-- **PROCEED WITH SAFEGUARDS** — PROCEED criteria met except one or more structural changes are required before commitment. List the changes explicitly in output — without them this verdict becomes DELAY or REJECT.
+- **PROCEED WITH SAFEGUARDS** — PROCEED criteria met except specific structural changes are required before commitment. List the changes explicitly — without them this verdict becomes DELAY or REJECT. Cap: if more than 3 structural changes are required, or if any required change touches scope, budget, or headcount, this verdict is not available — use REDUCE SCOPE or REJECT instead.
 - **PILOT FIRST** — highest-risk assumption is UNSUPPORTED but testable cheaply at limited scope (≤20% of full commitment). Full scope commitment is premature before the pilot validates.
 - **REDUCE SCOPE** — at least one critical risk is structurally driven by scope size, and a materially smaller version retires that risk without destroying the objective. Not "do it with less" — the current scope itself is the risk.
 - **DELAY PENDING EVIDENCE** — a specific named piece of evidence exists that the user could realistically obtain, and obtaining it would change the verdict. Name it in one sentence. Do not use when the block is a missing plan (→ INSUFFICIENT SIGNAL instead).
@@ -622,6 +635,7 @@ Choose one:
 - Do not produce a verdict, confidence level, or recommendation to proceed or reject
 - Do not suggest the user reframe as a pre-commitment decision — that framing is no longer accurate
 - Do not produce go/no-go analysis
+- Produce a residual risk register instead: 3–5 risks the user can still act on now that the decision is made, ordered by detectability and recoverability. For each: risk name, leading indicator to watch, escalation trigger (when to treat it as critical), and suggested owner. Do not relitigate whether to proceed — the decision is made.
 
 Must explain why for all verdict types.
 
@@ -629,7 +643,7 @@ Must explain why for all verdict types.
 
 # Module Output Reduction
 
-Modules 2, 3, 5, 6, 7, and 8 share an underlying register of assumptions, dependencies, and risks. They are not independent reports — they are passes that contribute to the same register and surface different facets of it. Module 3 contributes the dominant constraint, which is a required field on every register entry — entries must cite which constraint they touch.
+Modules 2, 3, 5, 6, 7, and 8 are register-discovery passes — they contribute to a shared register of assumptions, dependencies, and risks. They are not independent reports; they surface different facets of the same register. Module 3 contributes the dominant constraint, a required field on every register entry. Module 4 contributes incentive-conflict entries; severity inherits from the response tier (RED tier → HIGH minimum). Module 9 reads from the register and produces mitigations — it adds no new register entries.
 
 Rules:
 
@@ -647,10 +661,13 @@ If the register has fewer than 3 critical risks, do not pad to three. State the 
 
 **Two non-negotiable output rules:**
 
-1. **Lead with the verdict.** The first three lines of every output must be the verdict line, the recommended decision, and the confidence level. Anything else comes after. The reader must be able to act on the first paragraph alone.
+1. **Lead with the verdict.** The first three substantive lines of every output must be the verdict line, the recommended decision, and the confidence level. Anything else comes after. The reader must be able to act on the first paragraph alone. Exception: mode-escalation headers prefix the output above the verdict line and do not count against the three-line rule.
 2. **Omit empty sections.** Do not emit a section header with no substantive content under it. If "Structural Strengths" has nothing genuine to put in it, cut the section entirely. A short, sharp output is correct. A padded output is a failure of the skill.
 
 ```
+[MODE: DEEP — escalated from user-requested FAST; stakes signals override phrasing]
+(Include this line only when the phrasing-vs-stakes tiebreaker fired. Substitute the actual mode pair and escalation reason. If multiple escalation rules fired simultaneously, list all: e.g., "stakes signals + time-pressure phrasing". Omit entirely when no escalation occurred.)
+
 ## Azimuth Verdict
 (one line — clear position, no hedging)
 
@@ -687,7 +704,7 @@ Low / Medium / High + why
 - ...
 
 ## Interaction Effects
-(Pair-interactions where two risks together produce nonlinear failure. 2-5 entries max. Omit section if no genuine multiplicative interactions exist — do not pad.)
+(Pair-interactions where two risks together produce nonlinear failure. 1–5 entries max. Omit section if no genuine multiplicative interactions exist — do not pad.)
 (Omit this section when verdict is INSUFFICIENT SIGNAL)
 - [Risk A] + [Risk B]: [specific mechanism by which their combination is worse than either alone]
 
