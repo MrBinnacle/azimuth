@@ -138,6 +138,28 @@ because the asset is compelling, is a documented secondaries failure mode.
 
 ---
 
+## Section 5a — Incentive Alignment Scan
+
+Before pricing analysis, assess whether the decision to proceed is driven by asset quality or by structural incentives.
+
+| Actor | Their Incentive | Aligned with Asset Quality? | Notes |
+|-------|----------------|----------------------------|-------|
+| IC deal lead | [Fee income / deal count / relationships / fund deployment pressure] | ☐ Yes / ☐ No / ☐ Unknown | |
+| GP (CV seller) | [Liquidity for prior fund LPs / continuation of management fees / NAV support] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Placement agent / advisor | [Transaction fee contingent on close] | ☐ Yes / ☐ No / ☐ Unknown | |
+| Existing LP references | [Preserve GP relationship / avoid being seen as difficult] | Structurally compromised — see Section 5 | |
+
+**Key questions:**
+- Does this firm have a primary fund relationship with the GP that creates pressure to commit independent of asset quality? (Named above — if yes, this is a GOVERNANCE RISK.)
+- Is the IC member evaluating this transaction the same person who sourced it or who manages the GP relationship?
+- Is deployment pressure (uninvested capital, fund timeline) influencing the threshold for commitment?
+
+**Flag if:** primary relationship conflict exists and is not explicitly disclosed to IC; deal lead sourced the transaction and owns the approval recommendation; fund deployment pressure is named as a rationale for proceeding.
+
+If flagged: treat relationship bias as the primary incentive risk and require an independent IC voice with no GP relationship to co-sign the verdict.
+
+---
+
 ## Section 6 — Pricing Discipline
 
 **Required return hurdles** (apply your fund's actual thresholds):

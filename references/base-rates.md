@@ -1,6 +1,6 @@
 # Base Rates Reference
 
-Use when conducting Base Rate Reality Check (Module 7) in STANDARD or DEEP mode.
+Load when Module 7 surfaces estimates that deviate from typical historical ranges — applicable when the plan involves software projects, startups, launches, hires, M&A, migrations, or organizational change.
 
 Purpose: Ground risk estimates in historical distributions, not imagination. Prefer these priors unless the user provides strong contradicting evidence.
 

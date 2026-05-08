@@ -1,6 +1,6 @@
 # Launch Risks Reference
 
-Load when running a azimuth on a product launch, feature release, service go-live, beta rollout, or public announcement with execution dependencies.
+Load when running an AZIMUTH analysis on a product launch, feature release, service go-live, beta rollout, or public announcement with execution dependencies.
 
 ---
 

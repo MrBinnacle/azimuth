@@ -1,6 +1,6 @@
 # Organizational Change Failure Patterns
 
-Load when running an azimuth on a restructure, reorganization, function consolidation, role elimination, or leadership transition that changes reporting lines, decision authorities, or team composition.
+Load when running an AZIMUTH analysis on a restructure, reorganization, function consolidation, role elimination, or leadership transition that changes reporting lines, decision authorities, or team composition.
 
 These patterns are structural, behavioral, and temporal failure modes that consistently evade standard change management checklists. They are intentionally distinct from the Kotter-derived failure modes documented in `references/base-rates.md` (insufficient sponsorship, middle management resistance, employee burnout, reversion after initial compliance) — those are process failures. The patterns below are structural failures that occur even when the process is followed correctly.
 

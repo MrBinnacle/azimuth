@@ -76,6 +76,8 @@ Surfacing a risk is not the same as acting on it. Teams that run structured fail
 
 *Source: Roose, Lehman & Veinott (2023), Human Factors — 10 real game-development teams; failure reasons identified at average 17.8 per session; plan-revision rates remained low particularly when remediation required scope reduction.*
 
+*Domain caveat: student game-development context (N=10 teams, N=68 participants). Treat as directional; enterprise generalizability requires independent replication.*
+
 ---
 
 ## 8. Reversibility Underestimation

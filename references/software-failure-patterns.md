@@ -1,6 +1,6 @@
 # Software Failure Patterns
 
-Load when running a azimuth on a technical initiative: refactor, rewrite, migration, infrastructure change, API redesign, platform build, or codebase restructuring.
+Load when running an AZIMUTH analysis on a technical initiative: refactor, rewrite, migration, infrastructure change, API redesign, platform build, or codebase restructuring.
 
 ---
 

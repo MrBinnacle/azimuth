@@ -1,6 +1,6 @@
 # Startup Failure Patterns
 
-Load when running a azimuth on a startup, new venture, early-stage initiative, or any plan that depends on finding product-market fit.
+Load when running an AZIMUTH analysis on a startup, new venture, early-stage initiative, or any plan that depends on finding product-market fit.
 
 ---
 

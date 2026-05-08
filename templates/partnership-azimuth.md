@@ -147,8 +147,10 @@ For each actor, does their incentive align with deal success?
 
 ☐ PROCEED — Deal is structurally sound; proceed to close / execution
 ☐ PROCEED WITH SAFEGUARDS — Specific conditions required (list below)
+☐ PILOT FIRST — Execute a time-bounded or scope-limited pilot arrangement to validate [specific assumption] before full commitment
+☐ REDUCE SCOPE — Narrow deal terms or partnership scope; full commitment at current structure is premature
 ☐ DELAY PENDING EVIDENCE — [Specific DD gap or governance gap requiring resolution]
-☐ RENEGOTIATE — [Specific terms or structure that need to change]
+☐ RENEGOTIATE — [Specific terms or structure that need to change] *(domain-specific verdict for partnership/M&A contexts where renegotiation is feasible before close; not part of the core 9-verdict AZIMUTH taxonomy)*
 ☐ REJECT — [Rationale]
 
 **Must-resolve before proceeding:**

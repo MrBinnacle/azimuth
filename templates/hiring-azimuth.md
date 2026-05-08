@@ -142,8 +142,9 @@ Do not wait for 90-day review to act on these signals.
 
 ☐ PROCEED — Hire this candidate
 ☐ PROCEED WITH SAFEGUARDS — Proceed with specific onboarding requirements (listed above)
-☐ PILOT FIRST — Validate [specific gap] before offer
-☐ DELAY PENDING EVIDENCE — Role definition needs clarification first
+☐ PILOT FIRST — Validate [specific gap] before offer (e.g., contract engagement, paid trial project)
+☐ REDUCE SCOPE — Hire for a narrower initial scope or on a contract basis; full commitment premature given current role definition or candidate assessment quality
+☐ DELAY PENDING EVIDENCE — Role definition needs clarification or additional reference data needed first
 ☐ REJECT — [Candidate or process issue]
 
 **Decision basis**: [What evidence most influenced this recommendation?]

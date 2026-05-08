@@ -42,7 +42,7 @@ Also invoke when user sounds overconfident, vague, rushed, or politically constr
 - tasks with no meaningful downside
 - user explicitly wants optimism-only ideation
 - decisions where the framing itself is the question (e.g., "is this the right problem to solve") — AZIMUTH stress-tests stated decisions, not frame quality
-- invocations following multi-turn advocacy by the assistant on the option under analysis, unless the user explicitly directs Module 4 to run on the assistant
+- Note: when the assistant has previously advocated for the option under analysis, Module 4's PRE-CHECK auto-engages self-proposal handling. AZIMUTH does not exit on this condition — proceed with Module 4 using the assistant-as-proposer framing. If the user explicitly states "do not audit the assistant's recommendation," return WRONG TOOL with rationale that incentive analysis cannot be neutralized on request.
 
 ---
 
@@ -82,13 +82,15 @@ Ask:
 >
 > 1. Worst realistic outcome if this fails?
 > 2. Can you reverse this within a week without material cost?
+> 3. Must this decision be made within 24 hours?
 
 **Route:**
 - Severe downside (headcount, capital, public commitment, multi-quarter scope) AND not reversible → **DEEP**
 - Moderate downside, reversal costly → **STANDARD**
 - Limited downside, reversible, single-team → **FAST**
+- Material downside (STANDARD tier or above) AND decision must be made within 24 hours → **RAPID** (overrides severity-based selection; time pressure is the dominant signal regardless of reversal ease)
 
-**B escalation:** If Layer 1 was B, escalate one tier. Discomfort about a received recommendation is signal.
+**B escalation:** If Layer 1 was B, escalate one tier (FAST → STANDARD, STANDARD → DEEP, RAPID stays RAPID). Discomfort about a received recommendation is signal.
 
 ---
 
@@ -129,11 +131,24 @@ If the user skips a layer:
 - Layer 3 skipped → default template, stated in output header
 - All layers skipped → infer from context, state: "Routing inference: [MODE], [TEMPLATE or default]. Say 'route me' to restart."
 
+If user's free text contains time-pressure phrasing ("decide tonight," "decide tomorrow," "board meeting tomorrow," "competitor forcing," "we need to decide now") → infer RAPID regardless of reversibility signals.
+
+## Re-Entry Handling
+
+If the user receives an exit message (Layer 1 C or D) and then reframes:
+
+- **C → reframes as pre-commitment** (e.g., "treat the next phase as pre-commitment"): State "Reframing accepted: [decision now under analysis]. Proceeding to Layer 2." Resume from Layer 2.
+- **C → confirms retroactive audit intent**: Route to Module 10 with `RESIDUAL-RISK-REGISTER` flag. State this in the output header. Do not run Modules 2–9 as a go/no-go pipeline.
+- **D → supplies a concrete option**: State "Concrete option received: [option]. Proceeding to Layer 2." Resume from Layer 2.
+- **D → no concrete option after one prompt**: Return WRONG TOOL. Do not loop.
+
+Never silently accept a reframe. Name what changed and which layer is now in scope.
+
 ## Bypass Handling
 
 If the user provides structured context without routing:
 
-1. Infer mode from context signals (reversibility, stakes, scope, timeline)
+1. Infer mode from context signals (reversibility, stakes, scope, timeline, urgency). Valid inference outputs: FAST, STANDARD, RAPID, DEEP. If time-pressure phrasing is present and stakes are material, RAPID takes priority over the reversibility-based tier.
 2. Infer domain and template
 3. State before analysis: "Routing inference: [MODE] mode, [TEMPLATE or default]. Say 'route me' if wrong."
 4. Proceed to Module 4 interview before full analysis
@@ -230,9 +245,11 @@ Default. Run all 10 core modules.
 
 Load `references/base-rates.md` only when the user's plan involves a category covered by the file (software project, startup, launch, hire, M&A, migration, org change) AND the user's stated estimates appear to deviate from typical historical ranges.
 
-Also load `gotchas.md` when either of these conditions fires:
+Consult `gotchas.md` when either of these conditions fires. If the file is visible in context, treat its 8 patterns as active only when a trigger fires — not by default:
 - Module 4 interview returns RED tier, OR any incentive conflict is governance-level
 - Module 6 failure chains all match canonical patterns (scope creep, resource shortage, stakeholder misalignment) with no plan-specific trigger — availability inversion required
+
+If neither condition fires, do not cite the 8 patterns or generate output influenced by them even if the file is visible. If a condition fires but the file is not visible, note: "Gotcha trigger fired ([condition]). Operating from structural patterns by recall; DEEP-mode rerun recommended for full pattern access."
 
 ### RAPID
 
@@ -308,8 +325,8 @@ If objective is fuzzy, flag immediately.
 Also determine:
 
 - Is this a pre-commitment decision question, or a fact-finding, diagnostic, or post-commitment inquiry?
-- If the decision appears already made or execution substantially underway: note "post-commitment input — pipeline will produce RESIDUAL-RISK-REGISTER, not go/no-go analysis."
-- If the input is not a decision question at all (architecture review, code quality assessment, candidate evaluation as fact-finding, pure exploration): note "input is not a pre-commitment decision — Module 10 will return WRONG TOOL."
+- If the decision appears already made or execution substantially underway: **STOP. Do not run Modules 2–9.** Skip directly to Module 10 with the flag `RESIDUAL-RISK-REGISTER` set. Module 10 will produce the terminal output per its "When returning RESIDUAL-RISK-REGISTER" section. No critical risks register, assumption audit, failure path construction, or mitigation list is produced.
+- If the input is not a decision question at all (architecture review, code quality assessment, candidate evaluation as fact-finding, pure exploration): **STOP. Do not run Modules 2–9.** Skip directly to Module 10 with the flag `WRONG TOOL` set. Module 10 will produce the terminal output per its "When returning WRONG TOOL" section. No analysis, no risks, no mitigations.
 
 ---
 
@@ -427,6 +444,8 @@ Diagnostic load: see Operating Modes for when to load `diagnostics/incentive-con
 
 ## 5. Dependency Fragility Map
 
+**Register check (before drafting):** Review what Module 2 surfaced as UNSUPPORTED or CONTRADICTED assumptions. Dependencies already identified there as unverified or assumed should be flagged here as SPOF candidates — do not re-derive them independently.
+
 Identify critical dependencies:
 
 - people
@@ -450,7 +469,9 @@ Diagnostic load: see Operating Modes for when to load `diagnostics/dependency-ma
 
 ## 6. Failure Path Construction
 
-> **Bias — Availability:** The model defaults to canonical failure chains (scope creep, resource shortage, stakeholder misalignment) over-represented in training data. After constructing 3 chains by natural inference, add one that routes around all of them — what fails specifically about this plan, not plans generically like it.
+> **Bias — Availability:** Before drafting any chain, identify the canonical failure modes for this category (e.g., scope creep, resource shortage, stakeholder misalignment, vendor delay, knowledge concentration). These are the chains training data over-represents — treat them as the bias surface to route around. Construct chains from plan-specific triggers: named dependencies from Module 5 that could fail, UNSUPPORTED assumptions from Module 2, constraints from Module 3. At least one chain must have a trigger that would not apply to a generic plan in the same category. If a drafted chain reads as a generic template with this plan's words substituted in, discard it and re-derive.
+
+**Register check (before drafting):** The 3 chains must be anchored in the register from Modules 2, 3, and 5 — not generated fresh. For each candidate chain, name the Module 2 assumption or Module 5 dependency that provides its trigger. If no anchor exists, either add the anchor to the register or discard the chain.
 
 Construct **3 most plausible** failure chains.
 
@@ -458,9 +479,7 @@ Use format:
 
 `Trigger → Cascade → Visible Failure → Business Cost`
 
-Prefer realistic chains such as:
-
-`Scope creep → delays → rushed QA → defects → trust loss`
+Target shape (plan-specific): `[Named dependency from Module 5 or UNSUPPORTED assumption from Module 2] → [mechanism specific to this plan's structure] → [visible failure] → [quantified or describable business cost]`
 
 Avoid dramatic fiction unless evidence supports it.
 
@@ -475,6 +494,8 @@ Limit to 3-5 pair interactions maximum. Do not pad. If no genuine multiplicative
 ## 7. Base Rate Reality Check
 
 > **Bias — Domain calibration:** Base rates carry false confidence when the domain is adjacent but not identical to cited studies. If the user's situation is a poor match for the referenced category, state that explicitly and treat the rate as directional only — do not assert precision the evidence does not support.
+
+**Register check (before drafting):** Base rates ground the risks already in the register — they do not introduce new risks. Do not produce a separate base-rate risk list. If the most historically common failure mode for this category is absent from Module 6's chains and would have been plausible for this plan, add it to the register and note the source.
 
 If similar efforts exist, ask:
 
@@ -493,6 +514,8 @@ If no data available, state uncertainty.
 ---
 
 ## 8. Detectability & Recovery
+
+**Register check (before drafting):** Apply detectability and recovery assessment to risks already in the register from Modules 2, 5, and 6. Do not generate a new risk list. Reference each register entry by its established tag when noting detection windows, reversibility, and recovery difficulty.
 
 For top risks assess:
 
@@ -541,19 +564,19 @@ Reject weak mitigations.
 > 1. Was Module 4 interview tier RED? If yes: PROCEED and PROCEED WITH SAFEGUARDS are unavailable regardless of all other evidence. State `[INCENTIVE DATA: INSUFFICIENT]` in the output header.
 > 2. Name the assumption the plan most depends on or the user expressed most certainty about. What is its evidence classification — STRONG, PARTIAL, or UNSUPPORTED? If UNSUPPORTED → confidence ceiling is MEDIUM regardless of other evidence quality.
 > 3. Do I have enough information to distinguish between plausible success and plausible failure for this specific decision?
+>     - If no, AND the gap is structural (objective undefined, scope absent, input internally contradictory) → return **INSUFFICIENT SIGNAL**. Do not substitute DELAY PENDING EVIDENCE when the block is a missing plan, not a missing data point.
+>     - If no, AND a specific named piece of evidence exists that the user could realistically obtain (a pilot result, a vendor reference, a load test) AND obtaining it would meaningfully change the verdict → return **DELAY PENDING EVIDENCE**, naming that specific evidence in one sentence. DELAY requires a named, narrow gate. If you cannot name the gate, return INSUFFICIENT SIGNAL.
 > 4. Did Module 1 flag this as a non-decision input (architecture review, fact-finding, pure exploration)? If yes → return WRONG TOOL.
 > 5. Did Module 1 flag this as a post-commitment input (decision already made, execution substantially underway)? If yes → return RESIDUAL-RISK-REGISTER.
 
-If the answer to #3 is no — if producing a verdict would require fabricating reasoning, inventing assumptions, or selecting a direction without a basis — return INSUFFICIENT SIGNAL. Do not force a verdict.
-
 Choose one:
 
-- **PROCEED** — evidence supports moving forward; risks are manageable
-- **PROCEED WITH SAFEGUARDS** — proceed only if specific structural changes are made
-- **PILOT FIRST** — validate the highest-risk assumption before committing
-- **REDUCE SCOPE** — current scope is not supportable; a smaller version may be
-- **DELAY PENDING EVIDENCE** — the decision is premature; specific information is needed before analysis is meaningful
-- **REJECT** — evidence or structure does not support proceeding
+- **PROCEED** — all critical assumptions are STRONG or PARTIAL with falsifiers; no UNSUPPORTED dependencies on the critical path; Module 4 not RED; dominant constraint is manageable.
+- **PROCEED WITH SAFEGUARDS** — PROCEED criteria met except one or more structural changes are required before commitment. List the changes explicitly in output — without them this verdict becomes DELAY or REJECT.
+- **PILOT FIRST** — highest-risk assumption is UNSUPPORTED but testable cheaply at limited scope (≤20% of full commitment). Full scope commitment is premature before the pilot validates.
+- **REDUCE SCOPE** — at least one critical risk is structurally driven by scope size, and a materially smaller version retires that risk without destroying the objective. Not "do it with less" — the current scope itself is the risk.
+- **DELAY PENDING EVIDENCE** — a specific named piece of evidence exists that the user could realistically obtain, and obtaining it would change the verdict. Name it in one sentence. Do not use when the block is a missing plan (→ INSUFFICIENT SIGNAL instead).
+- **REJECT** — two or more critical assumptions UNSUPPORTED with no cheap validation path; OR Module 4 RED with a governance-level conflict; OR dominant constraint identified in Module 3 is immovable and the plan cannot succeed within it.
 - **INSUFFICIENT SIGNAL** — the input is too sparse, vague, or contradictory to produce a meaningful verdict; proceeding would substitute fabrication for analysis
 - **WRONG TOOL** — the input is not a pre-commitment decision question; this pipeline produces go/no-go verdicts and cannot produce meaningful output for fact-finding, diagnostic, or exploratory inputs
 - **RESIDUAL-RISK-REGISTER** — the decision is already made or execution is substantially underway; this pipeline produces go/no-go verdicts, not post-commitment risk audits
@@ -606,7 +629,7 @@ Must explain why for all verdict types.
 
 # Module Output Reduction
 
-Modules 2, 5, 6, 7, and 8 share an underlying register of assumptions, dependencies, and risks. They are not independent reports — they are passes that contribute to the same register and surface different facets of it.
+Modules 2, 3, 5, 6, 7, and 8 share an underlying register of assumptions, dependencies, and risks. They are not independent reports — they are passes that contribute to the same register and surface different facets of it. Module 3 contributes the dominant constraint, which is a required field on every register entry — entries must cite which constraint they touch.
 
 Rules:
 

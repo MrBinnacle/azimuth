@@ -1,6 +1,6 @@
 # M&A and Partnership Failure Patterns
 
-Load when running a azimuth on a merger, acquisition, strategic partnership, joint venture, or significant vendor relationship with multi-quarter or multi-year commitment.
+Load when running an AZIMUTH analysis on a merger, acquisition, strategic partnership, joint venture, or significant vendor relationship with multi-quarter or multi-year commitment.
 
 ---
 

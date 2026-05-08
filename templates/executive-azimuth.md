@@ -71,6 +71,9 @@ If none are addressed: recommend DELAY or PILOT.
 ☐ REDUCE SCOPE
 ☐ DELAY PENDING EVIDENCE
 ☐ REJECT
+☐ INSUFFICIENT SIGNAL — input too sparse to ground analysis; missing inputs listed below
+☐ WRONG TOOL — input is not a pre-commitment decision question
+☐ RESIDUAL-RISK-REGISTER — decision already made; go/no-go analysis not applicable
 
 **Rationale**: [1–2 sentences explaining the recommendation.]
 
