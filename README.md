@@ -4,7 +4,7 @@ A Claude Code skill that pressure-tests decisions before you commit to them.
 
 Run `/azimuth [your decision]` before you greenlight the rewrite, the hire, the launch, or the bet.
 
-![Version](https://img.shields.io/badge/version-v1.2.3-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-blueviolet) ![Claude.ai](https://img.shields.io/badge/Claude.ai-compatible-blueviolet)
+![Version](https://img.shields.io/badge/version-v1.3.0-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-blueviolet) ![Claude.ai](https://img.shields.io/badge/Claude.ai-compatible-blueviolet)
 
 ---
 
@@ -131,7 +131,9 @@ Works on any initiative-level decision with real downside: product launches, ser
 | `REJECT` | Evidence or structure does not support proceeding |
 | `INSUFFICIENT SIGNAL` | Input is too sparse, vague, or contradictory to ground analysis |
 | `WRONG TOOL` | Input is not a pre-commitment decision question |
-| `RESIDUAL-RISK-REGISTER` | Decision is already made — go/no-go analysis no longer applies |
+| `RESIDUAL-RISK-REGISTER` | Decision already made — produces a forward-looking residual risk register (leading indicators, escalation triggers, owners), not a go/no-go verdict |
+
+**Three verdict categories:** Action verdicts (PROCEED through REJECT) are go/no-go positions. Refusal verdicts (INSUFFICIENT SIGNAL, WRONG TOOL) mean analysis cannot be grounded in the input. RESIDUAL-RISK-REGISTER is an alternative-deliverable verdict — it produces useful analysis for a closed decision, not a refusal.
 
 </details>
 
