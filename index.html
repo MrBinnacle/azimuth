@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AZIMUTH — Decision Analysis Skill for Claude Code</title>
+  <meta name="description" content="A Claude Code skill that pressure-tests decisions before you commit to them. Pre-commitment analysis for launches, hires, rewrites, and strategic bets." />
+  <meta property="og:title" content="AZIMUTH — Decision Analysis Skill for Claude Code" />
+  <meta property="og:description" content="Pressure-test decisions before you commit. Pre-commitment analysis for launches, hires, rewrites, and strategic bets." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0C0C0E;
+      --surface:      #141417;
+      --surface-2:    #1C1C21;
+      --border:       #252529;
+      --border-2:     #343438;
+      --text:         #E2E2EA;
+      --text-2:       #7A7A8A;
+      --text-muted:   #4A4A5A;
+      --accent:       #C9A84C;
+      --accent-dim:   #7A6430;
+      --accent-bg:    rgba(201,168,76,0.07);
+      --green:        #5C9E6E;
+      --blue:         #5C7EC4;
+      --red:          #C45C5C;
+      --mono:         'IBM Plex Mono', monospace;
+      --sans:         'IBM Plex Sans', sans-serif;
+      --display:      'Syne', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* Subtle grid texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Nav ─────────────────────────────── */
+    nav {
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-inner {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-2);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── Hero ────────────────────────────── */
+    .hero {
+      padding: 100px 0 88px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(48px, 9vw, 80px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-2);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 44px;
+    }
+
+    .install-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .install-block {
+      display: inline-flex;
+      align-items: stretch;
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .install-cmd {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--text);
+      padding: 13px 22px;
+      letter-spacing: 0.01em;
+    }
+
+    .install-cmd .prompt { color: var(--accent); user-select: none; }
+
+    .copy-btn {
+      background: var(--surface-2);
+      border: none;
+      border-left: 1px solid var(--border);
+      color: var(--text-2);
+      padding: 0 18px;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .copy-btn:hover { background: var(--border-2); color: var(--text); }
+    .copy-btn.copied { color: var(--green); }
+
+    .install-note {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── Section chrome ──────────────────── */
+    .section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent-dim);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      margin-bottom: 36px;
+    }
+
+    /* ── Problem ─────────────────────────── */
+    .problem-body {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 620px;
+      margin-bottom: 36px;
+    }
+
+    .problem-body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .problem-pull {
+      border-left: 2px solid var(--accent);
+      padding: 4px 0 4px 22px;
+    }
+
+    .problem-pull p {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── What you get grid ───────────────── */
+    .get-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .get-item {
+      background: var(--bg);
+      padding: 30px;
+      transition: background 0.15s;
+    }
+
+    .get-item:hover { background: var(--surface); }
+
+    .get-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .get-item h3 {
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .get-item p {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    /* ── Terminal ────────────────────────── */
+    .terminal {
+      background: #08080A;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      font-family: var(--mono);
+    }
+
+    .t-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 11px 18px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .t-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #2A2A30;
+    }
+
+    .t-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-left: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .t-body {
+      padding: 26px 28px;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #8888A0;
+      overflow-x: auto;
+    }
+
+    .t-input-line  { color: var(--text); margin-bottom: 18px; display: block; }
+    .t-prompt-glyph { color: var(--accent); }
+    .t-section-head { color: var(--accent); font-weight: 500; margin-top: 14px; display: block; }
+    .t-verdict-text { color: #DDDDE8; }
+    .t-decision-text { color: var(--accent); font-weight: 500; }
+    .t-conf-text { color: #7EC4A0; }
+    .t-num  { color: var(--accent-dim); }
+    .t-risk { color: #B8B8CC; }
+    .t-false-mark { color: #7EC4A0; }
+    .t-path { color: #9090B4; }
+
+    .t-footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 13px 28px;
+    }
+
+    .t-footer p {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── Signals list ────────────────────── */
+    .signals {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      list-style: none;
+    }
+
+    .signals li {
+      padding: 22px 28px;
+      font-size: 15px;
+      color: var(--text-2);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+
+    .signals li:last-child { border-bottom: none; }
+    .signals li:hover { background: var(--surface); }
+
+    .signals li::before {
+      content: '—';
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 13px;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+
+    /* ── Invoke lines ────────────────────── */
+    .invokes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .invoke-line {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--text-2);
+      padding: 14px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .invoke-line:hover {
+      border-color: var(--accent-dim);
+      background: var(--surface-2);
+    }
+
+    .invoke-line .slash { color: var(--accent); }
+
+    /* ── Verdict table ───────────────────── */
+    .v-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .v-table th {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: left;
+      padding: 13px 22px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .v-table td {
+      padding: 15px 22px;
+      font-size: 14px;
+      color: var(--text-2);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .v-table tr:last-child td { border-bottom: none; }
+    .v-table tr:hover td { background: var(--surface); }
+
+    .vtag {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .v-go      { color: #5CAE72; }
+    .v-go-s    { color: #7EC4A0; }
+    .v-pilot   { color: #C9A84C; }
+    .v-reduce  { color: #C9A04A; }
+    .v-delay   { color: #8888B0; }
+    .v-reject  { color: #C45C5C; }
+    .v-null    { color: var(--text-muted); }
+
+    /* ── Footer ──────────────────────────── */
+    footer {
+      padding: 44px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-row {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--text-2); }
+    .footer-links span { color: var(--border-2); }
+
+    /* ── Responsive ──────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      h1 { font-size: 44px; }
+      .hero { padding: 72px 0 64px; }
+      .get-grid { grid-template-columns: 1fr; }
+      .install-cmd { font-size: 12px; padding: 13px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">AZIMUTH</a>
+    <ul class="nav-links">
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#example">Example</a></li>
+      <li><a href="#verdicts">Verdicts</a></li>
+      <li><a href="https://github.com/MrBinnacle/azimuth" target="_blank" rel="noopener">GitHub →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Claude Code Skill</p>
+      <h1>Verify the<br/><em>bearing</em><br/>before you<br/>step off.</h1>
+      <p class="hero-sub">
+        AZIMUTH pressure-tests decisions before you commit to them. Run it before you greenlight the rewrite, the hire, the launch, or the bet.
+      </p>
+      <div class="install-wrap">
+        <div class="install-block">
+          <div class="install-cmd">
+            <span class="prompt">$ </span>npx skills add https://github.com/MrBinnacle/azimuth
+          </div>
+          <button class="copy-btn" onclick="copyInstall(this)">Copy</button>
+        </div>
+        <p class="install-note">Compatible with Claude Code and Claude.ai</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">The problem</p>
+      <h2>Plans look fine until they don't.</h2>
+      <p class="problem-body">
+        The risks that sink projects are usually the ones nobody questioned —
+        the <strong>assumption holding everything together</strong>,
+        the <strong>dependency nobody secured</strong>,
+        the <strong>failure mode that's common in decisions like this one</strong>
+        but invisible from inside it.
+      </p>
+      <div class="problem-pull">
+        <p>AZIMUTH runs the structured pressure-test before you're committed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="section" id="capabilities">
+    <div class="container">
+      <p class="section-label">Capabilities</p>
+      <h2>What you get</h2>
+      <div class="get-grid">
+        <div class="get-item">
+          <div class="get-num">01 / Verdict</div>
+          <h3>A verdict with a rationale</h3>
+          <p>Not just "risky" — a specific recommendation: proceed, pilot first, reduce scope, delay, or reject. With the structural reason why.</p>
+        </div>
+        <div class="get-item">
+          <div class="get-num">02 / Assumptions</div>
+          <h3>Assumption audit</h3>
+          <p>Every assumption classified as strong, partial, unsupported, or contradicted — plus a falsifier for each: the observable evidence that would prove it wrong.</p>
+        </div>
+        <div class="get-item">
+          <div class="get-num">03 / Failure paths</div>
+          <h3>Failure path analysis</h3>
+          <p>The most plausible ways this fails, traced trigger → cascade → business cost. Pair-interaction analysis where two risks together produce a worse outcome than either alone.</p>
+        </div>
+        <div class="get-item">
+          <div class="get-num">04 / Incentives</div>
+          <h3>Incentive scan</h3>
+          <p>Who proposed this, who benefits, who absorbs the downside, whether dissent was heard. Structured into the verdict — not an afterthought.</p>
+        </div>
+        <div class="get-item">
+          <div class="get-num">05 / Dependencies</div>
+          <h3>Dependency fragility map</h3>
+          <p>What's a single point of failure, what's secured vs. assumed, what the lead time is to replace what isn't.</p>
+        </div>
+        <div class="get-item">
+          <div class="get-num">06 / Mitigations</div>
+          <h3>Structural mitigations only</h3>
+          <p>Generic advice is rejected. "Communicate better" and "monitor closely" don't appear in the output.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example output -->
+  <section class="section" id="example">
+    <div class="container">
+      <p class="section-label">Example output</p>
+      <h2>Legacy billing rewrite</h2>
+      <div class="terminal">
+        <div class="t-bar">
+          <div class="t-dot"></div>
+          <div class="t-dot"></div>
+          <div class="t-dot"></div>
+          <span class="t-title">azimuth — analysis</span>
+        </div>
+        <div class="t-body">
+<span class="t-input-line"><span class="t-prompt-glyph">→ </span>/azimuth We're planning to rewrite our legacy billing service in Q3. 8 weeks, 2 engineers.</span>
+<span class="t-section-head">## Azimuth Verdict</span>
+<span class="t-verdict-text">High-risk. Scope and timeline are inconsistent with known base rates for
+legacy rewrites. Do not proceed without scope reduction and a validated
+rollback strategy.</span>
+
+<span class="t-section-head">## Recommended Decision</span>
+<span class="t-decision-text">PILOT FIRST</span> — Rewrite one isolated billing module with full rollback.
+Validate assumptions about coupling before committing full scope.
+
+<span class="t-section-head">## Confidence Level</span>
+<span class="t-conf-text">High</span> — base rate for legacy rewrites exceeding estimate is well-documented.
+No evidence present that shifts this.
+
+<span class="t-section-head">## Critical Risks</span>
+<span class="t-num">1.</span> <span class="t-risk">Integration tax — Parallel-running old and new systems historically
+   extends to 3–5× estimated cutover time. No hard deprecation date defined.</span>
+<span class="t-num">2.</span> <span class="t-risk">Knowledge concentration — Single-person domain knowledge on billing
+   logic creates SPOF. No fallback owner named.</span>
+<span class="t-num">3.</span> <span class="t-risk">Scope creep under deadline — "While we're at it" rewrites reliably
+   overload scope. No change control mechanism defined.</span>
+
+<span class="t-section-head">## Falsifiers</span>
+<span class="t-false-mark">—</span> Knowledge concentration: A second engineer can document and reproduce
+  billing edge case behavior independently within 2 weeks — or the SPOF is real.
+<span class="t-false-mark">—</span> Timeline estimate: Comparable module rewrite completed within 2 weeks
+  in a spike — or the 8-week total is unsupportable.
+
+<span class="t-section-head">## Likely Failure Path</span>
+<span class="t-path">Billing edge cases surface → scope expands → 8 weeks becomes 20 →
+old system maintenance + new system debt → both teams overloaded → defects in prod</span>
+        </div>
+        <div class="t-footer">
+          <p>Works on launches, hires, partnerships, org changes, build/buy decisions, and strategic bets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signals -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Signals</p>
+      <h2>How to know it's working</h2>
+      <ul class="signals">
+        <li>Assumptions you treated as given are being validated, not accepted</li>
+        <li>The verdict surprises you — or confirms what you suspected but couldn't articulate</li>
+        <li>The failure paths describe something that has actually happened to similar decisions</li>
+        <li>The incentive scan names a conflict you hadn't explicitly surfaced</li>
+        <li>You change the plan before committing, not after</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Quick start -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Quick start</p>
+      <h2>Invoke on any decision</h2>
+      <div class="invokes">
+        <div class="invoke-line"><span class="slash">/azimuth</span> We're planning to rewrite the legacy billing service in Q3</div>
+        <div class="invoke-line"><span class="slash">/azimuth</span> Should we make this hire?</div>
+        <div class="invoke-line"><span class="slash">/azimuth</span> We're launching next week — is the plan sound?</div>
+        <div class="invoke-line"><span class="slash">/azimuth</span> Build vs. buy vs. partner for this capability?</div>
+        <div class="invoke-line"><span class="slash">/azimuth</span> Pressure test our Q3 timeline</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Verdicts -->
+  <section class="section" id="verdicts">
+    <div class="container">
+      <p class="section-label">Verdict taxonomy</p>
+      <h2>Nine possible verdicts</h2>
+      <table class="v-table">
+        <thead>
+          <tr>
+            <th>Verdict</th>
+            <th>When it fires</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="vtag v-go">PROCEED</span></td>
+            <td>Evidence supports moving forward; risks are manageable</td>
+          </tr>
+          <tr>
+            <td><span class="vtag v-go-s">PROCEED WITH SAFEGUARDS</span></td>
+            <td>Proceed only if specific structural changes are made first</td>
+          </tr>
+          <tr>
+            <td><span class="vtag v-pilot">PILOT FIRST</span></td>
+            <td>Validate the highest-risk assumption before committing full scope</td>
+          </tr>
+          <tr>
+            <td><span class="vtag v-reduce">REDUCE SCOPE</span></td>
+            <td>Current scope is not supportable; a smaller version may be</td>
+          </tr>
+          <tr>
+            <td><span class="vtag v-delay">DELAY PENDING EVIDENCE</span></td>
+            <td>Decision is premature; specific information is needed</td>
+          </tr>
+          <tr>
+            <td><span class="vtag v-reject">REJECT</span></td>
+            <td>Evidence or structure does not support proceeding</td>
+          </tr>
+          <tr>
+            <td><span class="vtag v-null">INSUFFICIENT SIGNAL</span></td>
+            <td>Input too sparse or contradictory to ground analysis</td>
+          </tr>
+          <tr>
+            <td><span class="vtag v-null">WRONG TOOL</span></td>
+            <td>Input is not a pre-commitment decision question</td>
+          </tr>
+          <tr>
+            <td><span class="vtag v-null">RESIDUAL-RISK-REGISTER</span></td>
+            <td>Decision already made — go/no-go analysis no longer applies</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-row">
+    <span class="footer-brand">AZIMUTH</span>
+    <div class="footer-links">
+      <a href="https://github.com/MrBinnacle/azimuth" target="_blank" rel="noopener">GitHub</a>
+      <span>·</span>
+      <a href="https://github.com/MrBinnacle/azimuth/blob/master/README.md" target="_blank" rel="noopener">Docs</a>
+      <span>·</span>
+      <a href="https://github.com/MrBinnacle/azimuth/blob/master/LICENSE" target="_blank" rel="noopener">MIT License</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function copyInstall(btn) {
+    navigator.clipboard.writeText('npx skills add https://github.com/MrBinnacle/azimuth').then(function() {
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
