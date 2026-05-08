@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
   <title>AZIMUTH — Decision Analysis for Claude Code and Claude.ai</title>
   <meta name="description" content="A Claude skill that pressure-tests decisions before you commit to them. Pre-commitment analysis for launches, hires, rewrites, and strategic bets." />
   <meta property="og:title" content="AZIMUTH — Decision Analysis for Claude Code and Claude.ai" />
@@ -22,6 +23,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 8px;
+      padding: 8px 18px;
+      background: var(--accent);
+      color: #0C0C0E;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 9999;
+      border-radius: 0 0 6px 6px;
+      text-decoration: none;
+    }
+    .skip-link:focus { left: 16px; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
 
     :root {
       --bg:           #0C0C0E;
@@ -121,6 +148,13 @@
 
     .nav-links a:hover { color: var(--text); }
 
+    a:focus-visible,
+    .nav-logo:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
     /* ── Hero ────────────────────────────── */
     .hero {
       padding: 100px 0 88px;
@@ -155,6 +189,7 @@
       line-height: 1.12;
       letter-spacing: -0.02em;
       margin-bottom: 28px;
+      overflow-wrap: break-word;
     }
 
     h1 em {
@@ -344,7 +379,7 @@
     .t-title {
       font-family: var(--mono);
       font-size: 11px;
-      color: var(--text-muted);
+      color: var(--text-2);
       margin-left: 6px;
       letter-spacing: 0.04em;
     }
@@ -442,12 +477,15 @@
     .invoke-line .slash { color: var(--accent); }
 
     /* ── Verdict table ───────────────────── */
-    .v-table {
-      width: 100%;
-      border-collapse: collapse;
+    .v-table-wrap {
       border: 1px solid var(--border);
       border-radius: 8px;
       overflow: hidden;
+    }
+
+    .v-table {
+      width: 100%;
+      border-collapse: collapse;
     }
 
     .v-table th {
@@ -597,10 +635,25 @@
     }
 
     /* ── Responsive ──────────────────────── */
+    .nav-github-mobile {
+      display: none;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-2);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      padding: 8px 0;
+      transition: color 0.15s;
+    }
+    .nav-github-mobile:hover { color: var(--text); }
+
     @media (max-width: 640px) {
+      .nav-inner { padding: 0 20px; }
       .nav-links { display: none; }
+      .nav-github-mobile { display: block; }
       h1 { font-size: 44px; }
       .hero { padding: 72px 0 64px; }
+      .container { padding: 0 20px; }
       .get-grid { grid-template-columns: 1fr; }
       .install-cmd { font-size: 12px; padding: 13px 14px; }
     }
@@ -608,19 +661,22 @@
 </head>
 <body>
 
-<nav>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav aria-label="Main navigation">
   <div class="nav-inner">
     <a class="nav-logo" href="#">AZIMUTH</a>
     <ul class="nav-links">
       <li><a href="#capabilities">Capabilities</a></li>
       <li><a href="#example">Example</a></li>
       <li><a href="#verdicts">Verdicts</a></li>
-      <li><a href="https://github.com/MrBinnacle/azimuth" target="_blank" rel="noopener">GitHub →</a></li>
+      <li><a href="https://github.com/MrBinnacle/azimuth" target="_blank" rel="noopener">GitHub</a></li>
     </ul>
+    <a class="nav-github-mobile" href="https://github.com/MrBinnacle/azimuth" target="_blank" rel="noopener">GitHub</a>
   </div>
 </nav>
 
-<main>
+<main id="main-content">
 
   <!-- Hero -->
   <section class="hero">
@@ -638,6 +694,7 @@
           <button class="copy-btn" type="button" aria-label="Copy install command" onclick="copyInstall(this)">Copy</button>
         </div>
         <p class="install-note">Compatible with Claude Code and Claude.ai</p>
+        <div id="copy-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
       </div>
     </div>
   </section>
@@ -799,11 +856,12 @@ old system maintenance + new system debt → both teams overloaded → defects i
     <div class="container">
       <p class="section-label">Verdict taxonomy</p>
       <h2>Nine possible verdicts</h2>
+      <div class="v-table-wrap">
       <table class="v-table">
         <thead>
           <tr>
-            <th>Verdict</th>
-            <th>When it fires</th>
+            <th scope="col">Verdict</th>
+            <th scope="col">When it fires</th>
           </tr>
         </thead>
         <tbody>
@@ -845,6 +903,7 @@ old system maintenance + new system debt → both teams overloaded → defects i
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </section>
 
@@ -868,11 +927,15 @@ old system maintenance + new system debt → both teams overloaded → defects i
     var text = 'npx skills add https://github.com/MrBinnacle/azimuth';
     var flash = function(label) {
       btn.textContent = label;
+      btn.setAttribute('aria-label', label === 'Copied' ? 'Install command copied to clipboard' : label);
       btn.classList.add('copied');
+      var status = document.getElementById('copy-status');
+      if (status) { status.textContent = 'Install command copied to clipboard.'; }
       setTimeout(function() {
         btn.textContent = 'Copy';
         btn.setAttribute('aria-label', 'Copy install command');
         btn.classList.remove('copied');
+        if (status) { status.textContent = ''; }
       }, 2000);
     };
     var fallback = function() {
