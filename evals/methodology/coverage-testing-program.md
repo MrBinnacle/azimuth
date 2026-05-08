@@ -298,6 +298,43 @@ Sessions where the first production/control pair produces a clear LABELING-ONLY 
 
 ---
 
+## Compensation Tracking
+
+When a control condition produces correct output through alternative reasoning without the targeted hook, the compensating mechanism is documented here. Compensation sources identify the redundancy structure of SKILL.md — which hooks have backup paths and which are non-redundant.
+
+**Classification format:** `[LOAD-BEARING / PARTIAL / LABELING-ONLY / CORROBORATING] — compensated by [X]`
+
+### Prior findings
+
+| Hook | Classification | Compensating mechanism |
+|---|---|---|
+| M2 sycophancy circuit-breaker | LOAD-BEARING | None — control showed behavioral delta; no compensation documented |
+| M7 domain calibration label | LABELING-ONLY | Training-data norms: model applies directional-only framing via prior knowledge about base rate quality without instruction |
+| M10 confidence ceiling (8:0 UNSUPPORTED) | LOAD-BEARING | None — control reached HIGH via verdict-direction reasoning; ceiling blocked this |
+| M10 ceiling (mixed evidence, CONTRADICTED top) | CORROBORATING | CONTRADICTED classification depth: model self-assessment anchors MEDIUM when evidence explicitly contradicts the load-bearing assumption |
+| M4 self-proposal pre-check (primed) | PARTIAL | "Do Not Use When" clause + pre-supplied [IDENTITY] answer; parallel detection path compensated detection; framing adequacy untested |
+| M2 circuit-breaker under file-loading (partial load) | PARTIAL | Alternative incentive-distortion reasoning path; mechanism diverges from hook; surface output equivalent but not equivalent to hook firing (Phase 3 results) |
+| M9 mitigation design (full load) | CORROBORATING | Output format annotation "Structural changes only. Weak mitigations rejected." (line 672) + Anti-Slop Rules "Never: give weak mitigations" (line 754). **Position-correlated redundancy:** all three mechanisms (M9, annotation, Anti-Slop) are post-line-225 and fail simultaneously under partial load. |
+
+### Compensation source taxonomy
+
+- **Anti-Slop Rules** (lines 742–766): global prohibition list always loaded with SKILL.md. `give weak mitigations` is in the Never block — the most likely compensating mechanism for Module 9.
+- **Output format annotations**: section-level inline reminders (e.g., "Structural changes only. Weak mitigations rejected." at Highest-Leverage Fixes, line 672). Always-loaded with the output format block — may compensate the module-body instruction at line 510.
+- **Training-data norms**: model's prior knowledge about analytical quality. Compensates when the hook structures behavior the model partially exhibits from pretraining.
+- **Adjacent module logic**: a neighboring module's instructions produce behavior the targeted module specifies. Relevant for M5/M8 (risk analysis) and M9 (mitigation), which are closely coupled in the output register.
+- **Escalation Logic** (lines 769–803): global framing rules applied after module pipeline; may interact with mitigation quality via verdict posture.
+- **"Do Not Use When" clause**: provides detection for self-proposal scenarios; compensated M4 pre-check detection in primed Test B condition.
+
+### Architectural implication of compensation
+
+When a hook is PARTIAL or CORROBORATING because a compensating mechanism is present:
+
+- The hook remains worth keeping if it provides the canonical, reliable path for the behavior (compensating path is less reliable or context-dependent)
+- The hook is a candidate for reduction if the compensating mechanism is equally reliable and always-available (e.g., Anti-Slop Rules are always-loaded; a module-body instruction at line 510 is not always-loaded under partial-load conditions)
+- Compensation tracing is required before any reduction decision — the compensating path must be confirmed as always-available, not just present in the test condition
+
+---
+
 ## Open Questions for Matthew's Approval
 
 1. **Scope approval:** Minimum viable (6 sessions, Tier 1 + Tier 2) or full program (13 sessions)?
