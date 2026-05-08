@@ -13,6 +13,28 @@ Planned. See `ROADMAP.md` for the why on each.
 
 ---
 
+## [1.2.3] — 2026-05-07
+
+### Meta — eval and characterization
+
+- **Coverage testing program complete (Tier 1 + Tier 2, 6 sessions).** Production-vs-control paired comparison for 6 hooks: M9 (Mitigation Design), M1 (Objective Integrity — WRONG TOOL and RESIDUAL-RISK-REGISTER branches), M4 (PRE-CHECK self-proposal), M5 (Dependency Fragility), M8 (Detectability & Recovery), gotchas.md (3-pattern sample). Control agent reads SKILL.md with targeted hook replaced by a redaction marker; no agent informed of paired comparison. Results: `evals/results/`. Synthesis: `evals/methodology/coverage-program-synthesis.md`.
+
+- **Hook classification summary (Tier 1 + Tier 2 scope).** LOAD-BEARING: M4 PRE-CHECK. PARTIAL: gotchas.md (named patterns and check questions uncompensated; underlying risk identification compensated by software-failure-patterns.md + diagnostics). CORROBORATING: M9, M1 WRONG TOOL branch, M5, M8. UNCLASSIFIED: M1 RESIDUAL-RISK-REGISTER (adversarial input confound — test requires a scenario where the specific decision, not just the domain, is committed and publicly announced). Cumulative load-bearing count including prior evals (M2 circuit-breaker, M10 confidence ceiling): at minimum 3.
+
+- **M4 PRE-CHECK reclassified LOAD-BEARING (unprimed test).** Prior Item 4 test showed PARTIAL under primed conditions (explicit [IDENTITY] answer provided). Unprimed test: multi-turn advocacy scenario where the assistant proposed the option under analysis; user invokes AZIMUTH without naming the assistant and without pre-filling [IDENTITY]. Production: inferred self-proposal from conversation history, ran M4 with self-proposer reframing, full analysis (PILOT FIRST / MEDIUM). Control: exited WRONG TOOL via pre-225 "Do Not Use When" clause — no analysis. The "Do Not Use When" clause and PRE-CHECK are complementary, not redundant: clause covers self-advocacy → exit; PRE-CHECK covers self-advocacy → proceed with reframing. Without PRE-CHECK, users in long sessions where the assistant has advocated receive a gate refusal with no analysis.
+
+- **M10 confidence ceiling operative domain narrowed.** v1.2.2 established UNSUPPORTED top assumption as the trigger. Narrowed: operative domain is UNSUPPORTED top assumption + strong secondary evidence — the combination that causes conflation of verdict-direction confidence with evidence quality. In mixed-evidence scenarios where the top assumption is CONTRADICTED, assumption classification anchors self-assessment at MEDIUM without the ceiling; ceiling is CORROBORATING in that domain. Source: `evals/results/2026-05-07-v1.2.x-mixed-evidence-and-m4-precheck.md`.
+
+- **M5 verdict-delta documented as headline constraint-vs-guide finding.** Production reached PROCEED WITH SAFEGUARDS; unanchored control reached DELAY PENDING EVIDENCE for an unsigned vendor contract on the core capability. Module taxonomy anchored production to a structured action frame in a scenario where the correct call was a conserving delay. Single data point; if it generalizes, M5 taxonomy biases toward action when stopping is the better call. Verdict-direction matters more than finding-count deltas observed in other sessions.
+
+- **Position-correlated redundancy documented.** Most post-225 enforcement mechanisms fail simultaneously under partial load. Only M1 WRONG TOOL branch has position-diverse redundancy (pre-225 "Do Not Use When" clause as primary; survives partial load). M9 mitigation quality, gotchas.md pattern identification, and analytical quality enforcement mechanisms are co-located post-225 and fail together. Under partial load: exit-path coverage maintained; mitigation quality enforcement, detectability taxonomy, and named pattern identification degrade. Only surviving mechanism for analytical quality under partial load: training-data norms (load-independent, no named patterns or check questions).
+
+- **Case-study load-condition check complete.** `examples/` case studies reviewed against full-load condition disclosure. Healthcare.gov: 5 of 6 findings confirmed hook-dependent under full load; sixth finding (congressional hearing risk) is correct-class from general domain knowledge, not specifically hook-dependent. Claims restricted to full-load condition with disclosure language in place.
+
+No SKILL.md behavioral changes in this release. All changes are documentation, eval artifacts, and characterization findings.
+
+---
+
 ## [1.2.2] — 2026-05-07
 
 ### Added
