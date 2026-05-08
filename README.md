@@ -1,18 +1,38 @@
 # AZIMUTH
 
-> Verify your direction before you commit movement. Wrong bearing at the start compounds into wrong objective at the end.
+A Claude Code skill that pressure-tests decisions before you commit to them.
 
-**Decision-quality pre-commitment analysis for operators who can't afford to be wrong about direction.**
+Run `/azimuth [your decision]` before you greenlight the rewrite, the hire, the launch, or the bet.
 
-![Version](https://img.shields.io/badge/version-v1.2.0-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-blueviolet) ![Claude.ai](https://img.shields.io/badge/Claude.ai-compatible-blueviolet)
-
-An azimuth is a navigational bearing — the angle you lock in before you step off. Get it wrong by a few degrees at the start and you're miles from your objective by the end. AZIMUTH the skill does the same thing for decisions: it finds the drift, the false assumptions, and the structural failure modes before you're committed and downrange.
-
-Built for **Claude Code and Claude.ai.** Designed for operators, PMs, founders, and senior engineers making decisions with real downside — not just code review.
+![Version](https://img.shields.io/badge/version-v1.2.3-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-blueviolet) ![Claude.ai](https://img.shields.io/badge/Claude.ai-compatible-blueviolet)
 
 ---
 
-## Quick Start
+## The Problem
+
+Plans look fine until they don't. The risks that sink projects are usually the ones nobody questioned — the assumption holding everything together, the dependency nobody secured, the failure mode that's common in decisions like this one but invisible from inside it.
+
+AZIMUTH runs the structured pressure-test before you're committed.
+
+---
+
+## What you get
+
+**A verdict with a rationale.** Not just "risky" — a specific recommendation: proceed, pilot first, reduce scope, delay, or reject, with the structural reason why.
+
+**Assumption audit.** Every assumption classified as strong, partial, unsupported, or contradicted — plus a falsifier for each: the specific observable evidence that would prove it wrong.
+
+**Failure path analysis.** The most plausible ways this fails, traced trigger → cascade → business cost. Pair-interaction analysis where two risks together produce a worse outcome than either alone.
+
+**Incentive scan.** Who proposed this, who benefits, who absorbs the downside if it fails, whether dissent was heard. Structured into the verdict — not an afterthought.
+
+**Dependency fragility map.** What's a single point of failure, what's secured vs. assumed, what the lead time is to replace what isn't.
+
+**Structural mitigations only.** Generic advice is rejected. "Communicate better" and "monitor closely" don't appear in the output.
+
+---
+
+## Quick start
 
 ```
 npx skills add https://github.com/MrBinnacle/azimuth
@@ -21,90 +41,22 @@ npx skills add https://github.com/MrBinnacle/azimuth
 Then invoke on any decision:
 
 ```
-/azimuth We're launching the new product next week
-/azimuth Should we rewrite the legacy service?
-/azimuth I'm considering making this hire
-/azimuth We're deciding whether to build, buy, or partner for this capability
+/azimuth We're planning to rewrite the legacy billing service in Q3
+/azimuth Should we make this hire?
+/azimuth We're launching next week — is the plan sound?
+/azimuth Build vs. buy vs. partner for this capability?
 /azimuth Pressure test our Q3 timeline
 ```
 
-The skill activates automatically on decision-quality queries. No configuration required.
-
 ---
 
-## What this is
+## How to know it's working
 
-Most agent skills answer one question: *will this code break?*
-
-This one answers a different question: *should we do this at all, and if so, what needs to change before we commit?*
-
-It covers the full decision surface — technical *and* strategic:
-
-| Scenario | What you get |
-| --- | --- |
-| Product launch | Readiness gate checklist, market timing gates, rollback triggers, launch metrics by segment |
-| Rewrite / migration | Breakpoint zones, hidden couplings, safe rollout path |
-| Key hire | Role definition audit, failure path construction, onboarding readiness |
-| Partnership / M&A / vendor | Incentive conflict scan, dependency fragility, integration governance |
-| Build vs. buy vs. partner | Path viability gates, anchoring detection, comparative analysis, domain handoff |
-| Org change / restructure | Pre-commitment gates, behavioral change readiness, accountability transfer, communication plan |
-| PE secondaries IC decision | Adverse selection gate, NAV reliability assessment, process integrity kill gate, validated verdict taxonomy |
-| Timeline commitment | Base rate reality check, constraint dominance, scope drift risk |
-| Strategic bet | Assumption audit with falsifiers, structural fragility score, pair-interaction failure analysis |
-
----
-
-## How it works
-
-**Intake routing** fires first — three layers of triage before the analysis pipeline runs:
-
-- **Layer 1** — Purpose: stress-test a plan, validate a post-decision, explore pre-plan? Only pre-commitment decisions proceed.
-- **Layer 2** — Stakes and reversibility map to operating mode.
-- **Layer 3** — Domain routes to the correct template.
-
-**Four operating modes**, auto-selected by stakes and context:
-
-```
-FAST    → Objective Check + Top 3 Failure Paths + Verdict
-STANDARD → Full 10-module analysis (default)
-RAPID   → Full depth on Modules 1, 4, 8, 10 — abbreviated on 2, 3, 5, 6, 9 (24-hour deadlines)
-DEEP    → All modules + loads domain reference files + gotchas
-```
-
-**The 10-module analysis:**
-
-1. **Objective Integrity Check** — Is this the right problem or symptom treatment? Classifies input as pre-commitment, post-commitment, or non-decision.
-2. **Assumption Audit** — Classified: strong / partial / unsupported / contradicted
-   → **Falsifiers pass**: names the specific observable evidence that would prove each strong or partial assumption wrong
-3. **Constraint Reality Check** — Which constraint most likely dominates outcome?
-4. **Incentive Scan & Interview** — Seven structured questions collect incentive context directly from the user before any inference. GREEN / YELLOW / RED tiering with enforced consequences.
-5. **Dependency Fragility Map** — What's a single point of failure? What's secured vs. assumed?
-6. **Failure Path Construction** — Trigger → Cascade → Visible Failure → Business Cost
-   → **Coupling pass**: identifies pair-interactions where two risks together produce nonlinear failure
-7. **Base Rate Reality Check** — How do similar initiatives actually fail historically? Backpropagation check ensures historically common failure modes appear in Module 6 chains.
-8. **Detectability & Recovery** — Which risks are found late and hard to reverse?
-9. **Mitigation Design** — Structural changes only. Weak mitigations rejected.
-10. **Decision Verdict** — Full verdict taxonomy (see below). Pre-verdict check enforces Module 4 tier before any verdict is selected.
-
----
-
-## Verdict taxonomy
-
-| Verdict | When it fires |
-| --- | --- |
-| `PROCEED` | Evidence supports moving forward; risks are manageable |
-| `PROCEED WITH SAFEGUARDS` | Proceed only if specific structural changes are made |
-| `PILOT FIRST` | Validate the highest-risk assumption before committing full scope |
-| `REDUCE SCOPE` | Current scope is not supportable; a smaller version may be |
-| `DELAY PENDING EVIDENCE` | Decision is premature; specific information is needed |
-| `REJECT` | Evidence or structure does not support proceeding |
-| `INSUFFICIENT SIGNAL` | Input is too sparse, vague, or contradictory to ground analysis — proceeding would substitute fabrication for analysis |
-| `WRONG TOOL` | Input is not a pre-commitment decision question (architecture review, code quality, fact-finding, or pure exploration) |
-| `RESIDUAL-RISK-REGISTER` | Decision is already made or execution substantially underway — go/no-go analysis is no longer applicable |
-
-> **INSUFFICIENT SIGNAL** is not **DELAY PENDING EVIDENCE**. DELAY means the decision is premature but inputs are coherent. INSUFFICIENT SIGNAL means no analysis module can be grounded in what was provided.
->
-> **WRONG TOOL** and **RESIDUAL-RISK-REGISTER** are firm exits — the skill states what the input is and what AZIMUTH requires. No analysis, no reframe suggestion.
+- Assumptions you treated as given are being validated, not accepted
+- The verdict surprises you — or confirms what you suspected but couldn't articulate
+- The failure paths describe something that has actually happened to similar decisions
+- The incentive scan names a conflict you hadn't explicitly surfaced
+- You change the plan before committing, not after
 
 ---
 
@@ -158,33 +110,37 @@ No evidence present that shifts this.
 
 ---
 
-## Core anti-patterns this skill rejects
+## Domains
 
-- Generic risk lists padded to 10+ items
-- Weak mitigations ("communicate better," "monitor closely")
-- Treating all risks as equally probable
-- Defaulting to PROCEED when evidence is thin
-- Substituting DELAY PENDING EVIDENCE for INSUFFICIENT SIGNAL when the problem is missing input, not missing time
-- Returning a verdict when analysis would require inventing facts the user did not supply
-- Producing go/no-go analysis for inputs that are not pre-commitment decision questions
-- Softening verdicts when Module 4 interview is incomplete (RED tier blocks PROCEED and PROCEED WITH SAFEGUARDS)
+Works on any initiative-level decision with real downside: product launches, service rewrites, key hires, partnerships and M&A, build vs. buy decisions, org changes, PE secondaries, and timeline commitments. Domain-specific templates load automatically.
 
 ---
 
-## What AZIMUTH cannot do
+## Verdicts
 
-AZIMUTH stress-tests a decision as presented. It cannot interrogate whether the decision was framed correctly. If the conversation leading to invocation has anchored the analysis frame — particularly when the assistant has been advocating for the option now under analysis — AZIMUTH will produce a competent stress-test of the wrong question and call it done. Module 4's self-proposal pre-check surfaces recommender identity but does not generate alternative framings.
+<details>
+<summary>Full verdict taxonomy</summary>
 
-AZIMUTH's value is proportional to the quality of the framing it receives. For decisions where the framing itself is in question, a different tool is needed. AZIMUTH is calibrated to the decision-as-presented.
+| Verdict | When it fires |
+| --- | --- |
+| `PROCEED` | Evidence supports moving forward; risks are manageable |
+| `PROCEED WITH SAFEGUARDS` | Proceed only if specific structural changes are made |
+| `PILOT FIRST` | Validate the highest-risk assumption before committing full scope |
+| `REDUCE SCOPE` | Current scope is not supportable; a smaller version may be |
+| `DELAY PENDING EVIDENCE` | Decision is premature; specific information is needed |
+| `REJECT` | Evidence or structure does not support proceeding |
+| `INSUFFICIENT SIGNAL` | Input is too sparse, vague, or contradictory to ground analysis |
+| `WRONG TOOL` | Input is not a pre-commitment decision question |
+| `RESIDUAL-RISK-REGISTER` | Decision is already made — go/no-go analysis no longer applies |
 
-**Hook behavior in long sessions:** AZIMUTH's load-bearing hooks (M2 sycophancy circuit-breaker, M10 confidence ceiling) are validated under full-load conditions. In long sessions — where prior conversation history has consumed most of a 200K-token context window — SKILL.md may load incompletely and the module instructions containing the hooks may not reach the analysis. The visible failure has a specific operative domain: a cautious verdict paired with HIGH instead of MEDIUM confidence, where the load-bearing assumption is UNSUPPORTED while secondary evidence is genuinely strong — the combination where the model conflates clarity of verdict direction with quality of underlying evidence. When the evidence structure is uniformly weak, or when the load-bearing assumption is CONTRADICTED rather than merely absent, the model's own classification anchors confidence at MEDIUM without the ceiling. The operative failure scenario is strong product, team, or market evidence alongside a single UNSUPPORTED financial or timeline assumption — those conditions produce HIGH where the ceiling enforces MEDIUM. Invocations in fresh sessions or sessions with limited prior conversation are unaffected. The loading boundary is approximately 150K–177K conversation tokens depending on system infrastructure overhead; sessions shorter than that range load the full file.
+</details>
 
 ---
 
 ## What's inside
 
 <details>
-<summary>Full file tree</summary>
+<summary>File tree</summary>
 
 ```
 azimuth/
@@ -220,32 +176,9 @@ azimuth/
 
 ---
 
-## Install
+## Limitations
 
-**Claude Code / Claude.ai skills:**
-
-```
-npx skills add https://github.com/MrBinnacle/azimuth
-```
-
-Or manually:
-
-```
-git clone https://github.com/MrBinnacle/azimuth.git
-mkdir -p ~/.claude/skills
-cp -r azimuth ~/.claude/skills/
-```
-
----
-
-## Compatibility
-
-| Agent | Supported |
-| --- | --- |
-| Claude Code | ✓ |
-| Claude.ai | ✓ |
-
-Auto-invocation, intake routing, and template activation depend on the Claude skills system. Other agents can read the markdown files as reference material, but that is not equivalent to running AZIMUTH.
+AZIMUTH stress-tests the decision as framed. It cannot tell you whether the framing is correct. In long sessions where prior conversation history is large (above ~150K–177K tokens), SKILL.md may load incompletely and some analysis hooks may not fire. Fresh sessions and short sessions are unaffected.
 
 ---
 
@@ -258,9 +191,3 @@ Issues and PRs welcome. Priority areas: additional domain templates, base rate d
 ## License
 
 MIT
-
----
-
-*Built on Gary Klein's prospective hindsight methodology and structured analytic technique traditions. The name comes from land navigation: an azimuth is the bearing you verify before you step off. Get it wrong at the start and no amount of execution excellence puts you on the right objective.*
-
-*Designed for operators making irreversible decisions under uncertainty.*
