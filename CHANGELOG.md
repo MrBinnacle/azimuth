@@ -11,6 +11,12 @@ Planned. See `ROADMAP.md` for the why on each.
 - **Evidence tags.** Every output claim carries a provenance tag.
 - **Audit trail.** Output lists modules run and what each surfaced.
 
+### Meta
+
+- **Post-v1.3.0 landing page maintenance.** README and landing page updated after the `v1.3.0` tag with no `SKILL.md` behavioral changes. Version badge bumped to v1.3.0; RESIDUAL-RISK-REGISTER prose updated to match the v1.3.0 alternative-deliverable semantics; verdict trichotomy surfaced in README and landing page. (`daa8117`)
+
+- **Landing page accessibility and cross-browser pass.** Skip link (WCAG 2.4.1), aria-labels, focus-visible states, aria-live clipboard feedback, Safari/Firefox table wrapper fix, `scope=col` table headers, AA contrast improvement, h1 overflow handling, dark color-scheme meta, and mobile GitHub nav link. (`e496cf6`)
+
 ---
 
 ## [1.3.0] — 2026-05-08
