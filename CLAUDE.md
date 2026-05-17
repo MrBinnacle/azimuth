@@ -68,15 +68,41 @@ Three skills live in `.claude/skills/` for maintainer use. They are not installe
 | `verdict-auditor` | Stress-tests a real AZIMUTH output against the skill's own structural rules | "audit this output" (paste output first) |
 | `gap-scanner` | Cross-references SKILL.md coverage claims against actual reference, diagnostic, and template files | "run the gap scanner" |
 
+Staged research findings live in `research/staged-findings.md`. The research-scout writes there; you promote to `references/base-rates.md` via the PROMOTE mode.
+
 ## Installed external skills
+
+**Plugin** (enabled via `settings.json`, no install step needed):
 
 | Skill | Source | Purpose | Invoke |
 |-------|--------|---------|--------|
-| `ui-ux-pro-max` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) (73K stars) | UI/UX design intelligence — 50+ styles, 97 palettes, 57 font pairings, 99 UX guidelines. Use for README visual design and presentation work. | `/ui-ux-pro-max` |
+| `ui-ux-pro-max` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | UI/UX design intelligence — 50+ styles, 97 palettes, 57 font pairings, 99 UX guidelines. Use for README visual design and presentation work. | `/ui-ux-pro-max` |
 
-Installed to `.agents/skills/ui-ux-pro-max/`, symlinked into Claude Code.
+**Agent skills** (installed via `npx skills@latest add`, copied to `~/.claude/skills/`):
 
-Staged research findings live in `research/staged-findings.md`. The research-scout writes there; you promote to `references/base-rates.md` via the PROMOTE mode.
+| Skill | Source | Purpose | Invoke |
+|-------|--------|---------|--------|
+| `grill-with-docs` | [mattpocock/skills](https://github.com/mattpocock/skills) | Stress-test skill output or code against its own documentation rules. | `/grill-with-docs` |
+| `write-a-skill` | [mattpocock/skills](https://github.com/mattpocock/skills) | Scaffold a new agent skill with correct frontmatter and structure. | `/write-a-skill` |
+| `zoom-out` | [mattpocock/skills](https://github.com/mattpocock/skills) | Architectural perspective — step back from details, identify bigger patterns. | explicit only (`disable-model-invocation: true`) |
+| `triage` | [mattpocock/skills](https://github.com/mattpocock/skills) | Process incoming GitHub issues through the five-state triage workflow. | `/triage` |
+| `to-issues` | [mattpocock/skills](https://github.com/mattpocock/skills) | Convert a task list, PRD, or free-text scope into GitHub issues. | `/to-issues` |
+| `handoff` | [mattpocock/skills](https://github.com/mattpocock/skills) | Structured agent handoff — context, goal, success criteria, return condition. | `/handoff` |
+| `setup-matt-pocock-skills` | [mattpocock/skills](https://github.com/mattpocock/skills) | Re-run agent skills config (issue tracker, labels, domain docs). | explicit only (`disable-model-invocation: true`) |
+
+## Agent skills
+
+### Issue tracker
+
+Issues tracked in GitHub Issues (`MrBinnacle/azimuth`) via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default mattpocock vocabulary — `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context repo. `SKILL.md` and `gotchas.md` are the authoritative domain source. See `docs/agents/domain.md`.
 
 ## Obsidian vault
 
@@ -86,8 +112,8 @@ Project notes live in a local Obsidian vault under `Writ_vault/azimuth/`. Subfol
 
 A navigable knowledge graph of the full repo is maintained in `graphify-out/` and mirrored into the Obsidian vault.
 
-**Graph location:** `graphify-out/graph.json` — 208 nodes, 296 edges, 14 communities  
-**Obsidian vault:** `C:\Users\mlpgr\Writ_vault\graphify\azimuth\` — 222 notes, open as vault in Obsidian  
+**Graph location:** `graphify-out/graph.json` — 317 nodes, 464 edges, 19 communities  
+**Obsidian vault:** `C:\Users\mlpgr\Writ_vault\graphify\azimuth\` — 336 notes, open as vault in Obsidian  
 **HTML graph:** `graphify-out/graph.html` — open in browser, no server needed  
 **Python interpreter:** `C:\Python313\python.exe`
 
@@ -100,10 +126,10 @@ A navigable knowledge graph of the full repo is maintained in `graphify-out/` an
 ```
 
 **God nodes (best traversal entry points):**
-- `v1.1.0 Baseline Eval Results` (degree 19)
-- `PE Secondaries IC Template` (degree 19)
-- `AZIMUTH` skill (degree 17)
-- `W Capital Partners` (degree 13)
+- `W Capital Partners (WCP)` (degree 13)
+- `Fund-Level CFO Role at PE Secondaries Firms` (degree 12)
+- `v1.1.0 Baseline Eval Results` (degree 10)
+- `GP-Led Continuation Vehicle` (degree 10)
 
 **Rebuild after any significant file changes:**
 ```bash
