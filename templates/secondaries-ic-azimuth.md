@@ -33,9 +33,9 @@ supports this decision with financial data but does not own the verdict.
 
 ---
 
-## Section 1 — Adverse Selection Gate
+## Section 1 — Selection Signal Screen
 
-*Run this before committing diligence resources. If the gate fails, stop.*
+*Run this before committing diligence resources. Screen for both adverse and positive selection — the signal can run in either direction.*
 
 **Why is this asset in a continuation vehicle / available as a secondary?**
 
@@ -46,10 +46,25 @@ supports this decision with financial data but does not own the verdict.
 | Does the stated reason survive if LP roll rate is below 60%? | |
 | Is this a motivated sale, a liquidity solution, or a genuine opportunity extension? | |
 | Has the asset underperformed the GP's prior marks? (Check: were marks revised down in the 6 months before transaction announcement?) | |
+| Has this GP used CVs previously, and how did those transactions perform for secondaries buyers? | |
 
-**Adverse selection signal**: ☐ Clean — stated and plausible reason align  |  ☐ Ambiguous — warrants scrutiny  |  ☐ Red flag — stop and name it
+**Adverse selection signals** (any one warrants escalation):
+- Marks revised downward in the 6–12 months before CV announcement
+- LP roll rate below 30% without a clear structural explanation
+- GP's stated reason does not survive if the asset were performing at plan
+- Prior GP-led CVs delivered below-hurdle returns for buyers
+- Transaction announced shortly after a failed sale process
 
-*If red flag: document and escalate. Do not proceed to pricing until resolved.*
+**Positive selection signals** (these do not eliminate diligence — they contextualize):
+- Performing asset with documented value-creation path requiring additional hold
+- High LP roll rate (>60%) at full information, not manufactured through information asymmetry
+- GP co-investing new cash (not rolled carry) at ≥10% of CV
+- Competitive process with independent fairness opinion from a non-conflicted advisor
+- GP track record on comparable assets showing realized DPI, not mark-to-model
+
+**Selection signal assessment**: ☐ Positive selection dominant  |  ☐ Mixed — requires scrutiny  |  ☐ Adverse selection dominant — escalate before proceeding to pricing
+
+*If adverse selection dominant: document and escalate. Do not proceed to pricing until resolved.*
 
 ---
 
@@ -57,11 +72,18 @@ supports this decision with financial data but does not own the verdict.
 
 *This is a kill gate independent of asset quality. A PASS-PROCESS verdict does not reopen if the GP reduces price.*
 
-ILPA 2023 Continuation Funds Guidance minimum standards:
+ILPA 2023 Continuation Funds Guidance minimum standards. Note: the SEC's Private
+Fund Adviser Rules (including the Adviser-Led Secondary Rule, Rule 211(h)(2)-2) were
+vacated by the Fifth Circuit in June 2024. Process compliance is now contractual
+(LPA terms, LPAC consent) and reputational — not regulatory. ILPA standards are the
+operative market benchmark, not a regulatory floor.
+
 - LPAC received materials and had ≥10 business days before signing the acquisition agreement
 - LPs received ≥20 business days / 30 calendar days for the election period
 - Information provided to secondaries buyer is equivalent to information provided to existing LPs
 - Fairness opinion obtained from an independent provider (not GP's primary banker)
+- Non-electing LPs must be left no worse off than had the transaction not taken place
+- Status quo option preserved: LPs can remain in original fund on existing terms
 
 | Standard | Met / Not Met / Unknown |
 |----------|------------------------|
@@ -71,13 +93,15 @@ ILPA 2023 Continuation Funds Guidance minimum standards:
 | Independent fairness opinion (independent of GP's primary banking relationship) | |
 | LPAC conflict disclosures complete | |
 | GP conflict of interest disclosed in writing to LPAC and electing LPs | |
+| Non-electing LP status quo preserved on existing terms | |
 
 **Process integrity status**: ☐ Clean  |  ☐ Deficient — specify:
 
 *Note: A buyer who commits into a deficient process participates in a transaction
-exposed to unwind and fiduciary claims under the Delaware "entire fairness" standard.
-(ADIC v. EMG, C.A. No. 2025-1389-NAC, Del. Ch. December 2025.) Process deficiency
-is not cured by price reduction. If "Deficient": verdict is PASS-PROCESS, stop.*
+exposed to entire fairness scrutiny under Delaware law. (ADIC v. EMG, C.A. No.
+2025-1389-NAC, Del. Ch., filed December 2025 — emergency injunction granted;
+underlying matter pending as of May 2026.) Process deficiency is not cured by
+price reduction. If "Deficient": verdict is PASS-PROCESS, stop.*
 
 ---
 
@@ -85,7 +109,11 @@ is not cured by price reduction. If "Deficient": verdict is PASS-PROCESS, stop.*
 
 *GP marks in continuation vehicle contexts are systematically optimistic. This is a
 structural constraint, not a diligence gap. Price every transaction against an
-independent view of value, not the GP mark.*
+independent view of value, not the GP mark. In 2024 H1, 56% of SACVs priced at or
+above NAV — pricing converges to the GP mark; diligence interrogates the mark's
+reliability, not the spread to it. The goal is not to apply a fixed discount to NAV
+but to validate NAV quality: QoE tie-out, banker references, and transaction comps
+reconciled to within ≤0.5x EBITDA tolerance.*
 
 | Question | Finding |
 |----------|---------|
@@ -99,9 +127,12 @@ independent view of value, not the GP mark.*
 
 **NAV reliability**: ☐ Independently verified  |  ☐ GP-asserted, no independent check  |  ☐ GP-asserted with known upward revision history
 
-*Treat GP-asserted NAV as carrying a potential 20–30% divergence from independent
-appraisal until verified. (Whitehorse Liquidity Partners analysis, 1,000+ transactions:
-assets transferred to CVs marked 28% higher than GP valuations six months prior.)*
+*Industry analysis (Dawson Partners, formerly Whitehorse Liquidity Partners, reported
+in Institutional Investor) found assets entering CVs marked approximately 28% higher
+than GP valuations six months prior across 1,000+ transactions. Treat as a directional
+signal, not a calibrated multiplier — the methodology is proprietary and undisclosed.
+Validate NAV quality through QoE, banker references, and transaction comp benchmarking
+rather than applying a fixed discount percentage.*
 
 ---
 
@@ -124,7 +155,7 @@ assets transferred to CVs marked 28% higher than GP valuations six months prior.
 | Signal | Finding | Reliable / Table Stakes / Unreliable |
 |--------|---------|--------------------------------------|
 | Carry roll | | Table stakes at par NAV — does not discriminate |
-| GP equity commitment (new cash, not rolled economics) | | Reliable if ≥5% of CV at new money |
+| GP equity commitment (new cash, not rolled economics) | | Reliable if ≥10% of CV at new money (observed range 5–25%; median 10–15% in 2024) |
 | LP reference calls — what did LPs say? | | Structurally compromised: LPs withhold negatives to preserve GP access |
 | GP's stated exit conviction vs. prior exit record on comparable assets | | |
 | Management team continuity and succession | | |
@@ -236,6 +267,10 @@ condition if they are not obtained.
 ---
 
 *Verdict taxonomy validated against PE secondaries IC practice by AZIMUTH research
-scouts, May 2026. PASS-PROCESS legal grounding: ADIC v. EMG, C.A. No. 2025-1389-NAC
-(Del. Ch. December 2025); ILPA Continuation Funds Guidance (2023). NAV divergence
-data: Whitehorse Liquidity Partners transaction analysis (1,000+ transactions).*
+scouts, May 2026. ILPA Continuation Funds Guidance (2023). PASS-PROCESS exposure
+basis: ADIC v. EMG, C.A. No. 2025-1389-NAC (Del. Ch., filed December 2025 —
+emergency injunction granted; matter pending as of May 2026). NAV divergence
+reference: Dawson Partners (formerly Whitehorse Liquidity Partners), reported in
+Institutional Investor; 1,000+ transactions, methodology proprietary — treat as
+directional. Performance context: median continuation fund MOIC 1.4x (Morgan Stanley,
+2018–2023 vintages); top-quartile buyers target ≥2.0x/≥20% IRR.*

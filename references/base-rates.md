@@ -113,15 +113,27 @@ The implication: most new-hire failure is *not* about skill mismatch. It's about
 
 ## Mergers, Partnerships, and Integrations
 
-**M&A value destruction**: The most widely cited figure is that 70–90% of mergers fail to create shareholder value. This range traces to multiple studies (KPMG *World Class Transactions*, HBR analyses, Christensen et al. *The Big Idea: The New M&A Playbook* 2011) using different definitions of "failure" — value destruction, target underperformance, or post-deal divestiture. The 70–90% range is directionally well-supported; the specific number depends on the methodology.
+**What the peer-reviewed record supports:** In public-company acquisitions, acquirers on average earn near-zero or slightly negative abnormal returns around deal announcement (mean acquirer CAR approximately −0.7%). The combined entity (acquirer + target) creates modest positive value on average (+1.8%). Targets capture the value creation via the acquisition premium (+16–30%). This is the most replicated finding in 50+ years of M&A event study research.
 
-**Integration overrun**: Post-merger integration timelines are commonly underestimated; specific overrun rates vary across consulting studies (KPMG, Bain, McKinsey post-merger integration practice publications).
+**The "70–90% fail" figure is a consulting industry estimate, not peer-reviewed evidence.** It traces primarily to KPMG's 1999 "Unlocking Shareholder Value" survey (which measured acquirer share price vs. sector peer index at 6 months post-close — not total value creation) and has propagated by self-citation through practitioner commentary. The peer-reviewed literature does not produce a 70–90% failure rate. King et al. (2004, SMJ) meta-analysis of 93 studies found that identified moderators explain only ~5% of variance in M&A outcomes — meaning "failure rate" is highly sensitive to which definition is used (8 definitions in the literature produce rates from 20% to 83%).
 
-**Partnership dissolution**: Formal business partnerships dissolve at high rates within their first several years, most commonly due to misaligned incentives, unequal effort distribution, or shifting strategic priorities. Specific rates are not well-sourced; treat as a structural warning.
+**Actionable deal-level predictors (robust in peer-reviewed evidence):**
+- *Payment method*: Cash-financed acquisitions consistently outperform stock-financed acquisitions. Stock deals signal acquirer overvaluation (Myers & Majluf adverse selection). Loughran & Vijh (1997, JF) 5-year returns: cash acquirers +61.7%, stock acquirers +14.9% vs. matched controls.
+- *Target type*: Private target acquisitions yield positive acquirer announcement returns on average (+2.1%); public target acquisitions yield near-zero to negative (−1.0%). Acquirers pay a control premium they cannot extract from private sellers.
+- *Value distribution*: M&A is not zero-sum but is asymmetrically distributed — combined entities create value on average; the question for the acquirer's board is whether acquirer shareholders benefit after paying the premium.
+
+**Cost vs. revenue synergy reliability:** The direction is well-supported: cost synergies are realized more reliably than revenue synergies, which are produced under deal-team optimism and competitive pressure. Revenue synergy estimates are consistently revised down post-close. Specific realization rates (e.g., "43% of synergies captured") come from consulting firm proprietary surveys (McKinsey Quarterly, BCG), not peer-reviewed studies — treat the direction as defensible, the percentages as advisory only.
+
+**Integration overrun**: Post-merger integration timelines are commonly underestimated. This directional claim is consistent with planning fallacy research broadly. Specific overrun rates in consulting publications (KPMG, Bain, McKinsey integration practice) should be treated as advisory given selection bias toward troubled engagements.
+
+**Partnership dissolution**: Formal business partnerships dissolve at high rates within their first several years, most commonly due to misaligned incentives, unequal effort distribution, or shifting strategic priorities. Specific rates are not well-sourced in the peer-reviewed literature; treat as a structural warning.
 
 **Sources**
-- Christensen, Alton, Rising, Waldeck. *The Big Idea: The New M&A Playbook.* Harvard Business Review, March 2011.
-- KPMG, *World Class Transactions* and follow-on M&A studies.
+- Andrade, G., Mitchell, M., & Stafford, E. (2001). New evidence and perspectives on mergers. *Journal of Economic Perspectives*, 15(2), 103–120. (n=3,688 US mergers, 1973–1998)
+- King, D.R., Dalton, D.R., Daily, C.M., & Covin, J.G. (2004). Meta-analyses of post-acquisition performance. *Strategic Management Journal*, 25(2), 187–200. (93-study meta-analysis)
+- Loughran, T., & Vijh, A.M. (1997). Do long-term shareholders benefit from corporate acquisitions? *Journal of Finance*, 52(5), 1765–1790.
+- Fuller, K., Netter, J., & Stegemoller, M. (2002). What do returns to acquiring firms tell us? *Journal of Finance*, 57(4), 1763–1793.
+- Tuch, C., & O'Sullivan, N. (2007). The impact of acquisitions on firm performance: A review. *International Journal of Management Reviews*, 9(2), 141–170. (systematic review tracing consulting failure claims to non-peer-reviewed origins)
 
 ---
 
