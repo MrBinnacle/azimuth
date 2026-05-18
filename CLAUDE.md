@@ -121,7 +121,7 @@ Project notes live in a local Obsidian vault under `Writ_vault/azimuth/`. Subfol
 
 A navigable knowledge graph of the full repo is maintained in `graphify-out/` and mirrored into the Obsidian vault.
 
-**Graph location:** `graphify-out/graph.json` — 339 nodes, 637 edges, 12 communities  
+**Graph location:** `graphify-out/graph.json` — 384 nodes, 629 edges, 18 communities  
 **Obsidian vault:** `C:\Users\mlpgr\Writ_vault\graphify\azimuth\` — open as vault in Obsidian  
 **HTML graph:** `graphify-out/graph.html` — open in browser, no server needed  
 **Python interpreter:** `C:\Python313\python.exe`
@@ -149,14 +149,16 @@ Skipping step 1 means EXTEND vs. CREATE decisions lose their evidence base. Skip
 
 ### God nodes (best traversal entry points)
 
-- `SKILL.md Master Orchestrator` (degree 41)
 - `PE Secondaries IC Azimuth Template` (degree 26)
 - `IC Decision Anatomy: What Investment Partners Actually Evaluate` (degree 22)
+- `PE Secondaries Pre-Commitment Decision Anatomy` (degree 21)
 - `Coverage Testing Program — Synthesis` (degree 18)
+- `AZIMUTH Fit Assessment — PE Secondaries IC Decision` (degree 18)
 - `v1.1.0 Baseline Eval Results` (degree 16)
-- `Module 10 — Decision Verdict` (degree 15)
+- `Module Guide Reference File` (degree 16)
+- `Coverage Tier 2 Session 6: gotchas.md Pattern Load` (degree 13)
 
-**Bridge node to watch:** `Hook: Module 10 Confidence Ceiling` (betweenness 0.149) — bridges the core skill, OSS launch patterns, and eval case communities.
+**Bridge node to watch:** `M10 Confidence Ceiling Hook` (betweenness 0.060) — bridges Anti-Sycophancy Eval Program and Eval Cases & Gotchas communities.
 
 ### Graph queries
 
