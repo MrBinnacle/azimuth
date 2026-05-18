@@ -129,3 +129,67 @@ Load when running an AZIMUTH analysis on a merger, acquisition, strategic partne
 - Acquired team has no clear escalation path for resource requests
 
 **Azimuth question**: Who makes the final call when the acquired team and the legacy team disagree on priorities — and has that person been told they own that role?
+
+---
+
+## Pattern 9: Earnout Misalignment
+
+**What happens**: Contingent consideration (earnout) tied to post-close performance targets creates misaligned incentives between seller management and the acquiring organization. Seller management optimizes to hit earnout metrics rather than the acquirer's actual priorities. When metrics diverge from business reality, disputes over earnout calculation methodology become the dominant post-close relationship dynamic.
+
+**Why it's common**: Earnouts are used when buyer and seller cannot agree on valuation — typically because the seller believes in a future the buyer will not pay for upfront. The structural tension is baked in at signing. Earnout metrics are negotiated under optimism about alignment; the disputes emerge when incentives actually diverge in execution.
+
+**Failure signature**:
+- Earnout metrics are EBITDA or revenue — both are manipulable by seller management through timing of expenses, channel stuffing, or deferring investment
+- Earnout period exceeds 2 years with no interim milestone gates
+- No defined accounting methodology for earnout calculation agreed before signing
+- Acquirer retains authority over decisions (pricing, headcount, investment) that materially affect seller's ability to hit earnout targets
+
+**Azimuth question**: For each earnout metric: who controls the inputs, who calculates the output, and what is the dispute resolution mechanism when the parties disagree on the number?
+
+---
+
+## Pattern 10: Working Capital Peg Disputes
+
+**What happens**: The normalized working capital target (peg) negotiated at signing does not match actual closing working capital. Post-close purchase price adjustment mechanisms generate disputes — often the first substantive conflict in an otherwise clean transaction. The gap is structural and almost never anticipated at signing with sufficient specificity.
+
+**Why it's common**: Working capital is calculated at a point in time; the peg represents a "normal" level based on a historical average. Seasonal businesses, businesses with growing receivables, and businesses in operational transition all have structural mismatches between the historical average used to set the peg and the actual close-date number. Both parties are incentivized to interpret ambiguous accounting treatments in their favor post-close.
+
+**Failure signature**:
+- Peg set using a simple trailing average without adjusting for seasonality or business trajectory
+- Accounting methodology for disputed items (deferred revenue, accruals, intercompany balances) not defined in the purchase agreement
+- Legal and financial advisors change between LOI and closing; institutional knowledge of the original peg rationale is lost
+- No post-close accounting arbitration mechanism — disputes default to litigation
+
+**Azimuth question**: What is the defined accounting methodology for calculating working capital at close, who arbitrates disputes, and has that methodology been tested against the last four quarters of actual financials?
+
+---
+
+## Pattern 11: Reps & Warranties / Indemnification Gap
+
+**What happens**: Material liabilities that surface post-close fall outside the seller's representations and warranties, or fall within them but exceed the indemnification cap, survive beyond the survival period, or are absorbed by basket and deductible provisions. The acquirer bears losses it believed were seller-covered.
+
+**Why it's common**: Indemnification provisions are heavily negotiated. Sellers push for low caps, short survival periods, and high baskets that absorb small claims. Representations and Warranties (R&W) insurance has become standard in mid-market M&A as a mechanism to bridge this gap — but its coverage limits, exclusions, and retention amounts are frequently misunderstood by buyers at signing. The result is a gap between expected coverage and actual recovery.
+
+**Failure signature**:
+- Indemnification cap set below estimated exposure from the highest-risk diligence finding
+- Survival period for key representations (IP ownership, tax, environmental) matches general reps rather than the statute of limitations for the underlying liability
+- R&W insurance purchased but retention amount not stress-tested against likely claim scenarios — coverage appears present but does not trigger in practice
+- Known issues at close carved out of representations without a specific escrow amount set aside to cover them
+
+**Azimuth question**: What is the single largest post-close liability exposure identified in diligence — and does the combination of indemnification cap plus R&W insurance coverage actually cover it, or does the retention plus exclusions absorb the exposure before coverage activates?
+
+---
+
+## Pattern 12: Regulatory Closing Risk
+
+**What happens**: A transaction is announced before regulatory review reveals material obstacles. HSR review, CFIUS review, or sector-specific regulatory approval extends closing timelines, imposes behavioral remedies, or blocks the transaction entirely. Operating under interim covenants — ordinary course obligations, no-shop provisions, employee retention restrictions — creates compounding business costs with each month of regulatory delay.
+
+**Why it's common**: Deal teams model regulatory review as a process step, not a risk with probability and duration distributions. Antitrust analysis is optimistic — particularly for vertical combinations and transactions that reduce optionality in concentrated markets. CFIUS review scope has expanded materially since 2018 (FIRRMA) to cover minority investments and non-controlling positions; many transactions that were not CFIUS-notifiable pre-2018 now trigger mandatory or voluntary review.
+
+**Failure signature**:
+- No regulatory risk memo prepared before signing; regulatory timeline treated as administrative rather than strategic
+- HSR filing triggers a second request without remediation options pre-modeled (structural remedies, behavioral commitments, divestitures)
+- Transaction involves a foreign acquirer and the target has US government contracts, critical infrastructure, or sensitive personal data — CFIUS not raised in deal counsel review
+- Interim operating covenants prevent the target from responding to competitive moves during an extended regulatory review period
+
+**Azimuth question**: What is the realistic worst-case regulatory timeline for this transaction — and if closing extends six months beyond the expected date, what is the cost to the target's competitive position and to the acquirer's integration plan?
