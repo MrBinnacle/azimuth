@@ -10,6 +10,33 @@ Planned. See `ROADMAP.md` for the why on each.
 
 - **Evidence tags.** Every output claim carries a provenance tag.
 - **Audit trail.** Output lists modules run and what each surfaced.
+- **Market-entry template.** Dedicated template for geographic expansion / international market-entry decisions (post-build eval identified product-launch-azimuth.md as an imprecise proxy for this domain).
+
+---
+
+## [1.4.0] — 2026-05-18
+
+### Architecture — minimal SKILL.md redesign
+
+- **SKILL.md reduced from 865 to 160 lines.** All content now lives in the always-loaded zone (lines 1–160, well below the ~225-line truncation boundary). Partial-load problem eliminated: under any session length, the entire SKILL.md loads. Previously, 0 of 5 load-bearing behavioral rules survived partial load; now 5 of 5 are reliable.
+
+- **Depth-on-demand via three new reference files.** CORROBORATING content (module bodies, output format scaffolding, anti-slop rules, escalation logic, heuristics) moved to conditional reference files that load per mode: `references/module-guide.md` (M1–M10 bodies, register discipline, escalation logic, workflow extensions), `references/mode-behaviors.md` (FAST/STANDARD/RAPID/DEEP full specs and diagnostic load triggers), `references/output-template.md` (default output template, domain format pointers, anti-slop rules).
+
+- **Five load-bearing behavioral rules made explicit.** All five rules — M4 PRE-CHECK, M2 sycophancy circuit-breaker, M10 confidence ceiling, M1 commitment-state inference, and the output lead rule — are now in an explicit named block at lines 76–86, always loaded and always enforced.
+
+- **Reference loading instructions hoisted to always-load core.** Conditional load triggers (previously post-225 and partial-load fragile) now live in SKILL.md itself, making them robust under any session length.
+
+- **Post-build eval passed.** Three scenarios validated: DEEP mode full-load (EU SaaS expansion, 12 files loaded, PILOT FIRST verdict), FAST mode file-load discipline (CI/CD migration, module-guide correctly excluded), M4 PRE-CHECK self-advocacy (VP Sales hire, PRE-CHECK fired, DELAY PENDING EVIDENCE verdict). All 5 load-bearing rules behaved correctly.
+
+### Skill fixes
+
+- **FIX-3: VERDICT-BLOCKING condition for SPOF + unconfirmed dependency (M5).** When a dependency is SPOF=Yes AND Fallback=No AND its confirmation status is unverified, the combination now explicitly blocks PROCEED and PROCEED WITH SAFEGUARDS and routes Module 10 to DELAY PENDING EVIDENCE. Previously, this combination produced an action-list output without a verdict consequence.
+
+- **M10 confidence ceiling promoted to Core Principles.** Principle 8 added: "If the load-bearing assumption is UNSUPPORTED, confidence ceiling is MEDIUM regardless of all other evidence quality." Previously this rule lived post-line-225 and was invisible under partial load.
+
+- **M4 PRE-CHECK self-advocacy clarifications.** Explicit question mapping added for when the proposer is the assistant (which of the 7 interview questions apply to the assistant vs. human stakeholders). FAST mode now specifies M4 PRE-CHECK detection behavior when self-advocacy is present but the interview mechanism cannot run.
+
+- **FAST mode domain template loading clarified.** "Load output-template.md only" now explicitly states that domain templates per Layer 3 routing still apply in FAST mode.
 
 ### Meta
 
