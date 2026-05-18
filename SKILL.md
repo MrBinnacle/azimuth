@@ -293,6 +293,7 @@ Also load the relevant domain reference:
 - Startup / venture → `references/startup-failures.md`
 - M&A / partnerships → `references/ma-partnership-patterns.md`
 - Org change / restructure → `references/org-change-patterns.md`
+- Hiring → `references/hiring-failure-patterns.md`
 
 ---
 
