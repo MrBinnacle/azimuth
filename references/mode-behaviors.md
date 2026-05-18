@@ -84,3 +84,9 @@ Also load the relevant domain reference:
 - M&A / partnerships → `references/ma-partnership-patterns.md`
 - Org change / restructure → `references/org-change-patterns.md`
 - Hiring → `references/hiring-failure-patterns.md`
+- PE Secondaries IC → `templates/secondaries-ic-azimuth.md` serves as the domain
+  depth layer directly. The template contains the failure pattern screen (Section 1),
+  process integrity gate (Section 2), NAV reliability assessment (Section 3), and
+  incentive alignment scan (Section 5a) that other domains carry in separate reference
+  files. No separate reference file is needed; load the template in DEEP mode for PE
+  Secondaries IC decisions.
