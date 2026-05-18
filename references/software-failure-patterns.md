@@ -135,3 +135,45 @@ Load when running an AZIMUTH analysis on a technical initiative: refactor, rewri
 - Security vulnerabilities in dependencies acknowledged but unaddressed
 
 **Azimuth question**: What are the top 3 most outdated or vulnerable dependencies? What is the plan and timeline for addressing them?
+
+---
+
+## Pattern 11: Post-Cutover Spend Management Failure
+
+**What happens**: Migration completes on schedule and within project budget, but the new environment costs materially more to operate than the old one. Over-provisioning, lift-and-shift architectural choices, and unoptimized resource allocation create a permanent operational cost increase that was not in the migration's success criteria. 84% of organizations report struggling to manage cloud spend post-migration (Flexera State of the Cloud 2025, N=750+).
+
+**Failure signature**:
+- Migration was designed for speed; right-sizing and cost optimization were deferred to "post-cutover"
+- No owner assigned for cost optimization after go-live, or the owner has no mandate or deadline
+- Vendor cost estimates were used for planning rather than analysis against actual workload patterns
+- Cost ceiling or budget for the steady-state environment is undefined
+
+**Azimuth question**: What is the validated ongoing monthly operational cost of the target environment against actual usage patterns — not vendor estimates? Who owns cost optimization after cutover, and what is their mandate and timeline?
+
+---
+
+## Pattern 12: Data Integrity Degradation
+
+**What happens**: Data migration introduces silent corruption through schema translation, encoding mismatches, field truncation, or inconsistently applied transformation rules. The system appears operational while data quality has degraded below business requirements. Defects may not surface for weeks or months until a downstream process fails or a user discovers discrepant records.
+
+**Failure signature**:
+- Validation plan checks schema conformance but not correctness against business logic
+- Validation is sampled rather than complete, with no risk stratification by data criticality
+- Edge cases — null handling, character encoding, field truncation, precision loss — are not explicitly tested
+- Success metric is "records migrated," not "records validated end-to-end"
+
+**Azimuth question**: What is the data validation plan for migrated records, and does it detect silent corruption versus obvious schema failures? What percentage of records have been validated end-to-end against business logic — not just schema conformance checks?
+
+---
+
+## Pattern 13: Cutover Window Overrun
+
+**What happens**: Cutover runs longer than the planned maintenance window. At execution time, the team faces a forced choice between extended downtime, partial cutover with data integrity risk, or emergency rollback — none of which was pre-decided, and decision authority was not pre-assigned. The absence of a decision tree at T+50% and T+100% converts a technical problem into a governance crisis under pressure.
+
+**Failure signature**:
+- Cutover plan has a time estimate but no decision tree for overrun scenarios
+- Rollback trigger is described as "if needed" rather than specific, pre-agreed conditions
+- Decision authority at key overrun thresholds is not assigned in writing before cutover
+- Key decision-makers are not confirmed to be present and reachable during the cutover window
+
+**Azimuth question**: What is the decision tree when the cutover window is exceeded by 50%? By 100%? At what point is rollback mandatory, who has explicit authority to make that call, and are they present and empowered at the scheduled cutover time?
