@@ -5,6 +5,26 @@ Use this template when:
 - Decision has multi-quarter or multi-year commitment horizon
 - Reversal is costly — contractual, reputational, or operationally
 
+**Scope: Board / sponsor / strategic decision layer — not a deal-team instrument.**
+
+This template covers strategic rationale, governance, incentive alignment, and go/no-go
+decision quality. It does not substitute for deal-team financial analysis. For control
+acquisitions and M&A, the deal team must provide separately:
+
+- Quality of Earnings (QoE) at the target level
+- Working capital peg and NWC target (the most common source of post-close price disputes)
+- Deal structure: stock vs. asset, earnout terms and dispute mechanics, R&W insurance
+- Valuation methodology: DCF, trading comps, precedent transactions, accretion/dilution
+- Regulatory closing risk: HSR, CFIUS, sector regulators
+- Financing structure and MAC/MAE provisions
+
+A board member, CEO, or strategy executive will find this template sufficient for their
+decision layer. A VP of Corp Dev or M&A associate who uses this template as a complete
+diligence framework will miss the financial instrument layer entirely.
+
+For partnerships, joint ventures, and vendor contracts where transaction mechanics are
+not the primary risk, this template is appropriate without the above supplements.
+
 ---
 
 ## Template
