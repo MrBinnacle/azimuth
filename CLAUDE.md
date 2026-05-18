@@ -121,10 +121,33 @@ Project notes live in a local Obsidian vault under `Writ_vault/azimuth/`. Subfol
 
 A navigable knowledge graph of the full repo is maintained in `graphify-out/` and mirrored into the Obsidian vault.
 
-**Graph location:** `graphify-out/graph.json` — 317 nodes, 464 edges, 19 communities  
-**Obsidian vault:** `C:\Users\mlpgr\Writ_vault\graphify\azimuth\` — 336 notes, open as vault in Obsidian  
+**Graph location:** `graphify-out/graph.json` — 366 nodes, 536 edges, 28 communities  
+**Obsidian vault:** `C:\Users\mlpgr\Writ_vault\graphify\azimuth\` — open as vault in Obsidian  
 **HTML graph:** `graphify-out/graph.html` — open in browser, no server needed  
 **Python interpreter:** `C:\Python313\python.exe`
+
+### Mandatory maintenance cycle
+
+Every structural change (new file, new pattern, template, or domain) follows this sequence in order. None of these steps are optional:
+
+1. **Pre-implementation gate** — before writing anything, query the graph to check where the new domain lands:
+   ```
+   /graphify query "<new domain name>"
+   ```
+   Look at which community it falls into and what it connects to. Use this to make the EXTEND vs. CREATE decision with evidence, not heuristics alone.
+
+2. **Implement** the change.
+
+3. **Extract patterns** — run `/claudeception` to capture any non-obvious patterns from the session as reusable skills.
+
+4. **Rebuild** — keep the graph and vault current:
+   ```
+   /graphify . --obsidian --obsidian-dir "C:\Users\mlpgr\Writ_vault\graphify\azimuth"
+   ```
+
+Skipping step 1 means EXTEND vs. CREATE decisions lose their evidence base. Skipping step 4 means the graph drifts from reality within a session and future pre-implementation queries return stale results.
+
+### Graph queries
 
 **Before answering questions about module relationships, loading conditions, template routing, or skill architecture — check the graph first:**
 
@@ -132,17 +155,6 @@ A navigable knowledge graph of the full repo is maintained in `graphify-out/` an
 /graphify query "diagnostic load triggers"
 /graphify query "template routing by decision type"
 /graphify query "SKILL.md module loading conditions"
-```
-
-**God nodes (best traversal entry points):**
-- `W Capital Partners (WCP)` (degree 13)
-- `Fund-Level CFO Role at PE Secondaries Firms` (degree 12)
-- `v1.1.0 Baseline Eval Results` (degree 10)
-- `GP-Led Continuation Vehicle` (degree 10)
-
-**Rebuild after any significant file changes:**
-```bash
-/graphify . --obsidian --obsidian-dir "C:\Users\mlpgr\Writ_vault\graphify\azimuth"
 ```
 
 Full integration guide: `graphify-out/OBSIDIAN_INTEGRATION.md`  
