@@ -121,7 +121,7 @@ Project notes live in a local Obsidian vault under `Writ_vault/azimuth/`. Subfol
 
 A navigable knowledge graph of the full repo is maintained in `graphify-out/` and mirrored into the Obsidian vault.
 
-**Graph location:** `graphify-out/graph.json` — 384 nodes, 629 edges, 18 communities  
+**Graph location:** `graphify-out/graph.json` — 460 nodes, 683 edges, 24 communities  
 **Obsidian vault:** `C:\Users\mlpgr\Writ_vault\graphify\azimuth\` — open as vault in Obsidian  
 **HTML graph:** `graphify-out/graph.html` — open in browser, no server needed  
 **Python interpreter:** `C:\Python313\python.exe`
@@ -149,16 +149,16 @@ Skipping step 1 means EXTEND vs. CREATE decisions lose their evidence base. Skip
 
 ### God nodes (best traversal entry points)
 
-- `PE Secondaries IC Azimuth Template` (degree 26)
-- `IC Decision Anatomy: What Investment Partners Actually Evaluate` (degree 22)
-- `PE Secondaries Pre-Commitment Decision Anatomy` (degree 21)
+- `IC Decision Anatomy: What Investment Partners Actually Evaluate` (degree 21)
+- `PE Secondaries Pre-Commitment Decision Anatomy` (degree 20)
 - `Coverage Testing Program — Synthesis` (degree 18)
-- `AZIMUTH Fit Assessment — PE Secondaries IC Decision` (degree 18)
-- `v1.1.0 Baseline Eval Results` (degree 16)
+- `AZIMUTH Fit Assessment — PE Secondaries IC Decision` (degree 17)
+- `M&A and Partnership Failure Patterns` (degree 17)
 - `Module Guide Reference File` (degree 16)
-- `Coverage Tier 2 Session 6: gotchas.md Pattern Load` (degree 13)
+- `v1.1.0 Baseline Eval Results` (degree 16)
+- `Base Rates Reference` (degree 15)
 
-**Bridge node to watch:** `M10 Confidence Ceiling Hook` (betweenness 0.060) — bridges Anti-Sycophancy Eval Program and Eval Cases & Gotchas communities.
+**Bridge node to watch:** `Anti-Sycophancy: Confidence Inflation on Cautious Verdicts (M10)` (betweenness 0.034) — bridges Anti-Sycophancy Eval Program and Anti-Sycophancy Patterns & Diagnostics communities.
 
 ### Graph queries
 
