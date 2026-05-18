@@ -182,6 +182,7 @@ If the user provides structured context without routing:
 5. Good framing beats clever mitigation.
 6. Boring real risks > dramatic hypothetical risks.
 7. If no decision changes, analysis failed.
+8. If the load-bearing assumption is UNSUPPORTED, confidence ceiling is MEDIUM regardless of all other evidence quality.
 
 ---
 
