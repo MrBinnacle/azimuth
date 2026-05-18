@@ -19,6 +19,15 @@ azimuth/
 
 All paths referenced inside `SKILL.md` must exist as real files. The install tool (`npx skills add`) copies the entire directory tree.
 
+## Codebase Overview
+
+AZIMUTH is a conditional file-loading system. `SKILL.md` is the always-loaded orchestrator; every other file loads on-demand based on mode, domain, and per-module findings. The skill has a 10-module analysis engine, four operating modes (FAST/STANDARD/RAPID/DEEP), domain-specific templates routed via Layer 3 intake, and a 9-verdict taxonomy.
+
+**Stack:** Pure markdown — no code, no build system, no dependencies  
+**Critical constraint:** SKILL.md truncates at line 225 under long sessions (>~150K–177K token history); all module instructions are past line 225
+
+For detailed architecture, module load matrix, template routing, hook classification, and eval program findings, see [docs/CODEBASE_MAP.md](docs/CODEBASE_MAP.md).
+
 ## Validation checks (run before every commit)
 
 ```bash
