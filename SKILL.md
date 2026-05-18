@@ -107,7 +107,8 @@ Ask:
 > **5.** PE secondaries or investment committee  
 > **6.** Organizational restructure or change management  
 > **7.** Build vs. buy vs. partner (strategic path selection)  
-> **8.** Other
+> **8.** Startup / early-stage initiative  
+> **9.** Other
 
 **Route:**
 - 1 → load `templates/codebase-azimuth.md`
@@ -117,7 +118,8 @@ Ask:
 - 5 → load `templates/secondaries-ic-azimuth.md`
 - 6 → load `templates/org-change-azimuth.md`
 - 7 → load `templates/build-buy-partner-azimuth.md`
-- 8 → default template
+- 8 → load `templates/startup-azimuth.md`
+- 9 → default template
 
 **Default template:** use the Output Format (Default) section of this skill. No additional template file is loaded. Domain reference files load per mode rules (DEEP: unconditional; STANDARD: conditional on module findings).
 
