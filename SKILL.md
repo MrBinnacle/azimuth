@@ -473,6 +473,8 @@ For each critical dependency assess:
 - lead time?
 - fallback exists?
 
+**VERDICT-BLOCKING condition:** If any dependency is SPOF=Yes AND Fallback=No AND its confirmation status is unverified or assumed (not yet secured), this combination blocks PROCEED and PROCEED WITH SAFEGUARDS — no safeguard action resolves an unconfirmed single point of failure before the decision. Flag it as VERDICT-BLOCKING in Module 10 and return DELAY PENDING EVIDENCE.
+
 Diagnostic load: see Operating Modes for when to load `diagnostics/dependency-map.md`.
 
 ---

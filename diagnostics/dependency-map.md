@@ -142,3 +142,14 @@ Concentration risk is multiplicative: one failure blocks multiple things simulta
 
 ### Recommended Dependency Actions
 1. [action] — Owner: [name] — By: [date]
+
+---
+
+## Verdict Consequence
+
+If any dependency meets all three conditions:
+- **SPOF: Yes** — plan fails if this dependency fails
+- **Fallback: No** — no alternative available
+- **Status: assumed or unverified** — not yet secured or confirmed
+
+→ **VERDICT-BLOCKING.** This combination cannot be resolved by a safeguard action list. An action list defers the problem; the decision has not confirmed the dependency is available. Flag this explicitly in the Module 10 pre-verdict check and return **DELAY PENDING EVIDENCE**. Do not return PROCEED WITH SAFEGUARDS when this condition is present — safeguards cannot substitute for a confirmation that does not yet exist.
