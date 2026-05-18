@@ -140,7 +140,7 @@ Load `references/output-template.md` for the full output template, anti-slop rul
 
 Load based on mode before beginning analysis:
 
-**FAST:** Load `references/output-template.md` only. Do not load module-guide or mode-behaviors.
+**FAST:** Load `references/output-template.md` only (no module-guide, no mode-behaviors). Domain template per Layer 3 routing still applies.
 
 **STANDARD / RAPID / DEEP — load all three before beginning modules:**
 1. `references/module-guide.md` — module bodies, register discipline, escalation logic

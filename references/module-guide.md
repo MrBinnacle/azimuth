@@ -108,7 +108,16 @@ Do not list all equally.
 
 ### Interview
 
-**[PRE-CHECK — SELF-PROPOSAL]** Before conducting the interview, determine: did the AI assistant in this conversation propose, recommend, or advocate for the option now under analysis? If yes, note: "Proposer is the assistant. Module 4 runs on the assistant. Questions [ACCOUNTABILITY] and [DISSENT] apply to whether the assistant's recommendation was challenged or corrected in the conversation." Proceed with the interview using this framing. Do not skip Module 4 because the proposer is not a human stakeholder.
+**[PRE-CHECK — SELF-PROPOSAL]** Before conducting the interview, determine: did the AI assistant in this conversation propose, recommend, or advocate for the option now under analysis? If yes, note: "Proposer is the assistant. Module 4 runs on the assistant." Proceed with the interview using this framing. Do not skip Module 4 because the proposer is not a human stakeholder.
+
+**Question mapping when proposer is the assistant:**
+- Q1 [IDENTITY]: Apply to the assistant — state that the AI recommended this option and note whether that recommendation was made with full context.
+- Q2 [ACCOUNTABILITY]: Apply to the assistant — name the structural asymmetry: the assistant bears zero consequences for failure. This is not a disqualifier, but must be stated.
+- Q3 [BENEFIT]: Apply to human stakeholders normally.
+- Q4 [DISSENT]: Apply to the assistant — was the assistant's recommendation challenged or corrected in this conversation? Was contrary analysis surfaced before or after the recommendation? An unchallenged AI recommendation is a RED signal for Q4.
+- Q5 [VENDOR/EXTERNAL]: Apply to human stakeholders normally.
+- Q6 [SUNK COST]: Apply to human stakeholders normally.
+- Q7 [MEASUREMENT]: Apply to human stakeholders normally.
 
 1. **[IDENTITY]** Who first proposed or originated this decision — and are they part of the team running or reviewing this analysis?
 2. **[ACCOUNTABILITY]** If this fails, what happens to the person or team who proposed it?

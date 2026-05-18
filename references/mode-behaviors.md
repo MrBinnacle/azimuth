@@ -16,6 +16,8 @@ Do not load diagnostics or references.
 
 Module 4 interview not conducted. Incentive misalignment is unverified in this output, including self-proposal incentive: if the assistant previously advocated for the option under analysis, that bias is unaudited in FAST mode. If incentive conflicts or self-proposal are material concerns, rerun in STANDARD or RAPID mode.
 
+**M4 PRE-CHECK in FAST mode:** If self-advocacy is detected (the assistant previously proposed the option), the interview cannot run — but the detection must still be noted. Add to the output header: `[SELF-ADVOCACY DETECTED — M4 unaudited in FAST; rerun in STANDARD or RAPID for full incentive audit]`. Do not silently omit the detection.
+
 ---
 
 ## STANDARD
