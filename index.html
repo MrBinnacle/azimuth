@@ -816,7 +816,7 @@
           <div class="analysis-label">Assumptions</div>
           <div class="analysis-body">
             <h3>Assumption audit</h3>
-            <p>Every assumption is classified — strong, partial, unsupported, or contradicted — and paired with a falsifier: the observable evidence that would prove it wrong. Not a list of what you assumed. A test of whether each assumption holds.</p>
+            <p>Every assumption is classified — strong, partial, unsupported, or contradicted — and paired with the observable evidence that would prove it wrong. Not a list of what you assumed. A test of whether each assumption holds.</p>
           </div>
         </div>
         <div class="analysis-item">
@@ -915,15 +915,15 @@ either departure.
       <p class="section-label">Methodology validation · Boeing 737 MAX</p>
       <h2>REJECT. Every framing. Every run.</h2>
       <p class="case-lead">
-        Three prompt variants. Three clean-context runs on Opus 4.5. The thin-prompt run contained no company name, no aircraft name, and no historical reference — decision parameters only. AZIMUTH returned REJECT, HIGH confidence.
+        Three prompt variants. Three runs on Opus 4.5, each from a fresh conversation. Run 3 contained no company name, no aircraft name, and no historical reference — decision parameters only. AZIMUTH returned REJECT, HIGH confidence.
       </p>
 
       <div class="case-quote-block">
         <p class="case-quote-text">"Base rate for this exact strategy succeeding without training requirement: 0% in the post-MAX regulatory environment."</p>
-        <span class="case-quote-source">— AZIMUTH Run 3, Opus 4.5, thin prompt (parameters only), clean context</span>
+        <span class="case-quote-source">— AZIMUTH Run 3, Opus 4.5, parameters-only prompt, fresh conversation</span>
       </div>
 
-      <p class="case-note">The irreconcilable structure is visible in the decision parameters alone. AZIMUTH recognized the MCAS pattern without being told what it was.</p>
+      <p class="case-note">The irreconcilable structure is visible in the decision parameters alone. AZIMUTH recognized the failure pattern from the parameters alone — no company name, no aircraft name.</p>
 
       <div class="v-table-wrap">
         <table class="v-table" aria-label="Boeing 737 MAX methodology runs">
@@ -962,7 +962,7 @@ either departure.
         </table>
       </div>
 
-      <p class="case-footnote">† Confidence ceiling invoked: load-bearing assumption unsupported; no documentation of independent validation or regulatory pre-concurrence in the input. The verdict is stable. The confidence calibration is arguably more precise.</p>
+      <p class="case-footnote">† Confidence ceiling invoked: a key assumption isn't supported by the input — no documentation of independent validation or regulatory pre-concurrence. The verdict is stable. The confidence calibration is arguably more precise.</p>
 
       <a href="https://azimuth-testbed.netlify.app" class="case-run-link" target="_blank" rel="noopener">Run the Boeing prompts yourself →</a>
     </div>
@@ -1023,7 +1023,7 @@ either departure.
           </tr>
           <tr>
             <td><span class="vtag v-null">INSUFFICIENT SIGNAL</span></td>
-            <td>Input too sparse or contradictory to ground analysis</td>
+            <td>Input is too thin or contradictory to analyze</td>
           </tr>
           <tr>
             <td><span class="vtag v-null">WRONG TOOL</span></td>
