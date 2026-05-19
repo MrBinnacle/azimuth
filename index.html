@@ -627,59 +627,78 @@
     .footer-links a:hover { color: var(--text); }
     .footer-links span { color: var(--border-2); }
 
-    /* ── Case study callout ─────────────────── */
-    .cs-strip {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--accent-bg);
-      padding: 32px 0;
-    }
-
-    .cs-inner {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-    }
-
-    .cs-stat {
-      font-family: var(--display);
-      font-size: 52px;
-      font-weight: 400;
-      color: var(--accent);
-      line-height: 1;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .cs-body {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .cs-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .cs-text {
-      font-size: 16px;
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    .cs-link {
+    /* ── Testbed link ───────────────────────── */
+    .testbed-link {
       font-family: var(--mono);
       font-size: 12px;
       color: var(--accent);
       text-decoration: none;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .testbed-link:hover { color: var(--text); }
+
+    /* ── Boeing case study ───────────────────── */
+    .case-lead {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-2);
+      max-width: 620px;
+      line-height: 1.75;
+      margin-bottom: 40px;
     }
 
-    .cs-link:hover { text-decoration: underline; }
+    .case-quote-block {
+      border: 1px solid var(--border);
+      background: rgba(201,168,76,0.04);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin: 0 0 24px;
+    }
+
+    .case-quote-text {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .case-quote-source {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .case-note {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .case-footnote {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-top: 16px;
+      max-width: 620px;
+    }
+
+    .case-run-link {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+      display: inline-block;
+      margin-top: 28px;
+    }
+    .case-run-link:hover { color: var(--text); }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -736,6 +755,7 @@
     <ul class="nav-links">
       <li><a href="#capabilities">Capabilities</a></li>
       <li><a href="#example">Example</a></li>
+      <li><a href="#case-study">Boeing</a></li>
       <li><a href="#verdicts">Verdicts</a></li>
       <li><a href="https://github.com/MrBinnacle/azimuth" target="_blank" rel="noopener">GitHub</a></li>
     </ul>
@@ -761,6 +781,7 @@
           <button class="copy-btn" type="button" aria-label="Copy install command" onclick="copyInstall(this)">Copy</button>
         </div>
         <p class="install-note">Compatible with Claude Code and Claude.ai</p>
+        <a href="https://azimuth-testbed.netlify.app" class="testbed-link" target="_blank" rel="noopener">Or try the live testbed — no installation required →</a>
         <div id="copy-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
       </div>
     </div>
@@ -888,19 +909,64 @@ either departure.
     </div>
   </section>
 
-  <!-- Healthcare.gov case study callout -->
-  <div class="cs-strip">
+  <!-- Boeing 737 MAX case study -->
+  <section class="section" id="case-study">
     <div class="container">
-      <div class="cs-inner">
-        <div class="cs-stat">5 / 6</div>
-        <div class="cs-body">
-          <span class="cs-label">Healthcare.gov · DEEP mode · 2013</span>
-          <span class="cs-text">AZIMUTH surfaced 5 of the 6 documented root causes with 0 false positives.</span>
-          <a href="https://github.com/MrBinnacle/azimuth/blob/master/examples/case-study-healthcare-gov.md" target="_blank" rel="noopener noreferrer" class="cs-link">Read the case study →</a>
-        </div>
+      <p class="section-label">Methodology validation · Boeing 737 MAX</p>
+      <h2>REJECT. Every framing. Every run.</h2>
+      <p class="case-lead">
+        Three prompt variants. Three clean-context runs on Opus 4.5. The thin-prompt run contained no company name, no aircraft name, and no historical reference — decision parameters only. AZIMUTH returned REJECT, HIGH confidence.
+      </p>
+
+      <div class="case-quote-block">
+        <p class="case-quote-text">"Base rate for this exact strategy succeeding without training requirement: 0% in the post-MAX regulatory environment."</p>
+        <span class="case-quote-source">— AZIMUTH Run 3, Opus 4.5, thin prompt (parameters only), clean context</span>
       </div>
+
+      <p class="case-note">The irreconcilable structure is visible in the decision parameters alone. AZIMUTH recognized the MCAS pattern without being told what it was.</p>
+
+      <div class="v-table-wrap">
+        <table class="v-table" aria-label="Boeing 737 MAX methodology runs">
+          <thead>
+            <tr>
+              <th scope="col">Run</th>
+              <th scope="col">Prompt</th>
+              <th scope="col">Context</th>
+              <th scope="col">Verdict</th>
+              <th scope="col">Confidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">2</td>
+              <td>Full framing</td>
+              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">Clean</td>
+              <td><span class="vtag v-reject">REJECT</span></td>
+              <td style="font-family:var(--mono);font-size:12px;color:var(--text);">HIGH</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">3</td>
+              <td>Thin (parameters only)</td>
+              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">Clean</td>
+              <td><span class="vtag v-reject">REJECT</span></td>
+              <td style="font-family:var(--mono);font-size:12px;color:var(--text);">HIGH</td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">4</td>
+              <td>Adversarial (confident register)</td>
+              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">Clean</td>
+              <td><span class="vtag v-delay">DELAY PENDING EVIDENCE</span></td>
+              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">LOW†</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="case-footnote">† Confidence ceiling invoked: load-bearing assumption unsupported; no documentation of independent validation or regulatory pre-concurrence in the input. The verdict is stable. The confidence calibration is arguably more precise.</p>
+
+      <a href="https://azimuth-testbed.netlify.app" class="case-run-link" target="_blank" rel="noopener">Run the Boeing prompts yourself →</a>
     </div>
-  </div>
+  </section>
 
   <!-- Quick start -->
   <section class="section">
