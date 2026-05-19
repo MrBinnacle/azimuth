@@ -351,6 +351,62 @@
       line-height: 1.65;
     }
 
+    /* ── Analysis list ───────────────────── */
+    .analysis-frame {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 620px;
+      margin-bottom: 48px;
+    }
+
+    .analysis-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .analysis-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 40px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .analysis-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding-top: 4px;
+      line-height: 1.4;
+    }
+
+    .analysis-body h3 {
+      font-family: var(--display);
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .analysis-body p {
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    .analysis-coda {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      margin-top: 28px;
+      line-height: 1.6;
+    }
+
     /* ── Terminal ────────────────────────── */
     .terminal {
       background: #08080A;
@@ -647,13 +703,25 @@
     .nav-github-mobile:hover { color: var(--text); }
 
     @media (max-width: 640px) {
-      .nav-inner { padding: 0 20px; }
-      .nav-links { display: none; }
-      .nav-github-mobile { display: block; }
+      .nav-inner {
+        padding: 0 20px;
+        height: auto;
+        min-height: 60px;
+        flex-wrap: wrap;
+        padding-bottom: 12px;
+      }
+      .nav-links {
+        display: flex;
+        width: 100%;
+        gap: 20px;
+        padding-top: 10px;
+        border-top: 1px solid var(--border);
+      }
+      .nav-github-mobile { display: none; }
       h1 { font-size: 44px; }
       .hero { padding: 72px 0 64px; }
       .container { padding: 0 20px; }
-      .get-grid { grid-template-columns: 1fr; }
+      .analysis-item { grid-template-columns: 1fr; gap: 10px; padding: 28px 0; }
       .install-cmd { font-size: 12px; padding: 13px 14px; }
     }
   </style>
@@ -716,43 +784,36 @@
     </div>
   </section>
 
-  <!-- What you get -->
+  <!-- How it earns the verdict -->
   <section class="section" id="capabilities">
     <div class="container">
-      <p class="section-label">Capabilities</p>
-      <h2>What you get</h2>
-      <div class="get-grid">
-        <div class="get-item">
-          <div class="get-num">01 / Verdict</div>
-          <h3>A verdict with a rationale</h3>
-          <p>Not just "risky" — a specific recommendation: proceed, pilot first, reduce scope, delay, or reject. With the structural reason why.</p>
+      <p class="section-label">Analysis</p>
+      <h2>How it earns the verdict</h2>
+      <p class="analysis-frame">A hard verdict is only useful if you can see what it's based on. AZIMUTH traces every verdict back to assumptions, failure paths, and incentive conflicts — so you know whether to trust it or push back.</p>
+      <div class="analysis-list">
+        <div class="analysis-item">
+          <div class="analysis-label">Assumptions</div>
+          <div class="analysis-body">
+            <h3>Assumption audit</h3>
+            <p>Every assumption is classified — strong, partial, unsupported, or contradicted — and paired with a falsifier: the observable evidence that would prove it wrong. Not a list of what you assumed. A test of whether each assumption holds.</p>
+          </div>
         </div>
-        <div class="get-item">
-          <div class="get-num">02 / Assumptions</div>
-          <h3>Assumption audit</h3>
-          <p>Every assumption classified as strong, partial, unsupported, or contradicted — plus a falsifier for each: the observable evidence that would prove it wrong.</p>
+        <div class="analysis-item">
+          <div class="analysis-label">Failure paths</div>
+          <div class="analysis-body">
+            <h3>Failure path analysis</h3>
+            <p>The most plausible ways this fails, traced trigger → cascade → business cost — not a severity matrix. Includes pair-interaction analysis: where two risks together produce a worse outcome than either alone.</p>
+          </div>
         </div>
-        <div class="get-item">
-          <div class="get-num">03 / Failure paths</div>
-          <h3>Failure path analysis</h3>
-          <p>The most plausible ways this fails, traced trigger → cascade → business cost. Pair-interaction analysis where two risks together produce a worse outcome than either alone.</p>
-        </div>
-        <div class="get-item">
-          <div class="get-num">04 / Incentives</div>
-          <h3>Incentive scan</h3>
-          <p>Who proposed this, who benefits, who absorbs the downside, whether dissent was heard. Structured into the verdict — not an afterthought.</p>
-        </div>
-        <div class="get-item">
-          <div class="get-num">05 / Dependencies</div>
-          <h3>Dependency fragility map</h3>
-          <p>What's a single point of failure, what's secured vs. assumed, what the lead time is to replace what isn't.</p>
-        </div>
-        <div class="get-item">
-          <div class="get-num">06 / Mitigations</div>
-          <h3>Structural mitigations only</h3>
-          <p>Generic advice is rejected. "Communicate better" and "monitor closely" don't appear in the output.</p>
+        <div class="analysis-item">
+          <div class="analysis-label">Incentives</div>
+          <div class="analysis-body">
+            <h3>Incentive scan</h3>
+            <p>Who proposed this, who benefits, who absorbs the downside if it fails, whether dissent was heard. Structured into the verdict — not a sidebar. Most risk frameworks don't include this at all.</p>
+          </div>
         </div>
       </div>
+      <p class="analysis-coda">All mitigations are structural. "Communicate better" and "monitor closely" don't appear in the output.</p>
     </div>
   </section>
 
@@ -786,35 +847,41 @@
         <div class="t-body">
 <span class="t-input-line"><span class="t-prompt-glyph">→ </span>/azimuth We're planning to rewrite our legacy billing service in Q3. 8 weeks, 2 engineers.</span>
 <span class="t-section-head">## Azimuth Verdict</span>
-<span class="t-verdict-text">High-risk. Scope and timeline are inconsistent with known base rates for
-legacy rewrites. Do not proceed without scope reduction and a validated
-rollback strategy.</span>
+<span class="t-verdict-text">Do not proceed.
+Revenue-critical system. Timeline is incompatible with known base rates for
+this class of rewrite. Team structure creates a single point of failure.
+Scope reduction does not fix either of these.</span>
 
 <span class="t-section-head">## Recommended Decision</span>
-<span class="t-decision-text">PILOT FIRST</span> — Rewrite one isolated billing module with full rollback.
-Validate assumptions about coupling before committing full scope.
+<span class="t-decision-text">REJECT</span> — Return with a realistic timeline (3× minimum), a second engineer
+with documented billing domain knowledge, and a defined rollback architecture.
+A pilot validates coupling; it does not address the structural issues here.
 
 <span class="t-section-head">## Confidence Level</span>
-<span class="t-conf-text">High</span> — base rate for legacy rewrites exceeding estimate is well-documented.
-No evidence present that shifts this.
+<span class="t-conf-text">High</span> — base rates for legacy billing rewrites in this class are well-documented.
+2-engineer teams on revenue-critical rewrites carry asymmetric downside on
+either departure.
 
 <span class="t-section-head">## Critical Risks</span>
-<span class="t-num">1.</span> <span class="t-risk">Integration tax — Parallel-running old and new systems historically
-   extends to 3–5× estimated cutover time. No hard deprecation date defined.</span>
-<span class="t-num">2.</span> <span class="t-risk">Knowledge concentration — Single-person domain knowledge on billing
-   logic creates SPOF. No fallback owner named.</span>
-<span class="t-num">3.</span> <span class="t-risk">Scope creep under deadline — "While we're at it" rewrites reliably
-   overload scope. No change control mechanism defined.</span>
+<span class="t-num">1.</span> <span class="t-risk">Timeline incompatibility — Legacy billing rewrites at this complexity
+   class historically run 3–5× estimate. 8 weeks implies 24–40 actual weeks.
+   No evidence this project shifts the base rate.</span>
+<span class="t-num">2.</span> <span class="t-risk">Single point of failure — 2 engineers on a revenue-critical system:
+   one departure or absence stops the rewrite entirely. No fallback owner named.</span>
+<span class="t-num">3.</span> <span class="t-risk">No rollback architecture — Billing cutover without a tested rollback path
+   has no safe recovery if defects reach production.</span>
 
 <span class="t-section-head">## Falsifiers</span>
-<span class="t-false-mark">—</span> Knowledge concentration: A second engineer can document and reproduce
-  billing edge case behavior independently within 2 weeks — or the SPOF is real.
-<span class="t-false-mark">—</span> Timeline estimate: Comparable module rewrite completed within 2 weeks
-  in a spike — or the 8-week total is unsupportable.
+<span class="t-false-mark">—</span> Timeline: A comparable billing module completed within 2 weeks in a spike —
+  or the 8-week estimate is not grounded in this codebase.
+<span class="t-false-mark">—</span> SPOF: A second engineer documents and reproduces all billing edge cases
+  independently within 2 weeks — or the knowledge concentration is real.
 
-<span class="t-section-head">## Likely Failure Path</span>
-<span class="t-path">Billing edge cases surface → scope expands → 8 weeks becomes 20 →
-old system maintenance + new system debt → both teams overloaded → defects in prod</span>
+<span class="t-section-head">## Likely Failure Paths</span>
+<span class="t-path">1. Timeline slippage → parallel system maintenance load → engineers overloaded
+   → defects introduced under deadline pressure → billing errors in production</span>
+<span class="t-path">2. One engineer exits → domain knowledge inaccessible → rewrite stalls
+   → legacy system maintained indefinitely → original problem compounds</span>
         </div>
       </div>
       <p class="domains-note">Works on <strong>launches</strong> · <strong>hires</strong> · <strong>service rewrites</strong> · <strong>partnerships &amp; M&amp;A</strong> · <strong>build vs. buy decisions</strong> · <strong>org changes</strong> · <strong>startups</strong> · <strong>PE secondaries</strong> · <strong>strategic bets</strong></p>
