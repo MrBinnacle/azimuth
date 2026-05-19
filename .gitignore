@@ -1,3 +1,8 @@
+# API keys — never commit
+.env
+.env.*
+!.env.example
+
 # Session state — never commit
 .omc/
 
@@ -13,7 +18,8 @@ research/
 MARKETING.md
 CLAUDE.md
 README_v1.1.1.md
-docs/
+docs/*
+!docs/azimuth-runs
 reddit-update-drafts.md
 
 # Agent skill install artifacts — local only
