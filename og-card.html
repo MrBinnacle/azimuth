@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280" />
+  <title>AZIMUTH OG Card — 1280×640</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0C0C0E;
+      --border:  #252529;
+      --text:    #E2E2EA;
+      --text-2:  #7A7A8A;
+      --accent:  #C9A84C;
+      --mono:    'IBM Plex Mono', monospace;
+      --sans:    'IBM Plex Sans', sans-serif;
+      --display: 'Instrument Serif', serif;
+    }
+
+    html, body {
+      width: 1280px;
+      height: 640px;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grid texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      width: 1280px;
+      height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 72px 88px;
+    }
+
+    /* Top: eyebrow */
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Center: main content */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .wordmark {
+      font-family: var(--display);
+      font-size: 108px;
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    .tagline {
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.5;
+      max-width: 640px;
+    }
+
+    .tagline strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* Right side: verdict callout */
+    .verdict-aside {
+      position: absolute;
+      right: 88px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .verdict-item {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 10px 18px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .v-go     { color: #5CAE72; border-color: rgba(92,174,114,0.25); background: rgba(92,174,114,0.06); }
+    .v-pilot  { color: #C9A84C; border-color: rgba(201,168,76,0.25); background: rgba(201,168,76,0.06); }
+    .v-reject { color: #C45C5C; border-color: rgba(196,92,92,0.25);  background: rgba(196,92,92,0.06); }
+    .v-delay  { color: #8888B0; border-color: rgba(136,136,176,0.2); background: rgba(136,136,176,0.05); }
+
+    /* Bottom: install + attribution */
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .install {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      background: #141417;
+      border: 1px solid #343438;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .install-prompt {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--text);
+      padding: 12px 20px;
+      letter-spacing: 0.01em;
+    }
+
+    .install-prompt span { color: var(--accent); }
+
+    .attr {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-2);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <div class="eyebrow">Claude Code Skill</div>
+
+  <div class="main">
+    <div class="wordmark">AZIMUTH</div>
+    <p class="tagline">
+      <strong>Pressure-test decisions before you commit.</strong><br/>
+      Assumptions, failure paths, incentive conflicts — with a verdict.
+    </p>
+  </div>
+
+  <div class="verdict-aside">
+    <div class="verdict-item v-go">PROCEED</div>
+    <div class="verdict-item v-pilot">PILOT FIRST</div>
+    <div class="verdict-item v-reject">REJECT</div>
+    <div class="verdict-item v-delay">DELAY PENDING EVIDENCE</div>
+  </div>
+
+  <div class="bottom">
+    <div class="install">
+      <div class="install-prompt"><span>$ </span>npx skills add github.com/MrBinnacle/azimuth</div>
+    </div>
+    <span class="attr">github.com/MrBinnacle/azimuth</span>
+  </div>
+
+</div>
+</body>
+</html>

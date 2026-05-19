@@ -1,10 +1,8 @@
 # AZIMUTH
 
-A Claude Code skill that pressure-tests decisions before you commit to them.
+A Claude Code skill that pressure-tests decisions before you commit to them. Run it when something feels off — before the rewrite, the hire, the launch, or the bet.
 
 Run `/azimuth [your decision]` before you greenlight the rewrite, the hire, the launch, or the bet.
-
-![Version](https://img.shields.io/badge/version-v1.3.0-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-blueviolet) ![Claude.ai](https://img.shields.io/badge/Claude.ai-compatible-blueviolet)
 
 ---
 
@@ -112,7 +110,7 @@ No evidence present that shifts this.
 
 ## Domains
 
-Works on any initiative-level decision with real downside: product launches, service rewrites, key hires, partnerships and M&A, build vs. buy decisions, org changes, PE secondaries, and timeline commitments. Domain-specific templates load automatically.
+Works on any initiative-level decision with real downside: product launches, service rewrites, key hires, partnerships and M&A, build vs. buy decisions, org changes, startup and early-stage decisions, PE secondaries, and timeline commitments. Domain-specific templates load automatically.
 
 ---
 
@@ -153,7 +151,8 @@ azimuth/
 │   ├── startup-failures.md               # 8 startup-specific failure patterns with diagnostic questions
 │   ├── software-failure-patterns.md      # 10 engineering failure patterns with azimuth questions
 │   ├── launch-risks.md                   # Pre/during/post launch risk zones with signal and mitigation
-│   ├── ma-partnership-patterns.md        # 8 M&A and partnership failure patterns with diagnostic questions
+│   ├── ma-partnership-patterns.md        # 12 M&A and partnership failure patterns with diagnostic questions
+│   ├── hiring-failure-patterns.md        # Hiring failure patterns with diagnostic questions
 │   └── org-change-patterns.md            # 6 org change and restructure failure patterns
 ├── diagnostics/
 │   ├── assumption-audit.md               # 5-step: extract → classify → risk-score → validate → gate
@@ -168,6 +167,7 @@ azimuth/
 │   ├── partnership-azimuth.md            # M&A, acquisitions, strategic partnerships, vendor relationships
 │   ├── secondaries-ic-azimuth.md         # PE secondaries IC recommendation template
 │   ├── org-change-azimuth.md             # Restructure, consolidation, role elimination, leadership transition
+│   ├── startup-azimuth.md                # Startup and early-stage venture decision template
 │   └── build-buy-partner-azimuth.md      # Path selection: build vs. buy vs. partner with domain handoff
 └── examples/
     ├── case-study-healthcare-gov.md      # Healthcare.gov DEEP mode run — 5/6 recall, 0 false positives
