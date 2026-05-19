@@ -1,9 +1,13 @@
 # Executive Azimuth Template
 
+Load via: `references/output-template.md` — Output Format (Executive)
+
 Use this template when:
 - User is briefing leadership, a board, or an executive sponsor
 - User asks to "keep it short" or wants a 1-page summary
 - Audience is decision-makers, not execution owners
+
+This is the presentation layer for a full AZIMUTH analysis — not a standalone diagnostic tool. Run the appropriate domain template first, then condense using this format. Domain templates: `templates/partnership-azimuth.md`, `templates/hiring-azimuth.md`, `templates/startup-azimuth.md`, `templates/secondaries-ic-azimuth.md`.
 
 Format: Plain prose blocks, minimal bullets, maximum 1–2 pages. Do not include diagnostic rationale — only conclusions and decision posture.
 
