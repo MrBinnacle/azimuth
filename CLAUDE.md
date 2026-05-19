@@ -121,7 +121,7 @@ Project notes live in a local Obsidian vault under `Writ_vault/azimuth/`. Subfol
 
 A navigable knowledge graph of the full repo is maintained in `graphify-out/` and mirrored into the Obsidian vault.
 
-**Graph location:** `graphify-out/graph.json` — 561 nodes, 809 edges, 25 communities  
+**Graph location:** `graphify-out/graph.json` — 610 nodes, 881 edges, 27 communities  
 **Obsidian vault:** `C:\Users\mlpgr\Writ_vault\graphify\azimuth\` — open as vault in Obsidian  
 **HTML graph:** `graphify-out/graph.html` — open in browser, no server needed  
 **Python interpreter:** `C:\Python313\python.exe`
@@ -156,13 +156,11 @@ Skipping step 1 means EXTEND vs. CREATE decisions lose their evidence base. Skip
 - `AZIMUTH Design System` (degree 17)
 - `v1.1.0 Baseline Eval Results` (degree 16)
 - `Module Guide Reference File` (degree 16)
+- `AZIMUTH Analysis Block — Boeing 737 MAX Decision` (degree 16)
 - `M&A and Partnership Failure Patterns` (degree 15)
-- `AZIMUTH OG Image — Social Card` (degree 14)
-- `Coverage Tier 2 Session 6: gotchas.md Pattern Load` (degree 13)
+- `SKILL.md Core Skill Orchestrator` (degree 15)
 
-**New community:** `Boeing Case Study & Pre-Commitment Analysis` (community 3, 65 nodes) — added this run from `docs/boeing-case-study-draft-v1.md`.
-
-**Bridge node to watch:** `Anti-Sycophancy: Confidence Inflation on Cautious Verdicts (M10)` (betweenness 0.026) — bridges Anti-Sycophancy Diagnostics and Eval Program & Hook Classification communities.
+**Bridge node to watch:** `Anti-Sycophancy: Confidence Inflation on Cautious Verdicts (M10)` (betweenness 0.019) — bridges Anti-Sycophancy Diagnostics and Diagnostic Files communities.
 
 ### Graph queries
 
