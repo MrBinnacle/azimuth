@@ -103,14 +103,16 @@ Mitigation: [Action.]
 
 **FAILURE PATH ANALYSIS**
 
-Construct the most plausible failure chain for this hire:
+Construct the three most plausible failure chains for this specific hire.
+Use: Trigger → Cascade → Visible Failure → Business Cost
 
-**Path 1**: [Trigger] → [cascade] → [visible failure] → [business cost]
-Example: Role expectations unclear → candidate optimizes for wrong outcomes → 6-month performance review reveals misalignment → replacement cycle begins
+**Path 1**:
 
-**Path 2**: [Trigger] → [cascade] → [failure] → [cost]
+**Path 2**:
 
-**Path 3**: [Trigger] → [cascade] → [failure] → [cost]
+**Path 3**:
+
+*Each chain must be specific to this role, this candidate, and this organization context — not a restatement of generic hiring risk. Common chain origins: coachability blind spot, interpersonal intelligence substitution, temperament-context mismatch, skills-dominant selection inversion, reference check contamination, onboarding cliff. Pattern details and observable signals in `references/hiring-failure-patterns.md`.*
 
 ---
 

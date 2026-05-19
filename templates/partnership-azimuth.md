@@ -163,6 +163,21 @@ For each actor, does their incentive align with deal success?
 
 ---
 
+**SECTION 7 — FAILURE PATH REGISTER**
+
+Construct the three most plausible failure chains for this specific deal.
+Use: Trigger → Cascade → Visible Failure → Business Cost
+
+**1.**
+
+**2.**
+
+**3.**
+
+*Each chain must be specific to this target or partner, this integration structure, and this timeline — not a restatement of generic M&A risk. Common chain origins: strategic rationale substitution, integration timeline compression, synergy overestimation, key talent flight, due diligence gap, partnership incentive drift, earnout misalignment, dependency lock-in, governance vacuum post-close, regulatory closing risk. Pattern details and observable signals in `references/ma-partnership-patterns.md`.*
+
+---
+
 **RECOMMENDED DECISION**
 
 ☐ PROCEED — Deal is structurally sound; proceed to close / execution

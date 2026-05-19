@@ -127,7 +127,7 @@ Co-founder collapse is a structurally preventable failure mode. Verbal agreement
 
 ## Section 6 — Failure Path Register
 
-Construct the three most plausible failure chains for this specific initiative. Each chain must be anchored in findings from Sections 1–5 — not generic startup failure modes.
+Construct the three most plausible failure chains for this specific initiative. Each chain must be anchored in findings from Sections 1–5 — not generic startup failure modes. Common chain origins: premature scaling, founder-market mismatch, solution looking for a problem, runway miscalculation, co-founder collapse, market timing failure, first customer trap, distribution absent. Pattern details and observable signals in `references/startup-failures.md`.
 
 Use: Trigger → Cascade → Visible Failure → Business Cost
 

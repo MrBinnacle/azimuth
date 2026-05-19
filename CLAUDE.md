@@ -121,7 +121,7 @@ Project notes live in a local Obsidian vault under `Writ_vault/azimuth/`. Subfol
 
 A navigable knowledge graph of the full repo is maintained in `graphify-out/` and mirrored into the Obsidian vault.
 
-**Graph location:** `graphify-out/graph.json` — 460 nodes, 683 edges, 24 communities  
+**Graph location:** `graphify-out/graph.json` — 525 nodes, 780 edges, 27 communities  
 **Obsidian vault:** `C:\Users\mlpgr\Writ_vault\graphify\azimuth\` — open as vault in Obsidian  
 **HTML graph:** `graphify-out/graph.html` — open in browser, no server needed  
 **Python interpreter:** `C:\Python313\python.exe`
@@ -153,12 +153,14 @@ Skipping step 1 means EXTEND vs. CREATE decisions lose their evidence base. Skip
 - `PE Secondaries Pre-Commitment Decision Anatomy` (degree 20)
 - `Coverage Testing Program — Synthesis` (degree 18)
 - `AZIMUTH Fit Assessment — PE Secondaries IC Decision` (degree 17)
-- `M&A and Partnership Failure Patterns` (degree 17)
-- `Module Guide Reference File` (degree 16)
+- `AZIMUTH Design System` (degree 17)
 - `v1.1.0 Baseline Eval Results` (degree 16)
-- `Base Rates Reference` (degree 15)
+- `M&A and Partnership Failure Patterns` (degree 16)
+- `Module Guide Reference File` (degree 16)
+- `AZIMUTH OG Image — Social Card` (degree 14)
+- `Coverage Tier 2 Session 6: gotchas.md Pattern Load` (degree 13)
 
-**Bridge node to watch:** `Anti-Sycophancy: Confidence Inflation on Cautious Verdicts (M10)` (betweenness 0.034) — bridges Anti-Sycophancy Eval Program and Anti-Sycophancy Patterns & Diagnostics communities.
+**Bridge node to watch:** `Anti-Sycophancy: Confidence Inflation on Cautious Verdicts (M10)` (betweenness 0.026) — bridges Anti-Sycophancy Diagnostics and Eval Program & Hook Classification communities.
 
 ### Graph queries
 
