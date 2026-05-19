@@ -1,8 +1,18 @@
 # AZIMUTH
 
-A Claude Code skill that pressure-tests decisions before you commit to them. Run it when something feels off — before the rewrite, the hire, the launch, or the bet.
+Decision-quality pre-commitment analysis. You put in a decision. You get a real analysis back.
 
-Run `/azimuth [your decision]` before you greenlight the rewrite, the hire, the launch, or the bet.
+AZIMUTH pressure-tests decisions before commitment. It surfaces the assumption holding everything together, the dependency nobody secured, and the failure mode that's common in decisions like this one but invisible from inside it.
+
+---
+
+## Try it now
+
+No installation. Enter your Anthropic API key, load a prompt, run it.
+
+**[https://azimuth-testbed.netlify.app](https://azimuth-testbed.netlify.app)**
+
+Your key goes directly to Anthropic from your browser. Nothing touches our servers. The three Boeing 737 MAX prompt variants are pre-loaded as the demonstration.
 
 ---
 
@@ -30,7 +40,9 @@ AZIMUTH runs the structured pressure-test before you're committed.
 
 ---
 
-## Quick start
+## Install in your workflow
+
+If you want AZIMUTH permanently in Claude Code:
 
 ```
 npx skills add https://github.com/MrBinnacle/azimuth
@@ -45,6 +57,28 @@ Then invoke on any decision:
 /azimuth Build vs. buy vs. partner for this capability?
 /azimuth Pressure test our Q3 timeline
 ```
+
+---
+
+## The Boeing methodology runs
+
+Three prompt variants. Three clean-context runs on Opus 4.5. Verdict stable across all framing conditions.
+
+| Run | Prompt | Context | Verdict | Confidence |
+|---|---|---|---|---|
+| 2 | Full framing | Clean | REJECT | HIGH |
+| 3 | Thin (parameters only) | Clean | REJECT | HIGH |
+| 4 | Adversarial (confident register) | Clean | DELAY PENDING EVIDENCE | LOW† |
+
+The thin prompt contained no company name, no aircraft name, no historical reference — decision parameters only. AZIMUTH recognized the MCAS pattern and returned REJECT, HIGH confidence.
+
+Run 3 verbatim: "Base rate for this exact strategy succeeding without training requirement: 0% in the post-MAX regulatory environment."
+
+The irreconcilable structure is visible in the decision parameters alone.
+
+† Opus 4.5 applied the M10 confidence ceiling more aggressively to sparse-evidence inputs; the verdict is stable, the confidence calibration is arguably more precise.
+
+**Run 1 (full framing, contaminated context):** AZIMUTH paused at M4 PRE-CHECK and issued a structured interview rather than proceeding to verdict — methodologically significant as evidence that explicit context pre-loading and implicit session contamination trigger different protocol behavior.
 
 ---
 
