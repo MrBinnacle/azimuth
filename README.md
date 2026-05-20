@@ -62,17 +62,21 @@ Then invoke on any decision:
 
 ## The Boeing methodology runs
 
-Three prompt variants tested on Opus 4.5, each from a fresh conversation. Full framing: REJECT, HIGH confidence.
+Confidence reflects evidence, not framing.
 
-| Run | Prompt | Context | Verdict | Confidence |
+Three prompt variants. Three runs on Opus 4.5, each from a fresh conversation. The verdicts varied — because each one tracked what its input actually supported.
+
+| Run | Prompt | Verdict | Confidence | What happened |
 |---|---|---|---|---|
-| 2 | Full framing | Clean | REJECT | HIGH |
+| 1 | Full framing — institutional context, December 2011, $280M penalty clause, software compensation system named | REJECT | HIGH | Full 10-module analysis identifying the penalty structure as the root organizational pathology |
+| 2 | Thin — parameters only, no company name, no aircraft name | REJECT | HIGH | The model conducted the structural interview internally, judged the parameters sufficient to answer it, and returned a verdict |
+| 3 | Adversarial — confident commercial framing, penalty clause omitted | DELAY PENDING EVIDENCE | LOW† | The model issued five structural questions, proceeded to a verdict on what it had, and used the confidence ceiling to flag what was missing |
 
-Verbatim (parameters-only prompt, 2026-05-19): "Base rate for this exact strategy succeeding without training requirement: 0% in the post-MAX regulatory environment."
+† LOW confidence on Run 3 is not a hedge. It's an explicit signal that the input lacks the evidence required to support higher confidence — paired with a named upgrade path: answer the five questions, and the verdict can be revisited.
 
-The irreconcilable structure is visible in the decision parameters alone.
+AZIMUTH returns hard verdicts when the input supports them. When the input is thin or adversarially framed, the model either runs the structural interview internally (Run 2) or externalizes it as part of the verdict (Run 3). On re-runs, the model sometimes refuses to proceed past the interview without operator response. All three behaviors express the same principle: the verdict and confidence track what the evidence supports, not what the framing suggests.
 
-**Run 1 (full framing, contaminated context):** AZIMUTH paused at M4 PRE-CHECK and issued a structured interview rather than proceeding to verdict — methodologically significant as evidence that explicit context pre-loading and implicit session contamination trigger different protocol behavior.
+[Run the Boeing prompts yourself →](https://azimuth-testbed.netlify.app)
 
 ---
 

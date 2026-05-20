@@ -913,15 +913,57 @@ either departure.
   <section class="section" id="case-study">
     <div class="container">
       <p class="section-label">Methodology validation · Boeing 737 MAX</p>
-      <h2>REJECT, HIGH confidence.</h2>
+      <h2>Confidence reflects evidence, not framing.</h2>
       <p class="case-lead">
-        Full framing on Opus 4.5, fresh context. The irreconcilable structure is visible in the decision parameters alone.
+        Three prompt variants. Three runs on Opus 4.5, each from a fresh conversation. The verdicts varied — because each one tracked what its input actually supported.
       </p>
 
-      <div class="case-quote-block">
-        <p class="case-quote-text">"Base rate for this exact strategy succeeding without training requirement: 0% in the post-MAX regulatory environment."</p>
-        <span class="case-quote-source">— AZIMUTH, Opus 4.5, parameters-only prompt, 2026-05-19</span>
+      <div class="v-table-wrap" style="margin-top: 32px;">
+        <table class="v-table">
+          <thead>
+            <tr>
+              <th scope="col">Run</th>
+              <th scope="col">Prompt</th>
+              <th scope="col">Verdict</th>
+              <th scope="col">Confidence</th>
+              <th scope="col">What happened</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Full framing — institutional context, December 2011, $280M penalty clause, software compensation system named</td>
+              <td><span class="vtag v-reject">REJECT</span></td>
+              <td>HIGH</td>
+              <td>Full 10-module analysis identifying the penalty structure as the root organizational pathology</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Thin — parameters only, no company name, no aircraft name</td>
+              <td><span class="vtag v-reject">REJECT</span></td>
+              <td>HIGH</td>
+              <td>The model conducted the structural interview internally, judged the parameters sufficient to answer it, and returned a verdict</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Adversarial — confident commercial framing, penalty clause omitted</td>
+              <td><span class="vtag v-delay">DELAY PENDING EVIDENCE</span></td>
+              <td>LOW†</td>
+              <td>The model issued five structural questions, proceeded to a verdict on what it had, and used the confidence ceiling to flag what was missing</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
+      <p class="case-footnote">
+        † LOW confidence on Run 3 is not a hedge. It's an explicit signal that the input lacks the evidence required to support higher confidence — paired with a named upgrade path: answer the five questions, and the verdict can be revisited.
+      </p>
+
+      <p class="case-note">
+        AZIMUTH returns hard verdicts when the input supports them. When the input is thin or adversarially framed, the model either runs the structural interview internally (Run 2) or externalizes it as part of the verdict (Run 3). On re-runs, the model sometimes refuses to proceed past the interview without operator response. All three behaviors express the same principle: the verdict and confidence track what the evidence supports, not what the framing suggests.
+      </p>
+
+      <a href="https://azimuth-testbed.netlify.app" class="case-run-link">Run the Boeing prompts yourself →</a>
     </div>
   </section>
 
