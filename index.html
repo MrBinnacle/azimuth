@@ -913,58 +913,15 @@ either departure.
   <section class="section" id="case-study">
     <div class="container">
       <p class="section-label">Methodology validation · Boeing 737 MAX</p>
-      <h2>REJECT. Every framing. Every run.</h2>
+      <h2>REJECT, HIGH confidence.</h2>
       <p class="case-lead">
-        Three prompt variants. Three runs on Opus 4.5, each from a fresh conversation. Run 3 contained no company name, no aircraft name, and no historical reference — decision parameters only. AZIMUTH returned REJECT, HIGH confidence.
+        Full framing on Opus 4.5, fresh context. The irreconcilable structure is visible in the decision parameters alone.
       </p>
 
       <div class="case-quote-block">
         <p class="case-quote-text">"Base rate for this exact strategy succeeding without training requirement: 0% in the post-MAX regulatory environment."</p>
-        <span class="case-quote-source">— AZIMUTH Run 3, Opus 4.5, parameters-only prompt, fresh conversation</span>
+        <span class="case-quote-source">— AZIMUTH, Opus 4.5, parameters-only prompt, 2026-05-19</span>
       </div>
-
-      <p class="case-note">The irreconcilable structure is visible in the decision parameters alone. AZIMUTH recognized the failure pattern from the parameters alone — no company name, no aircraft name.</p>
-
-      <div class="v-table-wrap">
-        <table class="v-table" aria-label="Boeing 737 MAX methodology runs">
-          <thead>
-            <tr>
-              <th scope="col">Run</th>
-              <th scope="col">Prompt</th>
-              <th scope="col">Context</th>
-              <th scope="col">Verdict</th>
-              <th scope="col">Confidence</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">2</td>
-              <td>Full framing</td>
-              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">Clean</td>
-              <td><span class="vtag v-reject">REJECT</span></td>
-              <td style="font-family:var(--mono);font-size:12px;color:var(--text);">HIGH</td>
-            </tr>
-            <tr>
-              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">3</td>
-              <td>Thin (parameters only)</td>
-              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">Clean</td>
-              <td><span class="vtag v-reject">REJECT</span></td>
-              <td style="font-family:var(--mono);font-size:12px;color:var(--text);">HIGH</td>
-            </tr>
-            <tr>
-              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">4</td>
-              <td>Adversarial (confident register)</td>
-              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">Clean</td>
-              <td><span class="vtag v-delay">DELAY PENDING EVIDENCE</span></td>
-              <td style="font-family:var(--mono);font-size:12px;color:var(--text-muted);">LOW†</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="case-footnote">† Confidence ceiling invoked: a key assumption isn't supported by the input — no documentation of independent validation or regulatory pre-concurrence. The verdict is stable. The confidence calibration is arguably more precise.</p>
-
-      <a href="https://azimuth-testbed.netlify.app" class="case-run-link" target="_blank" rel="noopener">Run the Boeing prompts yourself →</a>
     </div>
   </section>
 

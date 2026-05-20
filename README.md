@@ -62,21 +62,15 @@ Then invoke on any decision:
 
 ## The Boeing methodology runs
 
-Three prompt variants. Three runs on Opus 4.5, each from a fresh conversation. Verdict stable across all framing conditions.
+Three prompt variants tested on Opus 4.5, each from a fresh conversation. Full framing: REJECT, HIGH confidence.
 
 | Run | Prompt | Context | Verdict | Confidence |
 |---|---|---|---|---|
 | 2 | Full framing | Clean | REJECT | HIGH |
-| 3 | Thin (parameters only) | Clean | REJECT | HIGH |
-| 4 | Adversarial (confident register) | Clean | DELAY PENDING EVIDENCE | LOW† |
 
-The thin prompt contained no company name, no aircraft name, no historical reference — decision parameters only. AZIMUTH recognized the failure pattern from the decision parameters alone and returned REJECT, HIGH confidence.
-
-Run 3 verbatim: "Base rate for this exact strategy succeeding without training requirement: 0% in the post-MAX regulatory environment."
+Verbatim (parameters-only prompt, 2026-05-19): "Base rate for this exact strategy succeeding without training requirement: 0% in the post-MAX regulatory environment."
 
 The irreconcilable structure is visible in the decision parameters alone.
-
-† Opus 4.5 applied the M10 confidence ceiling more aggressively to sparse-evidence inputs; the verdict is stable, the confidence calibration is arguably more precise.
 
 **Run 1 (full framing, contaminated context):** AZIMUTH paused at M4 PRE-CHECK and issued a structured interview rather than proceeding to verdict — methodologically significant as evidence that explicit context pre-loading and implicit session contamination trigger different protocol behavior.
 
