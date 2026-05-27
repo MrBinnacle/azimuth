@@ -143,6 +143,9 @@
       text-decoration: none;
       letter-spacing: 0.04em;
       transition: color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
     }
 
     .nav-links a:hover { color: var(--text); }
@@ -190,6 +193,8 @@
       margin-bottom: 28px;
       overflow-wrap: break-word;
     }
+
+    .hero-h1 span { display: block; }
 
     h1 em {
       font-style: normal;
@@ -622,6 +627,9 @@
       text-decoration: none;
       letter-spacing: 0.04em;
       transition: color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
     }
 
     .footer-links a:hover { color: var(--text); }
@@ -635,6 +643,10 @@
       text-decoration: none;
       letter-spacing: 0.02em;
       transition: color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 4px 0;
     }
     .testbed-link:hover { color: var(--text); }
 
@@ -718,7 +730,10 @@
       text-decoration: none;
       letter-spacing: 0.02em;
       transition: color 0.15s;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 4px 0;
       margin-top: 28px;
     }
     .case-run-link:hover { color: var(--text); }
@@ -739,7 +754,9 @@
       color: var(--text-2);
       text-decoration: none;
       letter-spacing: 0.04em;
-      padding: 8px 0;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 4px;
       transition: color 0.15s;
     }
     .nav-github-mobile:hover { color: var(--text); }
@@ -792,7 +809,7 @@
   <section class="hero">
     <div class="container">
       <p class="eyebrow">Claude Code Skill</p>
-      <h1>Verify the<br/><em>bearing</em><br/>before you<br/>step off.</h1>
+      <h1 class="hero-h1"><span>Verify the</span> <span><em>bearing</em></span> <span>before you</span> <span>step off.</span></h1>
       <p class="hero-sub">
         AZIMUTH tests your plan before you commit to it. Run it before you greenlight the rewrite, the hire, the launch, or the bet.
       </p>
