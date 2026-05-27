@@ -14,6 +14,7 @@ graphify-out/
 !.claude/skills/
 !.claude/settings.json
 !.claude/hooks/
+!.claude/agents/
 research/
 
 # Internal strategy docs — not for public repo
