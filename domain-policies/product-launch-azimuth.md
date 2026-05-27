@@ -1,5 +1,7 @@
 # Product Launch Azimuth Template
 
+This file configures runtime presentation for product launch decisions. Decision authority lives in `BEHAVIOR_SPEC.md`. This file does not define rules.
+
 Use this template when:
 - Plan involves a product launch, feature release, beta rollout, or public go-live
 - Risk involves user-facing failures, communication timing, or support readiness
@@ -46,7 +48,7 @@ Before readiness assessment, determine whether this launch date reflects technic
 
 **Flag if:** launch date is externally committed before readiness is confirmed; marketing spend or sales pipeline is already dependent on the launch proceeding; accountability for failure is diffuse or absent.
 
-If flagged: treat deadline politics as the primary failure risk, ahead of technical readiness. Escalate any ⚠ readiness gate to ✗ status for verdict purposes.
+If flagged: treat deadline politics as the primary failure risk, ahead of technical readiness. Escalate any ⚠ readiness gate to ✗ status for verdict purposes. (activates RULE-4.6 DELAY PENDING EVIDENCE via gate-status escalation when deadline-politics incentive is observed)
 
 ---
 
@@ -79,7 +81,7 @@ Rate each gate: ✓ READY | ⚠ PARTIAL | ✗ NOT READY
 | Communication plan finalized and coordinated | | |
 | On-call coverage confirmed for launch window | | |
 
-**Any ✗ is a launch blocker. Any ⚠ requires a documented exception.**
+**Any ✗ is a launch blocker. Any ⚠ requires a documented exception.** (activates RULE-4.6 DELAY PENDING EVIDENCE or RULE-4.7 REJECT for product-launch domain when readiness gate fails without documented exception)
 
 ---
 

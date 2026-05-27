@@ -1,11 +1,13 @@
 # Build vs. Buy vs. Partner Azimuth Template
 
+This file configures runtime presentation for build/buy/partner decisions. Decision authority lives in `BEHAVIOR_SPEC.md`. This file does not define rules.
+
 Use this template when:
 - The decision is which path to take to acquire a capability, not whether to acquire it
 - Genuine multi-option evaluation is needed — all three paths are being considered
 - Audience includes strategy, product, engineering leadership, or the executive making the path decision
 
-**Scope:** This template handles path selection only. After a path is recommended, load the appropriate domain template for execution analysis: `templates/codebase-azimuth.md` (Build) or `templates/partnership-azimuth.md` (Buy or Partner). The Carry Forward section at the end of this output transfers context to the domain template — use it.
+**Scope:** This template handles path selection only. After a path is recommended, load the appropriate domain template for execution analysis: `domain-policies/codebase-azimuth.md` (Build) or `domain-policies/partnership-azimuth.md` (Buy or Partner). The Carry Forward section at the end of this output transfers context to the domain template — use it.
 
 **Anchoring flag:** If the user arrives already committed to one path ("we're thinking of building X"), this template forces comparative analysis regardless. Single-path analysis belongs in the domain template; if the path choice is not genuinely open, route there directly.
 
@@ -49,7 +51,7 @@ Before analysis, determine whether genuine multi-option evaluation is possible.
 | Concerns about the proposed path were raised and dismissed or minimized | ☐ Yes / ☐ No / ☐ Unknown | |
 | Budget, timeline, or org decisions have already been made that assume one path | ☐ Yes / ☐ No | |
 
-**If any signal is Yes:** comparative analysis across all three paths is required regardless of the user's stated preference. Anchoring on one path is the highest-probability failure mode for this decision type — Module 4 will surface whose incentive drives it.
+**If any signal is Yes:** comparative analysis across all three paths is required regardless of the user's stated preference. Anchoring on one path is the highest-probability failure mode for this decision type — Module 4 will surface whose incentive drives it. (domain-specific gate: comparative analysis is mandatory under build-buy-partner domain when anchoring signals observed)
 
 **If all signals are No:** genuine multi-option evaluation is in play. Proceed.
 
@@ -81,7 +83,7 @@ Module 4 runs once for the path-selection decision. Advocate identity is the hig
 **Response tiering (same as core Module 4):**
 - GREEN — all 7 answered: full analysis, no confidence impact
 - YELLOW — 5–6 answered AND Question 1 [IDENTITY] answered: analysis proceeds, confidence reduced one tier
-- RED — Question 1 skipped OR fewer than 5 answered: confidence locked at LOW; PROCEED and PROCEED WITH SAFEGUARDS unavailable for path recommendation
+- RED — Question 1 skipped OR fewer than 5 answered: confidence locked at LOW; PROCEED and PROCEED WITH SAFEGUARDS unavailable for path recommendation (restates RULE-6.3/6.4 for the path-recommendation context within build-buy-partner domain)
 
 **Anchoring enforcement:** If Module 4 returns YELLOW or RED on [IDENTITY] or [DISSENT], comparative analysis across all three paths is mandatory — regardless of whether the user has indicated a preferred path. A YELLOW or RED tier on these questions means the path selection may be driven by proposer incentive, not capability merit.
 
@@ -100,7 +102,7 @@ Run each gate. A path that fails its gate is removed from comparative analysis.
 | Timeline to build is consistent with competitive need | ☐ Yes / ☐ No | |
 | Opportunity cost is acceptable — what does NOT get built if this is prioritized? | ☐ Acceptable / ☐ High / ☐ Unknown | |
 
-**Build gate fails if:** capability is not differentiating AND a commodity solution exists at acceptable cost. Building a commodity is a deliberate choice that requires explicit justification.
+**Build gate fails if:** capability is not differentiating AND a commodity solution exists at acceptable cost. Building a commodity is a deliberate choice that requires explicit justification. (activates RULE-4.7 REJECT for the named path-option within build-buy-partner domain)
 
 ### Buy Gate
 
@@ -111,7 +113,7 @@ Run each gate. A path that fails its gate is removed from comparative analysis.
 | The deal thesis beyond "we needed the capability" is defined | ☐ Yes / ☐ No | |
 | Key talent retention through integration has been considered | ☐ Yes / ☐ No | |
 
-**Buy gate fails if:** no acquirable targets exist at a defensible price, or no credible integration plan can be defined. Price availability without integration credibility is not a valid Buy path.
+**Buy gate fails if:** no acquirable targets exist at a defensible price, or no credible integration plan can be defined. Price availability without integration credibility is not a valid Buy path. (activates RULE-4.7 REJECT for the named path-option within build-buy-partner domain)
 
 ### Partner Gate
 
@@ -122,7 +124,7 @@ Run each gate. A path that fails its gate is removed from comparative analysis.
 | IP, data, and brand ownership is clear and contractually protectable | ☐ Yes / ☐ No / ☐ Unknown | |
 | Dependency asymmetry is acceptable — could the partner exit more easily than we could? | ☐ Symmetric / ☐ Asymmetric / ☐ Unknown | |
 
-**Partner gate fails if:** no viable partners with aligned incentives exist, or switching cost is High with no defined exit mechanism. A partner relationship with high exit cost and misaligned incentives is acquisition risk without acquisition control.
+**Partner gate fails if:** no viable partners with aligned incentives exist, or switching cost is High with no defined exit mechanism. A partner relationship with high exit cost and misaligned incentives is acquisition risk without acquisition control. (activates RULE-4.7 REJECT for the named path-option within build-buy-partner domain)
 
 **Paths remaining after gates:** [Build / Buy / Partner / None]
 
@@ -176,7 +178,7 @@ Based on gates and comparative analysis:
 
 ## Carry Forward
 
-*(Include this block in the next session prompt when loading `templates/codebase-azimuth.md` or `templates/partnership-azimuth.md`. SKILL.md Bypass Handling will ingest it and skip Module 4 re-interview if GREEN.)*
+*(Include this block in the next session prompt when loading `domain-policies/codebase-azimuth.md` or `domain-policies/partnership-azimuth.md`. SKILL.md Bypass Handling will ingest it and skip Module 4 re-interview if GREEN.)*
 
 ```
 AZIMUTH CARRY FORWARD — Build/Buy/Partner path selection complete
@@ -188,5 +190,5 @@ Path verdict: [RECOMMENDED PATH — standard verdict]
 Top unresolved assumption: [the assumption most likely to reverse the recommendation if wrong]
 Capability objective: [one sentence — the capability gap this decision addresses]
 
-Next template: [templates/codebase-azimuth.md / templates/partnership-azimuth.md]
+Next template: [domain-policies/codebase-azimuth.md / domain-policies/partnership-azimuth.md]
 ```

@@ -6,7 +6,7 @@
 # Session state — never commit
 .omc/
 
-# Graphify knowledge graph — local only, rebuilt from source
+# Graphify knowledge graph output — local only, never tracked.
 graphify-out/
 
 # Claude Code config — settings.json + hooks ship with the repo; everything else is local-only
@@ -17,15 +17,22 @@ graphify-out/
 !.claude/agents/
 research/
 
-# Internal strategy docs — not for public repo
-MARKETING.md
+# Maintainer-local docs — never public
 CLAUDE.md
+ROADMAP.md
+MARKETING.md
 README_v1.1.1.md
+reddit-update-drafts.md
+
+# docs/ is maintainer-local by default; specific public artifacts allow-listed.
 docs/*
 !docs/azimuth-runs
 !docs/adr
 !docs/agents
-reddit-update-drafts.md
+!docs/MAINTENANCE.md
+!docs/VALIDATION.md
+!docs/DESIGN.md
+!docs/PRODUCT.md
 
 # Agent skill install artifacts — local only
 .agents/
@@ -53,3 +60,4 @@ desktop.ini
 
 # Local MCP config — contains tokens, never commit
 .mcp.json
+.azimuth-extraction-staging.md

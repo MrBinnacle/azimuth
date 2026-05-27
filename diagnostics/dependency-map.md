@@ -1,8 +1,6 @@
 # Dependency Fragility Map Diagnostic
 
-Load when running a full Dependency Fragility Map (Module 5) in STANDARD or DEEP mode, or when the plan involves multiple teams, vendors, external services, or shared infrastructure.
-
----
+This file is an observational catalog. It describes patterns to look for when conducting a Module 5 dependency assessment. It does not assign verdicts, cap confidence, or define when to load — decision authority for those lives in `BEHAVIOR_SPEC.md`.
 
 ## Purpose
 
@@ -70,11 +68,11 @@ For each dependency, assess:
 - Partial: Possible but more expensive or slower
 - No: No fallback; plan fails if dependency fails
 
-**Risk Level**: Composite assessment
-- Critical: SPOF + Low reliability or No fallback
-- High: SPOF OR low reliability without fallback
-- Medium: Not SPOF, partial fallback, medium reliability
-- Low: Redundant, reliable, short lead time
+**Risk Level**: Descriptive categories of findings
+- Critical-level findings typically have SPOF together with low reliability or absent fallback
+- High-level findings typically involve SPOF, or low reliability without a fallback
+- Medium-level findings typically are not SPOF, have a partial fallback, and medium reliability
+- Low-level findings typically are redundant, reliable, and short lead time
 
 ---
 
@@ -143,13 +141,3 @@ Concentration risk is multiplicative: one failure blocks multiple things simulta
 ### Recommended Dependency Actions
 1. [action] — Owner: [name] — By: [date]
 
----
-
-## Verdict Consequence
-
-If any dependency meets all three conditions:
-- **SPOF: Yes** — plan fails if this dependency fails
-- **Fallback: No** — no alternative available
-- **Status: assumed or unverified** — not yet secured or confirmed
-
-→ **VERDICT-BLOCKING.** This combination cannot be resolved by a safeguard action list. An action list defers the problem; the decision has not confirmed the dependency is available. Flag this explicitly in the Module 10 pre-verdict check and return **DELAY PENDING EVIDENCE**. Do not return PROCEED WITH SAFEGUARDS when this condition is present — safeguards cannot substitute for a confirmation that does not yet exist.

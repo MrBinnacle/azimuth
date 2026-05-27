@@ -6,12 +6,47 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Engine-layer governance (canonical spec + always-loaded runtime mirror)
+
+- **BEHAVIOR_SPEC.md authored** as the canonical engine specification. §1–§8 reduce all engine decision authority — intake routing, mode selection, reference loading, verdict conditions, module firing, confidence bounds, behavioral overrides, and domain-policy gating — into deterministic IF/THEN rules. `[AMBIGUOUS-EXTRACTED]` tags carry forward pre-existing ambiguities from source material unresolved.
+- **SKILL.md ↔ BEHAVIOR_SPEC.md mirror invariant established.** SKILL.md is the always-loaded runtime mirror; BEHAVIOR_SPEC.md is the canonical spec. Every load-bearing rule MUST exist in both files with SKILL.md carrying the full text inline (the 5 load-bearing behavioral rules, intake routing consequents, mode selection triggers, verdict conditions, reference-loading matrix). This preserves v1.4.0's partial-load discipline (0/5 → 5/5 rule survival) while letting maintainers reason from a single canonical source. The mirror invariant is declared in both files' preambles and codified in `docs/MAINTENANCE.md`.
+- **Decision authority stripped from diagnostics/ and references/.** Each file's preamble now points decision authority to BEHAVIOR_SPEC.md; verdict consequents removed; observational catalogs preserved. `references/mode-behaviors.md` and `references/module-guide.md` reduced (~37% size) — rule machinery moved to spec, module bodies kept as rationale.
+- **`docs/VALIDATION.md` authored.** Enforcement spec for the four repo-integrity rules (description char-count, gotchas section-count, banned-token, SKILL.md path integrity). The PreToolUse `git commit` hook mirrors this spec; if they diverge, the spec is authoritative.
+
+### Namespace topology + presentation/policy separation
+
+- **`templates/` renamed to `domain-policies/`.** Resolves ADR-0002 Issue C (the directory's actual contract is domain gating/configuration, not formatting scaffolding). All 8 domain policies retain their `-azimuth.md` filenames.
+- **Domain-policies cite spec rules per RULE-8.10.** Every rule-shaped sentence in `domain-policies/*-azimuth.md` now explicitly cites the BEHAVIOR_SPEC.md rule it activates, suppresses, or parameterizes. Three domain-level confidence-cap statements replaced with citations to the cross-cutting RULE-6.5 (incentive-misalignment cap) per RULE-8.6.
+- **`.claude/skills/` namespace split (narrowed).** Four maintenance skills (`research-scout`, `verdict-auditor`, `gap-scanner`, `reference-authoring`) moved under `.claude/skills/maintenance/`. Speculative `runtime/`, `eval/`, `plugin/`, `meta/` namespaces deliberately NOT created — empty namespaces would imply ontology without occupants.
+- **`ui-ux-pro-max` plugin skill removed** as superseded by the global `impeccable` skill. Local install had been half-broken (data/scripts pointed at a non-existent `src/` tree). `.claude/skills/` now contains only `maintenance/` plus the gitignored `azimuth/` install-test self-copy.
+- **`executive-azimuth.md` relocated.** Identified as a presentation/format file misfiled under `domain-policies/`. Moved to `references/output-format-executive.md`. Domain-policies/ now contains only true domain-gating policies (8 files, all wired through BEHAVIOR_SPEC.md §1.3 RULE-1.12..RULE-1.19).
+
+### Spec corrections
+
+- **RULE-6.6 narrowed.** Layer-3 domain set reduced from `{3 (Hiring), 8 (Startup)}` to `{8 (Startup)}` only — the co-founder governance structural-completeness rule has no source support in `domain-policies/hiring-azimuth.md`. Spec previously claimed cross-domain firing; verification of source files showed only `startup-azimuth.md` defines a Co-Founder Structure Check.
+- **RULE-8.12 stripped of source-unsupported clause.** Removed the "PROCEED suppressed per §6 RULE-6.6 when co-founder governance structure incomplete (applies to co-founder hires only)" clause. This was an inferred extension to the Hiring domain with no source support.
+- **RULE-4.15 'fragility-CRITICAL' label dropped.** Eliminates a cross-layer reference leak (the label appeared only in `diagnostics/fragility-scan.md`, not in spec).
+
 ### Maintenance orchestration
 
 - **ADR-0001 added.** `docs/adr/0001-bespoke-orchestration-layer.md` records the producer/consumer split, lazy file creation, hard-dep vs soft-dep maintenance skills, and what is deliberately not built (no pipeline skill, no verify-mode flag, no upfront CONTEXT.md, no ADR backfill).
+- **ADR-0002 added.** `docs/adr/0002-engine-layer-governance.md` declares the SPEC / RUNTIME / DIAGNOSTICS / RATIONALE four-layer taxonomy. Both ADRs subsequently aligned with executed state (post-execution footers added).
+- **`docs/MAINTENANCE.md` authored.** Operational orchestration anchor: verification layers (commit-time / audit-time / release-time), maintenance-loop responsibilities, subagent dispatch invariants, migration / rollback discipline (including the path-rename follow-up-commit pattern), drift-vectors table, and 6-step next-session continuation. Reading it + the two ADRs is the documented onboarding path for any external maintainer.
 - **`.out-of-scope/` directory seeded.** Two rejection-rationale files promoted from private maintainer notes to durable, citable repo artifacts: `template-expansion-without-evidence.md` and `breadth-before-reliability.md`.
 - **`docs/agents/domain.md` updated.** Now points consumer skills at `docs/adr/` as the durable record; CHANGELOG remains the record for shipped behavioural changes.
-- **`.gitignore` adjustments.** `docs/adr/` and `docs/agents/` now ship with the repo so forks get a working orchestration substrate. `docs/CODEBASE_MAP.md` remains maintainer-only. `.claude/skills/azimuth/` (local install-test self-copy) and `.playwright-mcp/` (MCP cache) now ignored.
+- **`reference-authoring` skill added** (fourth maintenance skill) with discipline for new reference files and domain-policies: EXTEND-vs-CREATE, Module 7 vocabulary header, sourcing caveat, pre-verdict gate.
+
+### Repo hygiene + fork legibility
+
+- **`.gitignore` adjustments.**
+  - `docs/adr/` and `docs/agents/` ship with the repo so forks get a working orchestration substrate.
+  - `docs/MAINTENANCE.md` added to the docs allow-list.
+  - `.claude/skills/azimuth/` (local install-test self-copy) and `.playwright-mcp/` (MCP cache) ignored.
+  - `CLAUDE.md` removed from .gitignore (the file was tracked but the entry implied "internal only" — implementation contradicted intent; resolved by treating CLAUDE.md as the public maintainer guide it already was).
+- **BEHAVIOR_SPEC.md fork-legibility fix.** Dropped the dangling session-local rationale reference (`docs/superpowers/specs/…`) that pointed at a gitignored artifact. ADR-0002 is now the sole rationale anchor.
+- **README, CLAUDE.md, gap-scanner, ADRs aligned** with the `templates/`→`domain-policies/` rename, the `.claude/skills/maintenance/` namespace split, and the executive-format relocation. No dangling paths remain in tracked .md content (CHANGELOG historical entries and `evals/test-*-control-skill.md` frozen snapshots intentionally preserved).
+- **`evals/README.md` annotated.** Explains why `test-*-control-skill.md` files reference pre-rename `templates/...` paths (frozen control snapshots; modifying invalidates baselines) and names the correct path forward (capture a new version-tagged file).
+- **Two role-bound subagents added.** `.claude/agents/azimuth-evidence-checker.md` audits proposed numeric heuristics / thresholds / empirical claims; `.claude/agents/azimuth-output-auditor.md` stress-tests pasted AZIMUTH outputs against the skill's structural rules. Both read-only; both invariants documented in `docs/MAINTENANCE.md`.
 
 ### Planned
 

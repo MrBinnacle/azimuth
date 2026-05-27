@@ -1,5 +1,7 @@
 # Hiring Azimuth Template
 
+This file configures runtime presentation for hiring decisions. Decision authority lives in `BEHAVIOR_SPEC.md`. This file does not define rules.
+
 Use this template when:
 - Plan involves a key hire, executive appointment, contractor engagement, or critical partnership role
 - Failure mode is a person not delivering on expectations — or the wrong person being in a high-leverage role
@@ -57,7 +59,7 @@ Before evaluating any candidate, determine whether this hire is being driven by 
 
 **Flag if:** the hiring manager benefits more from filling the seat quickly than from filling it correctly; the role was created for organizational or political reasons not tied to a business outcome; the reference pool is entirely candidate-selected with no independent outreach.
 
-If flagged: require structured assessment and work sample before offer. Reduce confidence ceiling to MEDIUM until independent validation of candidate quality is established.
+Incentive misalignment in candidate evaluation triggers the cross-cutting confidence cap (see `BEHAVIOR_SPEC.md` RULE-6.5). Structured assessment and work sample serve as the independent validation.
 
 ---
 

@@ -1,8 +1,6 @@
 # Fragility Scan Diagnostic
 
-Load when running Detectability & Recovery assessment (Module 8) in STANDARD or DEEP mode, or when analyzing any plan with high irreversibility, tight tolerances, or compounding failure risk.
-
----
+This file is an observational catalog. It describes patterns to look for when conducting a Module 8 detectability & recovery assessment. It does not assign verdicts, cap confidence, or define when to load — decision authority for those lives in `BEHAVIOR_SPEC.md`.
 
 ## Purpose
 
@@ -117,9 +115,9 @@ After assessing each indicator, assign a composite fragility level:
 
 **MEDIUM**: 2–3 indicators present; plan will survive small failures but not multiple simultaneous failures.
 
-**HIGH**: 4+ indicators, or any SPOF + Late Detectability combination present. Plan is brittle. A single significant failure likely cascades.
+**HIGH**: Findings in the HIGH range typically show 4+ indicators or any SPOF + Late Detectability combination. Plan is brittle. A single significant failure likely cascades.
 
-**CRITICAL**: SPOF + Late Detectability + Asymmetric Reversibility present. Plan has locked in irreversible commitments before high-risk elements are validated. Strong bias toward DELAY or PILOT.
+**CRITICAL**: SPOF + Late Detectability + Asymmetric Reversibility present. Plan has locked in irreversible commitments before high-risk elements are validated.
 
 ---
 

@@ -1,5 +1,7 @@
 # Org Change Azimuth Template
 
+This file configures runtime presentation for org change decisions. Decision authority lives in `BEHAVIOR_SPEC.md`. This file does not define rules.
+
 Use this template when:
 - Plan involves a restructure, reorganization, function consolidation, role elimination, or leadership transition that materially changes reporting lines, decision authorities, or team composition
 - The analysis is pre-announcement — the design is being evaluated before commitment
@@ -37,8 +39,8 @@ Run before analysis. Any ✗ changes the analysis frame.
 
 | Gate | Status | Notes |
 |------|--------|-------|
-| Announcement date is not yet fixed — the design can still change before commitment | ☐ ✓ OPEN / ☐ ✗ FIXED | If ✗: this is a post-commitment input. Module 10 returns RESIDUAL-RISK-REGISTER. |
-| A measurable success metric exists for 12 months post-restructure | ☐ ✓ DEFINED / ☐ ✗ ABSENT | If ✗: analysis cannot ground a verdict. Module 10 returns INSUFFICIENT SIGNAL. |
+| Announcement date is not yet fixed — the design can still change before commitment | ☐ ✓ OPEN / ☐ ✗ FIXED | If ✗: this is a post-commitment input. Module 10 returns RESIDUAL-RISK-REGISTER. (activates RULE-4.12 RESIDUAL-RISK-REGISTER) |
+| A measurable success metric exists for 12 months post-restructure | ☐ ✓ DEFINED / ☐ ✗ ABSENT | If ✗: analysis cannot ground a verdict. Module 10 returns INSUFFICIENT SIGNAL. (activates RULE-4.8 INSUFFICIENT SIGNAL) |
 | The person who designed this restructure has a defined role in the new structure | ☐ ✓ YES / ☐ ✗ NO | If ✗: designer accountability gap — flag as primary structural risk before proceeding. |
 
 ---
@@ -64,7 +66,7 @@ Before structural analysis, determine whether this restructure is being pursued 
 
 **Flag if:** proposer gains power, budget, or span of control independent of outcome quality; senior leaders losing authority have not been engaged before announcement; middle management was informed rather than consulted; external consultants designed a solution requiring their continued engagement.
 
-If flagged: treat proposer incentive misalignment or middle management exclusion as the primary risk, ahead of structural design quality. Confidence ceiling: MEDIUM until independent validation of design merit exists.
+Proposer incentive misalignment or middle-management exclusion triggers the cross-cutting confidence cap (see `BEHAVIOR_SPEC.md` RULE-6.5).
 
 ---
 

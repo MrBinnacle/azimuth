@@ -1,6 +1,6 @@
-# Incentive Conflict Diagnostic
+# Incentive Conflicts Diagnostic
 
-Load when running the Incentive Scan (Module 4) in STANDARD or DEEP mode, or when the plan involves multiple stakeholders, vendors, contractors, or organizational actors whose interests may not be fully aligned with success.
+This file is an observational catalog. It describes patterns of incentive misalignment to look for during a Module 4 incentive scan. It does not assign verdicts, cap confidence, or define when to load — decision authority for those lives in `BEHAVIOR_SPEC.md`.
 
 ---
 

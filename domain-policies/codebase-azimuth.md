@@ -1,5 +1,7 @@
 # Codebase Azimuth Template
 
+This file configures runtime presentation for codebase / engineering decisions. Decision authority lives in `BEHAVIOR_SPEC.md`. This file does not define rules.
+
 Use this template when:
 - Plan involves a refactor, rewrite, migration, or infrastructure change
 - Technical risk is the dominant concern
@@ -47,7 +49,7 @@ Before technical analysis, determine whether this initiative is being pursued fo
 
 **Flag if:** proposer benefits from the choice of technology or vendor independent of project outcome; sunk cost is materially influencing the proceed/stop decision; success metrics are self-assessed by the proposing team.
 
-If flagged: treat proposer incentive misalignment as the primary risk, ahead of technical breakpoints. Escalate verdict confidence ceiling to MEDIUM unless independent technical validation is provided.
+Proposer incentive misalignment triggers the cross-cutting confidence cap (see `BEHAVIOR_SPEC.md` RULE-6.5).
 
 ---
 
@@ -113,7 +115,7 @@ Define the exact conditions under which rollback is initiated:
 - Data integrity risk on rollback: [none / low / high — explain]
 - Rollback tested in staging: [Yes / No / Partial]
 
-If rollback has not been tested: require staging validation before production deployment.
+If rollback has not been tested: require staging validation before production deployment. (activates RULE-4.6 DELAY PENDING EVIDENCE for codebase domain).
 
 ---
 

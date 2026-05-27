@@ -1,5 +1,7 @@
 # Startup / Early-Stage Azimuth Template
 
+This file configures runtime presentation for startup decisions. Decision authority lives in `BEHAVIOR_SPEC.md`. This file does not define rules.
+
 Use this template when:
 - Evaluating whether to launch, fund, or commit significant resources to an early-stage initiative or startup
 - Decision point: pre-commitment — before writing the check, signing the term sheet, or making a go/no-go on launch
@@ -48,7 +50,7 @@ Product-market fit is validated by behavior, not by stated intent. Surveys, inte
 
 **PMF signal**: ☐ Validated (3+ YES with behavioral evidence) | ☐ Early signal (1–2 YES) | ☐ Absent (0 YES or survey/intent-only)
 
-*If Absent or Early signal: state PMF status explicitly in verdict. If Absent: flag for PILOT FIRST or DELAY PENDING EVIDENCE.*
+*If Absent or Early signal: state PMF status explicitly in verdict. If Absent: flag for PILOT FIRST or DELAY PENDING EVIDENCE.* (activates RULE-4.4 PILOT FIRST or RULE-4.6 DELAY PENDING EVIDENCE for startup domain when PMF absent)
 
 ---
 
@@ -62,7 +64,7 @@ Product-market fit is validated by behavior, not by stated intent. Surveys, inte
 | Optimistic | +40% vs. base | As modeled | [months] |
 | Pessimistic | −40% vs. base | +20% vs. base | [months] |
 
-**Runway floor**: ☐ Pessimistic ≥ 12 months | ☐ 6–12 months (flag) | ☐ < 6 months (block — REDUCE SCOPE or REJECT unless financing close is imminent and committed)
+**Runway floor**: ☐ Pessimistic ≥ 12 months | ☐ 6–12 months (flag) | ☐ < 6 months (block — REDUCE SCOPE or REJECT unless financing close is imminent and committed) (activates RULE-4.5 REDUCE SCOPE or RULE-4.7 REJECT for startup domain when pessimistic runway < 6 months without committed financing)
 
 **What drives the pessimistic case**: [Name the 1–2 specific assumptions most likely to miss — not generic "revenue may be lower than expected"]
 
@@ -84,7 +86,7 @@ Co-founder collapse is a structurally preventable failure mode. Verbal agreement
 | Buyout or separation mechanism documented | ☐ Done / ☐ Pending / ☐ Not addressed | |
 | IP assignment executed | ☐ Done / ☐ Pending / ☐ Not addressed | |
 
-**Any PENDING or NOT ADDRESSED: PROCEED verdict is unavailable.** Require completion before commitment.
+Incomplete co-founder structure activates the cross-cutting suppression of PROCEED (see `BEHAVIOR_SPEC.md` RULE-6.6).
 
 ---
 

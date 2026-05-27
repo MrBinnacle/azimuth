@@ -14,39 +14,49 @@ azimuth/
 ├── gotchas.md                   # Must contain exactly 8 numbered sections (## 1. … ## 8.)
 ├── references/                  # Loaded on demand in STANDARD/DEEP mode
 ├── diagnostics/                 # Deep-mode diagnostic modules
-└── templates/                   # Pasteable output templates for specific decision types
+├── domain-policies/             # Per-domain gating/configuration (loaded via Layer 3 intake)
+├── docs/adr/                    # Architectural decisions (lazy-created; start at ADR-0001)
+└── .out-of-scope/               # Rejection rationale for proposed-but-not-built features
 ```
 
 All paths referenced inside `SKILL.md` must exist as real files. The install tool (`npx skills add`) copies the entire directory tree.
 
 ## Codebase Overview
 
-AZIMUTH is a conditional file-loading system. `SKILL.md` is the always-loaded orchestrator; every other file loads on-demand based on mode, domain, and per-module findings. The skill has a 10-module analysis engine, four operating modes (FAST/STANDARD/RAPID/DEEP), domain-specific templates routed via Layer 3 intake, and a 9-verdict taxonomy.
+AZIMUTH is a conditional file-loading system. `SKILL.md` is the always-loaded orchestrator; every other file loads on-demand based on mode, domain, and per-module findings. The skill has a 10-module analysis engine, four operating modes (FAST/STANDARD/RAPID/DEEP), domain-policies routed via Layer 3 intake, and a 9-verdict taxonomy.
 
 **Stack:** Pure markdown — no code, no build system, no dependencies  
 **Critical constraint:** SKILL.md truncates at line 225 under long sessions (>~150K–177K token history); all module instructions are past line 225
 
-For detailed architecture, module load matrix, template routing, hook classification, and eval program findings, see [docs/CODEBASE_MAP.md](docs/CODEBASE_MAP.md).
+For detailed architecture, module load matrix, domain-policy routing, hook classification, and eval program findings, see [docs/CODEBASE_MAP.md](docs/CODEBASE_MAP.md).
+
+For the maintenance orchestration design (producer/consumer split, lazy file creation, hard-dep vs soft-dep skills, and what is deliberately not built), see [docs/adr/0001-bespoke-orchestration-layer.md](docs/adr/0001-bespoke-orchestration-layer.md). Consult before proposing new maintenance skills, pipeline workflows, or verify-mode flags.
+
+For the engine-layer governance diagnosis and the SPEC/RUNTIME/DIAGNOSTICS/RATIONALE taxonomy, see [docs/adr/0002-engine-layer-governance.md](docs/adr/0002-engine-layer-governance.md). Consult before proposing new diagnostics, domain-policies, references, or behavioural rules.
+
+## Layer taxonomy (per ADR-0002)
+
+Every artifact in this repo belongs to exactly one layer. Use this vocabulary when proposing additions.
+
+- **SPEC** — authoritative, enforced contract. Deterministic, no rationale. Today: `VALIDATION.md`. Future: `BEHAVIOR_SPEC.md`.
+- **RUNTIME** — executable behaviour the engine performs at analysis time. `SKILL.md`, `references/`, `domain-policies/`, `diagnostics/` (behaviour-override portions).
+- **DIAGNOSTICS** — failure-detection taxonomy + maintenance-loop tooling, read at maintenance time. `.claude/skills/maintenance/`, `.claude/agents/`, `diagnostics/` (taxonomy portions).
+- **RATIONALE** — why SPEC/RUNTIME/DIAGNOSTICS exist. Not load-bearing for correctness. This file, `docs/adr/`, `.out-of-scope/`, MEMORY, CHANGELOG, README.
+
+Hooks depend on SPEC only. SPEC does not depend on RATIONALE. RUNTIME and DIAGNOSTICS may cite RATIONALE but do not require it for execution.
 
 ## Validation checks (run before every commit)
 
-```bash
-# 1. SKILL.md frontmatter description must be exactly 489 chars
-awk '/^description: /{flag=1} flag{print; if(/"$/) flag=0}' SKILL.md | tr -d '\n' | wc -c
+The 4 repo-integrity rules are specified authoritatively in [VALIDATION.md](VALIDATION.md) and enforced mechanically by `.claude/hooks/validate-azimuth.sh` as a PreToolUse hook on `git commit`. Spec is the source of truth; hook mirrors it. Diverge → fix the hook, not the spec.
 
-# 2. gotchas.md must have exactly 8 numbered sections
-grep -E '^## [0-9]+\.' gotchas.md | wc -l
+**Rationale for each rule** (the why; spec is the what):
 
-# 3. No "precommitment" (must be "pre-commitment") outside CHANGELOG
-grep -rn precommitment . --include="*.md" | grep -v CHANGELOG.md
+- **Rule 1 (description = 489 chars).** The `npx skills add` install pipeline validates this character count; drift breaks installs with a cryptic warning. 489 is the count that has shipped in v1.x and is treated as load-bearing for skill-listing context budget.
+- **Rule 2 (gotchas.md = 8 sections).** The 8-section structure is referenced by Pocock's gotchas-discipline (one section per anticipated/observed anti-pattern); the count is a structural-drift smoke alarm, not a feature limit. If real evidence justifies a 9th section, change the rule deliberately — don't let it drift.
+- **Rule 3 (no "precommitment").** "Pre-commitment" is AZIMUTH's canonical term per the verdict taxonomy. The hyphenless form is a recurring typo that erodes vocabulary discipline (see CONTEXT.md when authored).
+- **Rule 4 (path integrity).** SKILL.md's conditional-load architecture depends on referenced paths resolving. A missing file is a silent failure at load time — STANDARD/DEEP runs simply skip the load with no error.
 
-# 4. All paths referenced in SKILL.md must exist
-grep -oE '(references|diagnostics|templates)/[^ \n"]+\.md' SKILL.md | sort -u | while read f; do
-  test -f "$f" && echo "OK: $f" || echo "MISSING: $f"
-done
-```
-
-All four checks must pass before committing. If the description char count drifts from 489, the `npx skills add` install will surface a validation warning.
+Hook bypass (`git commit --no-verify`) is acceptable when intentional but every bypass should leave a CHANGELOG[Unreleased] note explaining why.
 
 ## Commit conventions
 
@@ -55,7 +65,7 @@ type(scope): description
 ```
 
 Types: `feat`, `fix`, `docs`, `refactor`  
-Scope: `skill`, `gotchas`, `references`, `diagnostics`, `templates`, `meta`
+Scope: `skill`, `gotchas`, `references`, `diagnostics`, `domain-policies`, `meta`
 
 ## Release process
 
@@ -69,25 +79,29 @@ Releases follow `vMAJOR.MINOR.PATCH`. Key steps:
 
 ## Maintenance skill stack
 
-Three skills live in `.claude/skills/` for maintainer use. They are not installed by `npx skills add` — they travel with the repo for whoever works on it.
+For the full operational orchestration model — verification layers (commit/audit/release-time), maintenance-loop responsibilities, subagent dispatch invariants, migration / rollback discipline, drift vectors, and next-session continuation — see [docs/MAINTENANCE.md](docs/MAINTENANCE.md). The section below summarizes only the maintenance skill stack.
+
+Four skills live in `.claude/skills/maintenance/` for maintainer use. They are not installed by `npx skills add` — they travel with the repo for whoever works on it.
 
 | Skill | Purpose | Invoke |
 |-------|---------|--------|
 | `research-scout` | Tracks 8 citation source families; stages updates to `references/base-rates.md` | "run the research scout" / "promote staged findings" |
 | `verdict-auditor` | Stress-tests a real AZIMUTH output against the skill's own structural rules | "audit this output" (paste output first) |
-| `gap-scanner` | Cross-references SKILL.md coverage claims against actual reference, diagnostic, and template files | "run the gap scanner" |
+| `gap-scanner` | Cross-references SKILL.md coverage claims against actual reference, diagnostic, and domain-policy files | "run the gap scanner" |
+| `reference-authoring` | Discipline for new reference files and domain-policies: EXTEND-vs-CREATE, Module 7 vocabulary header, sourcing caveat, pre-verdict gate | When adding a new reference file or domain-policy |
+
+Two additional gate skills are **designed but deliberately not built** (see ADR-0001):
+
+- `depth-gate` — fires before adding a new domain-policy/reference/diagnostic. Awaits first observed recurrence of unjustified expansion.
+- `calibration-check` — fires when claiming a new threshold/cap in SKILL.md. Awaits first observed recurrence of an uncited heuristic.
+
+Do not author these speculatively. The trigger is an observed failure, not anticipated friction.
 
 Staged research findings live in `research/staged-findings.md`. The research-scout writes there; you promote to `references/base-rates.md` via the PROMOTE mode.
 
 ## Installed external skills
 
-**Plugin** (enabled via `settings.json`, no install step needed):
-
-| Skill | Source | Purpose | Invoke |
-|-------|--------|---------|--------|
-| `ui-ux-pro-max` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | UI/UX design intelligence — 50+ styles, 97 palettes, 57 font pairings, 99 UX guidelines. Use for README visual design and presentation work. | `/ui-ux-pro-max` |
-
-**Agent skills** (installed via `npx skills@latest add`, copied to `~/.claude/skills/`):
+Installed via `npx skills@latest add`, copied to `~/.claude/skills/`:
 
 | Skill | Source | Purpose | Invoke |
 |-------|--------|---------|--------|
@@ -116,64 +130,6 @@ Single-context repo. `SKILL.md` and `gotchas.md` are the authoritative domain so
 ## Obsidian vault
 
 Project notes live in a local Obsidian vault under `Writ_vault/azimuth/`. Subfolders: `notes/`, `references/`, `outputs/`.
-
-## Graphify knowledge graph
-
-A navigable knowledge graph of the full repo is maintained in `graphify-out/` and mirrored into the Obsidian vault.
-
-**Graph location:** `graphify-out/graph.json` — 610 nodes, 881 edges, 27 communities  
-**Obsidian vault:** `C:\Users\mlpgr\Writ_vault\graphify\azimuth\` — open as vault in Obsidian  
-**HTML graph:** `graphify-out/graph.html` — open in browser, no server needed  
-**Python interpreter:** `C:\Python313\python.exe`
-
-### Mandatory maintenance cycle
-
-Every structural change (new file, new pattern, template, or domain) follows this sequence in order. None of these steps are optional:
-
-1. **Pre-implementation gate** — before writing anything, query the graph to check where the new domain lands:
-   ```
-   /graphify query "<new domain name>"
-   ```
-   Look at which community it falls into and what it connects to. Use this to make the EXTEND vs. CREATE decision with evidence, not heuristics alone.
-
-2. **Implement** the change.
-
-3. **Extract patterns** — run `/claudeception` to capture any non-obvious patterns from the session as reusable skills.
-
-4. **Rebuild** — keep the graph and vault current:
-   ```
-   /graphify . --obsidian --obsidian-dir "C:\Users\mlpgr\Writ_vault\graphify\azimuth"
-   ```
-
-Skipping step 1 means EXTEND vs. CREATE decisions lose their evidence base. Skipping step 4 means the graph drifts from reality within a session and future pre-implementation queries return stale results.
-
-### God nodes (best traversal entry points)
-
-- `IC Decision Anatomy: What Investment Partners Actually Evaluate` (degree 21)
-- `PE Secondaries Pre-Commitment Decision Anatomy` (degree 20)
-- `Coverage Testing Program — Synthesis` (degree 18)
-- `AZIMUTH Fit Assessment — PE Secondaries IC Decision` (degree 17)
-- `AZIMUTH Design System` (degree 17)
-- `v1.1.0 Baseline Eval Results` (degree 16)
-- `Module Guide Reference File` (degree 16)
-- `AZIMUTH Analysis Block — Boeing 737 MAX Decision` (degree 16)
-- `M&A and Partnership Failure Patterns` (degree 15)
-- `SKILL.md Core Skill Orchestrator` (degree 15)
-
-**Bridge node to watch:** `Anti-Sycophancy: Confidence Inflation on Cautious Verdicts (M10)` (betweenness 0.019) — bridges Anti-Sycophancy Diagnostics and Diagnostic Files communities.
-
-### Graph queries
-
-**Before answering questions about module relationships, loading conditions, template routing, or skill architecture — check the graph first:**
-
-```
-/graphify query "diagnostic load triggers"
-/graphify query "template routing by decision type"
-/graphify query "SKILL.md module loading conditions"
-```
-
-Full integration guide: `graphify-out/OBSIDIAN_INTEGRATION.md`  
-Query cheat sheet: `graphify-out/GRAPHIFY_CHEATSHEET.md`
 
 ## Environment notes (Windows)
 

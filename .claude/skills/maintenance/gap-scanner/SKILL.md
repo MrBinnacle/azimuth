@@ -1,6 +1,6 @@
 ---
 name: gap-scanner
-description: Audits AZIMUTH's coverage completeness. Cross-references what SKILL.md claims to handle against what reference, diagnostic, and template files actually cover. Identifies thin coverage, missing domains, and structural inconsistencies. Run before major version planning.
+description: Audits AZIMUTH's coverage completeness. Cross-references what SKILL.md claims to handle against what reference, diagnostic, and domain-policy files actually cover. Identifies thin coverage, missing domains, and structural inconsistencies. Run before major version planning.
 ---
 
 # Gap Scanner
@@ -24,7 +24,7 @@ Read `SKILL.md`. Extract and list:
 1. Every decision type in "Use When"
 2. Every domain named in the DEEP mode load rules (tech/engineering → `software-failure-patterns.md`, product/launch → `launch-risks.md`, startup/venture → `startup-failures.md`)
 3. Every diagnostic load condition (which module trigger → which diagnostic file)
-4. Every template route (which output format → which template file)
+4. Every domain-policy route (which Layer-3 domain → which file in `domain-policies/`)
 5. Every domain explicitly named in the base rate load rule
 
 ---
@@ -39,9 +39,9 @@ For each domain claimed in Step 1, read the corresponding reference file. Assess
 - **MISSING**: Domain is claimed in SKILL.md but no reference material exists for it
 
 Known gaps to confirm (from prior analysis):
-- **M&A / Partnerships**: base-rates.md has a full M&A section. Is M&A listed in SKILL.md "Use When"? Is there a pattern file for M&A failure modes? Is there a template?
-- **IT / Infrastructure Migration**: base-rates.md has a migration section. Is there a pattern file? A template?
-- **Organizational Change**: base-rates.md has an org change section. Is org restructure in SKILL.md "Use When"? Pattern file? Template?
+- **M&A / Partnerships**: base-rates.md has a full M&A section. Is M&A listed in SKILL.md "Use When"? Is there a pattern file for M&A failure modes? Is there a domain-policy?
+- **IT / Infrastructure Migration**: base-rates.md has a migration section. Is there a pattern file? A domain-policy?
+- **Organizational Change**: base-rates.md has an org change section. Is org restructure in SKILL.md "Use When"? Pattern file? Domain-policy?
 
 For each gap found, record:
 - What is claimed (exact quote from SKILL.md)
@@ -68,21 +68,23 @@ For each: does the file's output format and process cover the triggering conditi
 
 ---
 
-### Step 4 — Audit Template Files Against Decision Types
+### Step 4 — Audit Domain-Policy Files Against Decision Types
 
-Read each template file. For each:
+Read each domain-policy file. For each:
 
 1. Does it serve the decision type it's routed for?
 2. Does it add domain-specific value beyond the default output format? (If it's just a renamed default format, it's redundant)
-3. Which decision types in SKILL.md "Use When" have no template?
+3. Which decision types in SKILL.md "Use When" have no domain-policy?
 
-Templates to check:
-- `templates/executive-azimuth.md` — for leadership briefings (not a decision type; a format)
-- `templates/codebase-azimuth.md` — for refactors, migrations, rewrites
-- `templates/product-launch-azimuth.md` — for launches, rollouts, go-lives
-- `templates/hiring-azimuth.md` — for key hires, contractor engagements
+Domain-policies to check:
+- `domain-policies/codebase-azimuth.md` — for refactors, migrations, rewrites
+- `domain-policies/product-launch-azimuth.md` — for launches, rollouts, go-lives
+- `domain-policies/hiring-azimuth.md` — for key hires, contractor engagements
 
-Decision types in SKILL.md with no template: identify and list.
+Presentation-format files (not domain-policies; audit separately for cross-policy compatibility):
+- `references/output-format-executive.md` — 1-page leadership briefing format paired with any domain-policy
+
+Decision types in SKILL.md with no domain-policy: identify and list.
 
 ---
 
@@ -115,7 +117,7 @@ GAP SCANNER REPORT — [date]
 
 ## Coverage Claims vs. Reference Support
 
-| Domain | Claimed in SKILL.md | Reference file | Template | Coverage depth |
+| Domain | Claimed in SKILL.md | Reference file | Domain-policy | Coverage depth |
 |--------|--------------------|--------------|---------|----|
 | Software / Engineering | [yes/no] | software-failure-patterns.md | codebase-azimuth.md | STRONG |
 | Product / Launch | [yes/no] | launch-risks.md | product-launch-azimuth.md | [depth] |
@@ -129,9 +131,9 @@ GAP SCANNER REPORT — [date]
 
 [For each STANDARD mode load condition: COVERED / PARTIAL / GAP — with detail]
 
-## Template Coverage Gaps
+## Domain-Policy Coverage Gaps
 
-[Decision types with no template, listed with estimated usage frequency]
+[Decision types with no domain-policy, listed with estimated usage frequency]
 
 ## Gotcha / Reference Overlap
 

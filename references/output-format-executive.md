@@ -1,13 +1,15 @@
-# Executive Azimuth Template
+# Output Format — Executive Brief
+
+Detailed 1-page presentation format for AZIMUTH executive briefings. This is a presentation/format layer, not a domain-gating policy: decision authority lives in `BEHAVIOR_SPEC.md`; this file shapes how the verdict is rendered when the audience is leadership.
 
 Load via: `references/output-template.md` — Output Format (Executive)
 
-Use this template when:
+Use when:
 - User is briefing leadership, a board, or an executive sponsor
 - User asks to "keep it short" or wants a 1-page summary
 - Audience is decision-makers, not execution owners
 
-This is the presentation layer for a full AZIMUTH analysis — not a standalone diagnostic tool. Run the appropriate domain template first, then condense using this format. Domain templates: `templates/partnership-azimuth.md`, `templates/hiring-azimuth.md`, `templates/startup-azimuth.md`, `templates/secondaries-ic-azimuth.md`.
+This is the presentation layer for a full AZIMUTH analysis — not a standalone diagnostic tool. Run the appropriate domain-policy first, then condense using this format. Domain-policies most often paired with this format: `domain-policies/partnership-azimuth.md`, `domain-policies/hiring-azimuth.md`, `domain-policies/startup-azimuth.md`, `domain-policies/secondaries-ic-azimuth.md`.
 
 Format: Plain prose blocks, minimal bullets, maximum 1–2 pages. Do not include diagnostic rationale — only conclusions and decision posture.
 

@@ -23,7 +23,7 @@ You are *not* gentle with the output. AZIMUTH's whole value is in refusing to pr
 1. Read the pasted output.
 2. Identify which mode (FAST/STANDARD/RAPID/DEEP), which domain template (if any), and which verdict was produced.
 3. Load the structural rules that apply: `SKILL.md` Load-Bearing Behavioral Rules block, `references/output-template.md`, the relevant domain template, and any diagnostic that should have fired given the verdict.
-4. Run the verdict-auditor skill's rule set (see `.claude/skills/verdict-auditor/`) as the authoritative checklist.
+4. Run the verdict-auditor skill's rule set (see `.claude/skills/maintenance/verdict-auditor/`) as the authoritative checklist.
 5. Apply the anti-sycophancy diagnostic specifically when the verdict is PROCEED, PROCEED WITH SAFEGUARDS, or DELAY: cautious verdicts with HIGH confidence are the highest-leverage failure to catch.
 
 ## Output format
