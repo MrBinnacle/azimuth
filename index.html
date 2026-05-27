@@ -58,6 +58,7 @@
       --border-2:     #343438;
       --text:         #E2E2EA;
       --text-2:       #7A7A8A;
+      --text-3:       #4A4A5A;
       --accent:       #C9A84C;
       --accent-dim:   #9C8040;
       --accent-bg:    rgba(201,168,76,0.07);
@@ -120,6 +121,12 @@
       justify-content: space-between;
     }
 
+    .nav-brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
     .nav-logo {
       font-family: var(--display);
       font-weight: 400;
@@ -129,6 +136,17 @@
       text-decoration: none;
       text-transform: uppercase;
     }
+
+    .nav-version {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-version:hover { color: var(--text-2); }
 
     .nav-links {
       display: flex;
@@ -791,12 +809,16 @@
 
 <nav aria-label="Main navigation">
   <div class="nav-inner">
-    <a class="nav-logo" href="#">AZIMUTH</a>
+    <div class="nav-brand">
+      <a class="nav-logo" href="#">AZIMUTH</a>
+      <a class="nav-version" href="https://github.com/MrBinnacle/azimuth/releases/tag/v1.5.0" target="_blank" rel="noopener" aria-label="View v1.5.0 release notes">v1.5.0</a>
+    </div>
     <ul class="nav-links">
       <li><a href="#capabilities">Capabilities</a></li>
       <li><a href="#example">Example</a></li>
       <li><a href="#case-study">Boeing</a></li>
       <li><a href="#verdicts">Verdicts</a></li>
+      <li><a href="https://github.com/MrBinnacle/azimuth/blob/master/BEHAVIOR_SPEC.md" target="_blank" rel="noopener">Spec</a></li>
       <li><a href="https://github.com/MrBinnacle/azimuth" target="_blank" rel="noopener">GitHub</a></li>
     </ul>
     <a class="nav-github-mobile" href="https://github.com/MrBinnacle/azimuth" target="_blank" rel="noopener">GitHub</a>
@@ -1105,7 +1127,9 @@ either departure.
     <div class="footer-links">
       <a href="https://github.com/MrBinnacle/azimuth" target="_blank" rel="noopener">GitHub</a>
       <span>·</span>
-      <a href="https://github.com/MrBinnacle/azimuth/blob/master/README.md" target="_blank" rel="noopener">Docs</a>
+      <a href="https://github.com/MrBinnacle/azimuth/blob/master/BEHAVIOR_SPEC.md" target="_blank" rel="noopener">Spec</a>
+      <span>·</span>
+      <a href="https://github.com/MrBinnacle/azimuth/releases/tag/v1.5.0" target="_blank" rel="noopener">v1.5.0 release</a>
       <span>·</span>
       <a href="https://github.com/MrBinnacle/azimuth/issues/new?template=feedback.yml" target="_blank" rel="noopener">Feedback</a>
       <span>·</span>
