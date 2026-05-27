@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+(Empty — next release begins here.)
+
+---
+
+## [1.5.0] — 2026-05-27
+
 ### Engine-layer governance (canonical spec + always-loaded runtime mirror)
 
 - **BEHAVIOR_SPEC.md authored** as the canonical engine specification. §1–§8 reduce all engine decision authority — intake routing, mode selection, reference loading, verdict conditions, module firing, confidence bounds, behavioral overrides, and domain-policy gating — into deterministic IF/THEN rules. `[AMBIGUOUS-EXTRACTED]` tags carry forward pre-existing ambiguities from source material unresolved.
