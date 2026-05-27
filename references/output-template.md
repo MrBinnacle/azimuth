@@ -80,7 +80,7 @@ and which question — if answered — would most unlock the analysis.)
 
 # Output Format (Executive)
 
-Load `templates/executive-azimuth.md`.
+Load `references/output-format-executive.md`.
 
 Use when: user is briefing leadership, wants a 1-pager, or says "keep it short."
 
@@ -88,7 +88,7 @@ Use when: user is briefing leadership, wants a 1-pager, or says "keep it short."
 
 # Output Format (Technical / Codebase)
 
-Load `templates/codebase-azimuth.md`.
+Load `domain-policies/codebase-azimuth.md`.
 
 Use for: refactors, migrations, legacy rewrites, infrastructure changes.
 
@@ -96,7 +96,7 @@ Use for: refactors, migrations, legacy rewrites, infrastructure changes.
 
 # Output Format (Product Launch)
 
-Load `templates/product-launch-azimuth.md`.
+Load `domain-policies/product-launch-azimuth.md`.
 
 Use for: beta launches, v1 releases, feature rollouts with user-facing risk.
 
@@ -104,7 +104,7 @@ Use for: beta launches, v1 releases, feature rollouts with user-facing risk.
 
 # Output Format (Hiring)
 
-Load `templates/hiring-azimuth.md`.
+Load `domain-policies/hiring-azimuth.md`.
 
 Use for: key hire decisions, contractor engagements, partnership roles.
 
@@ -112,7 +112,7 @@ Use for: key hire decisions, contractor engagements, partnership roles.
 
 # Output Format (Partnership / M&A)
 
-Load `templates/partnership-azimuth.md`.
+Load `domain-policies/partnership-azimuth.md`.
 
 Use for: mergers, acquisitions, strategic partnerships, joint ventures, significant vendor relationships with multi-quarter or multi-year commitment.
 
@@ -120,7 +120,7 @@ Use for: mergers, acquisitions, strategic partnerships, joint ventures, signific
 
 # Output Format (PE Secondaries IC)
 
-Load `templates/secondaries-ic-azimuth.md`.
+Load `domain-policies/secondaries-ic-azimuth.md`.
 
 Use for: PE secondaries investment committee decisions — GP-led continuation vehicles, direct secondary LP stake acquisitions, minority recaps / structured liquidity. Primary user is the IC investment partner, not the fund CFO.
 

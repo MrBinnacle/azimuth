@@ -7,6 +7,8 @@ description: "Decision-quality pre-commitment analysis for initiative-level go/n
 
 Stress-test plans before commitment. Convert proposed plans into operational truth.
 
+> **Runtime is self-sufficient.** Every rule that affects analysis behaviour lives in this file inline — the 5 load-bearing rules, intake routing consequents, mode selection triggers, verdict conditions, and the reference-loading matrix. Canonical specification of the same rules lives in `BEHAVIOR_SPEC.md` (single decision authority). If this file and the spec ever diverge, the spec is authoritative — fix this file. Maintainers: see `docs/MAINTENANCE.md`.
+
 ---
 
 # Use When
@@ -46,9 +48,9 @@ Invoke when user asks to evaluate, pressure test, validate, or decide go/no-go o
 
 > 1. Tech/engineering · 2. Product launch · 3. Hiring · 4. Partnership/M&A · 5. PE secondaries · 6. Org change · 7. Build/buy/partner · 8. Startup · 9. Other
 
-- 1→`templates/codebase-azimuth.md` · 2→`templates/product-launch-azimuth.md` · 3→`templates/hiring-azimuth.md` · 4→`templates/partnership-azimuth.md`
-- 5→`templates/secondaries-ic-azimuth.md` · 6→`templates/org-change-azimuth.md` · 7→`templates/build-buy-partner-azimuth.md` · 8→`templates/startup-azimuth.md`
-- 9 (Other) → no domain template; use default output format from `references/output-template.md`
+- 1→`domain-policies/codebase-azimuth.md` · 2→`domain-policies/product-launch-azimuth.md` · 3→`domain-policies/hiring-azimuth.md` · 4→`domain-policies/partnership-azimuth.md`
+- 5→`domain-policies/secondaries-ic-azimuth.md` · 6→`domain-policies/org-change-azimuth.md` · 7→`domain-policies/build-buy-partner-azimuth.md` · 8→`domain-policies/startup-azimuth.md`
+- 9 (Other) → no domain policy loaded; use default output format from `references/output-template.md`
 
 ## Skip / Re-Entry / Bypass
 
@@ -140,14 +142,14 @@ Load `references/output-template.md` for the full output template, anti-slop rul
 
 Load based on mode before beginning analysis:
 
-**FAST:** Load `references/output-template.md` only (no module-guide, no mode-behaviors). Domain template per Layer 3 routing still applies.
+**FAST:** Load `references/output-template.md` only (no module-guide, no mode-behaviors). Domain policy per Layer 3 routing still applies.
 
 **STANDARD / RAPID / DEEP — load all three before beginning modules:**
 1. `references/module-guide.md` — module bodies, register discipline, escalation logic
 2. `references/mode-behaviors.md` — mode-specific run specs and conditional load triggers
 3. `references/output-template.md` — output format, anti-slop rules
 
-Plus domain template per Layer 3 routing above.
+Plus domain policy per Layer 3 routing above.
 
 **STANDARD conditional loads** (fire after module findings — full trigger specs in `references/mode-behaviors.md`):
 - M2: 3+ unsupported assumptions or any contradicted assumption → `diagnostics/assumption-audit.md`

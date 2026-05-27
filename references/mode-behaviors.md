@@ -1,92 +1,47 @@
-# Mode Behaviors
+# Mode Behaviors — Rationale
 
-Load this file for STANDARD, RAPID, and DEEP modes. FAST mode does not load this file.
-
----
-
-## FAST
-
-Run:
-- Objective Check
-- Assumption Audit (top 3 assumptions only)
-- Top 3 Failure Paths
-- Verdict
-
-Do not load diagnostics or references.
-
-Module 4 interview not conducted. Incentive misalignment is unverified in this output, including self-proposal incentive: if the assistant previously advocated for the option under analysis, that bias is unaudited in FAST mode. If incentive conflicts or self-proposal are material concerns, rerun in STANDARD or RAPID mode.
-
-**M4 PRE-CHECK in FAST mode:** If self-advocacy is detected (the assistant previously proposed the option), the interview cannot run — but the detection must still be noted. Add to the output header: `[SELF-ADVOCACY DETECTED — M4 unaudited in FAST; rerun in STANDARD or RAPID for full incentive audit]`. Do not silently omit the detection.
+This file is descriptive. Mode selection rules, per-mode module-firing rules, and conditional load rules are specified in `BEHAVIOR_SPEC.md` §2, §3, and §5. This file explains WHY each mode is structured the way it is — the rationale a human or LLM benefits from understanding, separately from the rules the engine executes.
 
 ---
 
-## STANDARD
+## FAST — rationale
 
-Default. Run all 10 core modules.
+FAST is shaped as a rapid pressure-test: top-level integrity checks, a narrow assumption pass, the most salient failure paths, and a verdict. Its purpose is to surface obvious disqualifiers quickly, not to produce a defensible incentive or recoverability analysis.
 
-**Diagnostic loading in STANDARD is conditional, not automatic.** Load a diagnostic file only when the corresponding module surfaces a high-severity finding the user would benefit from drilling into:
+The Module 4 incentive interview cannot run meaningfully in FAST. The interview derives its value from dialogue length and follow-up — abbreviating it would produce a worse artifact than omitting it, because a shallow interview reads as audited when it is not.
 
-- Module 2 surfaces 3+ unsupported assumptions or any contradicted assumption → load `diagnostics/assumption-audit.md`
-- Module 4 surfaces a governance-level incentive conflict → load `diagnostics/incentive-conflicts.md`
-- Module 5 surfaces a critical SPOF or concentration risk → load `diagnostics/dependency-map.md`
-- Module 8 surfaces high irreversibility + late detectability → load `diagnostics/fragility-scan.md`
+Self-advocacy is still detected and surfaced in the output header even though the interview itself does not run. Silently omitting a known incentive issue is a more serious failure than declining to audit it; the user needs to know that the bias exists and that this mode did not audit it, so they can choose to escalate.
 
-Load `references/base-rates.md` only when the user's plan involves a category covered by the file (software project, startup, launch, hire, M&A, migration, org change) AND the user's stated estimates appear to deviate from typical historical ranges.
-
-Consult `gotchas.md` when either of these conditions fires. If the file is visible in context, treat its 8 patterns as active only when a trigger fires — not by default:
-- Module 4 interview returns RED tier, OR any incentive conflict is governance-level
-- Module 6 failure chains all match canonical patterns (scope creep, resource shortage, stakeholder misalignment) with no plan-specific trigger — availability inversion required
-
-If neither condition fires, do not cite the 8 patterns or generate output influenced by them even if the file is visible. If a condition fires but the file is not visible, note: "Gotcha trigger fired ([condition]). Operating from structural patterns by recall; DEEP-mode rerun recommended for full pattern access."
+Users whose decision turns on incentive integrity or recoverability should escalate to STANDARD or RAPID rather than rely on FAST.
 
 ---
 
-## RAPID
+## STANDARD — rationale
 
-Use for high-stakes or irreversible decisions made under time pressure (hours, not days).
+STANDARD is the default mode and runs the full module set. The design choice worth understanding is that **diagnostic loading is conditional, not automatic**.
 
-Run at full depth:
-- Module 1 — Objective Integrity Check
-- Module 4 — Incentive Scan & Interview (full 7-question interview; do not abbreviate)
-- Module 8 — Detectability & Recovery
-- Module 10 — Decision Verdict
+Loading every diagnostic on every run would dilute their signal: diagnostics exist to deepen analysis when a module surfaces something that warrants drilling in, and reading them when nothing has fired trains the engine to apply their lenses indiscriminately. Conditional loading preserves the diagnostic-as-escalation pattern.
 
-Run abbreviated:
-- Module 2 — top 3 assumptions and falsifiers only
-- Module 3 — dominant constraint only; no enumeration
-- Module 5 — critical SPOFs only; no full inventory
-- Module 6 — top 1 failure chain; coupling pass skipped
-- Module 9 — one highest-leverage fix only
-
-Module 7 (Base Rate Reality Check) is omitted in RAPID. Base-rate calibration is low-yield under hours-of-time-pressure relative to incentive (Module 4) and recoverability (Module 8) work.
-
-Do not load diagnostics or domain references.
-
-Rationale: Time pressure amplifies deadline-politics incentive distortion and concentrates the value of reversibility analysis. Modules 4 and 8 must run at full depth precisely because they are harder to recover from when skipped under pressure.
-
-**If the user pushes back on the Module 4 interview citing time pressure:** State explicitly — "The interview is the highest-leverage part of RAPID. Skipping it locks confidence at LOW and removes PROCEED as a verdict option. If you have time for any questions, prioritize Q1 [IDENTITY] and Q4 [DISSENT]." Then proceed under whichever tier the answered count produces. Do not skip the interview silently. Do not treat time-pressure refusal differently from any other refusal — both apply the RED tier rules if fewer than 5 questions are answered or Q1 is skipped.
+The same logic applies to base-rate and gotcha consultation. Base rates are most useful when a user's stated estimates are testable against typical historical ranges; pulling them into every analysis converts them from a calibration check into background noise. Gotcha patterns are similarly trigger-gated — visibility of the file in context does not mean the 8 patterns are active by default, because availability-bias would push the engine to cite patterns that do not match the plan. The trigger gating exists to prevent that drift.
 
 ---
 
-## DEEP
+## RAPID — rationale
 
-Use for high-stakes / expensive / irreversible decisions per signals above.
+RAPID exists for high-stakes, irreversible decisions made under hours of time pressure rather than days. Under that pressure, the value distribution across the 10 modules is not uniform.
 
-Run all 10 modules + load:
-- `gotchas.md` — all 8 patterns are evaluation lenses in DEEP; apply each pattern to this specific plan and cite it only when a plan-specific trigger fires. Loading is unconditional; firing each pattern is still trigger-gated.
-- `references/base-rates.md`
-- All four `diagnostics/` files
+Two modules become disproportionately valuable: **Module 4 (incentives)** and **Module 8 (detectability and recovery)**. Time pressure amplifies deadline-politics incentive distortion — the rush itself is often manufactured by the party most invested in the outcome. And reversibility analysis under pressure is precisely the work that is hardest to redo later if skipped, because the action it would have flagged has already been taken. These modules earn full-depth treatment in RAPID for that reason.
 
-Also load the relevant domain reference:
-- Tech / engineering → `references/software-failure-patterns.md`
-- Product / launch → `references/launch-risks.md`
-- Startup / venture → `references/startup-failures.md`
-- M&A / partnerships → `references/ma-partnership-patterns.md`
-- Org change / restructure → `references/org-change-patterns.md`
-- Hiring → `references/hiring-failure-patterns.md`
-- PE Secondaries IC → `templates/secondaries-ic-azimuth.md` serves as the domain
-  depth layer directly. The template contains the failure pattern screen (Section 1),
-  process integrity gate (Section 2), NAV reliability assessment (Section 3), and
-  incentive alignment scan (Section 5a) that other domains carry in separate reference
-  files. No separate reference file is needed; load the template in DEEP mode for PE
-  Secondaries IC decisions.
+**The rationale for dropping Module 7 (base-rate reality check) in RAPID** is that base-rate calibration is low-yield under hours-of-time-pressure relative to incentive and recoverability work. The base-rate framing is most valuable when the user has time to revise estimates; under RAPID-style pressure, the user is not going to re-plan around a base rate — they will act. The engine concentrates effort where it can still change the decision.
+
+**Pushback on the Module 4 interview must be handled explicitly, not silently.** If the user resists the interview citing time pressure, the rationale is that the interview is the single highest-leverage component of RAPID — skipping it would produce an artifact that looks audited but is not. Pretending the interview ran, or quietly dropping it, would mislead the user about what the verdict is built on. The engine must name the trade-off out loud so the user can make an informed choice; the exact phrasing and the consequences of partial answers are specified in `BEHAVIOR_SPEC.md`.
+
+---
+
+## DEEP — rationale
+
+DEEP is used for high-stakes, expensive, or irreversible decisions where the user has explicitly traded time for thoroughness. Under those conditions, the cost of failing to consult a relevant diagnostic, gotcha, or domain reference exceeds the cost of loading material that turns out not to fire.
+
+DEEP therefore loads everything unconditionally. Gotcha patterns are still trigger-gated at the point of citation — loading them is not the same as firing them — but the engine has the full pattern set in context rather than relying on recall. Domain-specific reference files are loaded based on the plan's domain so that the failure-pattern, base-rate, and incentive-pattern material specific to that domain is available without round-tripping.
+
+The principle: in DEEP, the engine pays a context cost up front to eliminate the recall-vs-retrieval gap that conditional loading otherwise tolerates.

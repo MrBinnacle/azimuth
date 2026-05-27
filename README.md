@@ -150,7 +150,7 @@ No evidence present that shifts this.
 
 ## Domains
 
-Works on any initiative-level decision with real downside: product launches, rewrites, key hires, partnerships and M&A, build vs. buy decisions, org changes, startup and early-stage decisions, and timeline commitments. Domain-specific templates load automatically.
+Works on any initiative-level decision with real downside: product launches, rewrites, key hires, partnerships and M&A, build vs. buy decisions, org changes, startup and early-stage decisions, and timeline commitments. Domain-specific policies load automatically based on intake routing.
 
 ---
 
@@ -199,15 +199,14 @@ azimuth/
 │   ├── dependency-map.md                 # Full inventory, assessment matrix, concentration risk
 │   ├── incentive-conflicts.md            # 7 conflict categories, severity classification
 │   └── fragility-scan.md                # 6 structural fragility indicators → LOW/MEDIUM/HIGH/CRITICAL
-├── templates/
-│   ├── executive-azimuth.md              # 1-page format for leadership briefings
-│   ├── codebase-azimuth.md               # Refactor/migration/rewrite template
+├── domain-policies/
+│   ├── codebase-azimuth.md               # Refactor / migration / rewrite
 │   ├── product-launch-azimuth.md         # Launch readiness gate matrix + rollback protocol
 │   ├── hiring-azimuth.md                 # Role definition audit + candidate failure path analysis
 │   ├── partnership-azimuth.md            # M&A, acquisitions, strategic partnerships, vendor relationships
-│   ├── secondaries-ic-azimuth.md         # PE secondaries IC recommendation template
+│   ├── secondaries-ic-azimuth.md         # PE secondaries IC recommendation
 │   ├── org-change-azimuth.md             # Restructure, consolidation, role elimination, leadership transition
-│   ├── startup-azimuth.md                # Startup and early-stage venture decision template
+│   ├── startup-azimuth.md                # Startup and early-stage venture decision
 │   └── build-buy-partner-azimuth.md      # Path selection: build vs. buy vs. partner with domain handoff
 └── examples/
     ├── case-study-healthcare-gov.md      # Healthcare.gov DEEP mode run — 5/6 recall, 0 false positives
@@ -226,7 +225,7 @@ AZIMUTH stress-tests the decision as framed. It cannot tell you whether the fram
 
 ## Contributing
 
-Issues and PRs welcome. Priority areas: additional domain templates, base rate data improvements with primary source citations, and domain-specific gotchas grounded in documented failure cases.
+Issues and PRs welcome. Priority areas: additional domain policies, base rate data improvements with primary source citations, and domain-specific gotchas grounded in documented failure cases.
 
 ---
 

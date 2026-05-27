@@ -1,5 +1,7 @@
 # PE Secondaries IC Azimuth Template
 
+This file configures runtime presentation for PE secondaries IC decisions. Decision authority lives in `BEHAVIOR_SPEC.md`. This file does not define rules.
+
 Use this template when:
 - A secondaries fund IC is evaluating whether to commit capital to a transaction
 - Transaction type: GP-led continuation vehicle, direct secondary (LP stake), or minority recap / structured liquidity
@@ -64,7 +66,7 @@ supports this decision with financial data but does not own the verdict.
 
 **Selection signal assessment**: ☐ Positive selection dominant  |  ☐ Mixed — requires scrutiny  |  ☐ Adverse selection dominant — escalate before proceeding to pricing
 
-*If adverse selection dominant: document and escalate. Do not proceed to pricing until resolved.*
+*If adverse selection dominant: document and escalate. Do not proceed to pricing until resolved.* (activates RULE-4.6 DELAY PENDING EVIDENCE; pricing analysis is blocked until evidence resolution)
 
 ---
 
@@ -101,7 +103,7 @@ operative market benchmark, not a regulatory floor.
 exposed to entire fairness scrutiny under Delaware law. (ADIC v. EMG, C.A. No.
 2025-1389-NAC, Del. Ch., filed December 2025 — emergency injunction granted;
 underlying matter pending as of May 2026.) Process deficiency is not cured by
-price reduction. If "Deficient": verdict is PASS-PROCESS, stop.*
+price reduction. If "Deficient": verdict is PASS-PROCESS, stop.* (PASS-PROCESS is a domain-specific label for RULE-4.6 DELAY PENDING EVIDENCE with process-integrity evidence requirement; non-standard verdict label flagged [AMBIGUOUS-EXTRACTED] in BEHAVIOR_SPEC.md RULE-8.17)
 
 ---
 
@@ -187,7 +189,7 @@ Before pricing analysis, assess whether the decision to proceed is driven by ass
 
 **Flag if:** primary relationship conflict exists and is not explicitly disclosed to IC; deal lead sourced the transaction and owns the approval recommendation; fund deployment pressure is named as a rationale for proceeding.
 
-If flagged: treat relationship bias as the primary incentive risk and require an independent IC voice with no GP relationship to co-sign the verdict.
+If flagged: treat relationship bias as the primary incentive risk and require an independent IC voice with no GP relationship to co-sign the verdict. (parameterizes M4 governance-conflict handling for PE-secondaries domain; activates RULE-4.6 DELAY PENDING EVIDENCE when independent IC voice not obtainable)
 
 ---
 
@@ -216,7 +218,7 @@ working backward, not from negotiating off the GP mark:
 | IRR at stress (hold +2 years, exit −1.0x) | | |
 
 **Does the deal achieve required return hurdles in the stress case?**
-☐ Yes  |  ☐ No — PASS-PRICING unless price changes
+☐ Yes  |  ☐ No — PASS-PRICING unless price changes (PASS-PRICING is a domain-specific label for RULE-4.6 DELAY PENDING EVIDENCE with pricing-evidence requirement; flagged [AMBIGUOUS-EXTRACTED])
 
 **Staple financing terms** *(if applicable)*: Are terms arm's-length or GP-favorable?
 [Note: staple financing terms are an SEC examination focus since 2020.]

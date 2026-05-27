@@ -1,6 +1,6 @@
 # AZIMUTH Validation Spec
 
-Authoritative specification of repo-integrity rules enforced before every commit. Deterministic; no rationale. For why these rules exist, see `CLAUDE.md` (maintainer-local). For the executable enforcement, see `.claude/hooks/validate-azimuth.sh`.
+Authoritative specification of repo-integrity rules enforced before every commit. Deterministic; no rationale. For the executable enforcement, see `.claude/hooks/validate-azimuth.sh`.
 
 The hook MUST mirror this spec exactly. If the spec and the hook diverge, the spec is authoritative — fix the hook.
 
@@ -31,22 +31,24 @@ Expected output: `8`.
 The token `precommitment` MUST NOT appear in any git-tracked `.md` file, with three exceptions:
 
 - `CHANGELOG.md` — historical entries may quote the token.
-- `CLAUDE.md` — may document this rule.
-- `VALIDATION.md` — this spec defines the banned token by name.
+- `docs/VALIDATION.md` — this spec defines the banned token by name.
+- `docs/MAINTENANCE.md` — operationally documents the rule alongside the other verification-layer checks.
+
+(`CLAUDE.md` is no longer tracked but is preserved in the hook's exception list defensively in case it ever returns.)
 
 Reference implementation:
 ```bash
-git ls-files '*.md' | grep -vE '^(CHANGELOG|CLAUDE|VALIDATION)\.md$' | xargs grep -l precommitment
+git ls-files '*.md' | grep -vE '^(CHANGELOG|CLAUDE)\.md$|^docs/(VALIDATION|MAINTENANCE)\.md$' | xargs grep -l precommitment
 ```
 Expected output: empty.
 
 ### Rule 4 — Path integrity in SKILL.md
 
-Every path matching the regex `(references|diagnostics|templates)/[^ "]+\.md` referenced inside `SKILL.md` MUST exist as a real file at that path.
+Every path matching the regex `(references|diagnostics|domain-policies)/[^ "]+\.md` referenced inside `SKILL.md` MUST exist as a real file at that path.
 
 Reference implementation:
 ```bash
-grep -oE '(references|diagnostics|templates)/[^ "]+\.md' SKILL.md | sort -u | while read -r f; do test -f "$f" || echo "MISSING: $f"; done
+grep -oE '(references|diagnostics|domain-policies)/[^ "]+\.md' SKILL.md | sort -u | while read -r f; do test -f "$f" || echo "MISSING: $f"; done
 ```
 Expected output: empty.
 

@@ -12,7 +12,7 @@ Two layers. No pipeline skill. No verify flags. No second config layer.
 
 - **`SKILL.md`** — the spec. Always-loaded. Authoritative source of what AZIMUTH does.
 - **`gotchas.md`** — must hold exactly 8 numbered sections. Always-loaded feedback loop.
-- **`references/`, `diagnostics/`, `templates/`** — on-demand-loaded by mode, domain, and per-module findings.
+- **`references/`, `diagnostics/`, `domain-policies/`** — on-demand-loaded by mode, domain, and per-module findings. (`templates/` was renamed to `domain-policies/` post-ADR; see ADR-0002 Issue C.)
 - **`CONTEXT.md`** — does not exist yet. Created lazily, one term at a time, when a real grilling session resolves a confusion. Never authored upfront.
 - **`docs/adr/`** — this directory. Created lazily; only meaningful structural decisions earn an ADR.
 - **`.out-of-scope/`** — rejection rationale for proposed-but-not-built features. Public, durable, citable from future proposals.
@@ -20,15 +20,18 @@ Two layers. No pipeline skill. No verify flags. No second config layer.
 
 ### Layer 2 — Maintenance skill stack
 
-Three failure-mode-mapped skills live in `.claude/skills/` and travel with the repo for maintainers. None are installed to end users.
+Four failure-mode-mapped skills live in `.claude/skills/maintenance/` and travel with the repo for maintainers. None are installed to end users.
 
 | Skill | Failure mode | Hard-dep |
 |---|---|---|
 | `research-scout` | Source staleness — 8 primary citation families drift | `references/base-rates.md`, `research/staged-findings.md` |
 | `verdict-auditor` | Output drift / confidence inflation on cautious verdicts | A pasted AZIMUTH output |
 | `gap-scanner` | Coverage-claim vs reality drift between SKILL.md and the files it claims to load | Soft (degrades silently) |
+| `reference-authoring` | EXTEND-vs-CREATE drift when adding a new reference or domain-policy file | New reference/domain-policy file under authoring |
 
-Two additional gate skills are designed but **deliberately not built**: `depth-gate` (fires before adding a template/reference/diagnostic) and `calibration-check` (fires when claiming a new threshold). Both wait for the next observed recurrence before being authored, per Pocock's failure-mode-first principle. Authoring them speculatively would violate the depth-over-breadth rule the gates themselves enforce.
+Two additional gate skills are designed but **deliberately not built**: `depth-gate` (fires before adding a domain-policy/reference/diagnostic) and `calibration-check` (fires when claiming a new threshold). Both wait for the next observed recurrence before being authored, per Pocock's failure-mode-first principle. Authoring them speculatively would violate the depth-over-breadth rule the gates themselves enforce.
+
+*(Reference-authoring was added after this ADR was written. Three additional structural updates since: the .claude/skills/ flat namespace was split into `.claude/skills/maintenance/` per ADR-0002 Issue A; the ui-ux-pro-max plugin was removed as superseded by the global impeccable skill; the `templates/` directory was renamed to `domain-policies/` per ADR-0002 Issue C. The structural decisions of this ADR — two layers, no pipeline skill, no verify flags, no second config layer — remain unchanged.)*
 
 ## Patterns this layer adopts
 

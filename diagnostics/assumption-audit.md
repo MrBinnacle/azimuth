@@ -1,6 +1,6 @@
 # Assumption Audit Diagnostic
 
-Load when running a full Assumption Audit (Module 2) in STANDARD or DEEP mode, or when the plan has thin evidence behind its core premises.
+This file is an observational catalog. It describes patterns to look for when conducting a Module 2 assumption audit. It does not assign verdicts, cap confidence, or define when to load — decision authority for those lives in `BEHAVIOR_SPEC.md`.
 
 ---
 
@@ -105,7 +105,7 @@ For each high-Risk unsupported assumption, define the minimum viable validation:
 - Competitive research
 - Reference check
 
-**Reject** validation methods that require full execution to return signal.
+Validation methods that require full execution to return signal do not qualify as low-cost validation.
 
 ---
 
@@ -113,10 +113,9 @@ For each high-Risk unsupported assumption, define the minimum viable validation:
 
 Define which assumptions must be validated **before commitment** versus **during execution**.
 
-**Pre-commitment validation** (must complete before greenlighting):
-- List the 2–3 highest-Risk unsupported assumptions
-- Define the minimum evidence required to move them from Unsupported to Partial
-- Block go/no-go decision until these are resolved
+**Pre-commitment validation** (assumptions whose validation status is observed before commitment):
+- The 2–3 highest-Risk unsupported assumptions
+- The minimum evidence required to move them from Unsupported to Partial
 
 **During-execution validation** (acceptable to validate in-flight):
 - Lower-risk assumptions where mid-course correction is feasible

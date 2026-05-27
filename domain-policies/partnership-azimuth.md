@@ -1,5 +1,7 @@
 # Partnership and M&A Azimuth Template
 
+This file configures runtime presentation for partnership / M&A decisions. Decision authority lives in `BEHAVIOR_SPEC.md`. This file does not define rules.
+
 Use this template when:
 - Plan involves a merger, acquisition, strategic partnership, joint venture, or significant vendor relationship
 - Decision has multi-quarter or multi-year commitment horizon

@@ -8,10 +8,18 @@ This is not a benchmark suite — it doesn't claim historical-case calibration. 
 
 ```
 evals/
-├── cases/          # Test inputs with version-specific behavioral expectations
-├── rubrics/        # Scoring criteria for output evaluation
-└── results/        # Dated runs, version-tagged
+├── cases/                       # Test inputs with version-specific behavioral expectations
+├── rubrics/                     # Scoring criteria for output evaluation
+├── results/                     # Dated runs, version-tagged
+├── methodology/                 # Notes on how the program is run
+└── test-*-control-skill.md      # Frozen pre-rename SKILL.md snapshots (see note below)
 ```
+
+### Control-skill files (frozen snapshots)
+
+The `test-*-control-skill.md` files at the root of `evals/` are point-in-time SKILL.md snapshots used as control inputs. They were captured at v1.x.x when the runtime layer was named `templates/`. Their references to `templates/executive-azimuth.md` and other `templates/...` paths are **deliberately preserved**: editing them would change the control input and silently invalidate every baseline result captured against them.
+
+If a new control snapshot is needed against the current architecture (`domain-policies/` + `references/output-format-executive.md`), capture a new file with a version-tagged name (e.g., `test-X-control-skill-v1.4.md`) rather than rewriting the existing snapshots.
 
 ## Running a baseline
 
