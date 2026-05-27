@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <title>AZIMUTH — Decision Analysis for Claude Code and Claude.ai</title>
-  <meta name="description" content="A Claude skill that pressure-tests decisions before you commit to them. Pre-commitment analysis for launches, hires, rewrites, and strategic bets." />
+  <meta name="description" content="A Claude skill that tests your plan before you commit to it. For launches, hires, rewrites, and other decisions you can't easily undo." />
   <meta property="og:title" content="AZIMUTH — Decision Analysis for Claude Code and Claude.ai" />
-  <meta property="og:description" content="Pressure-test decisions before you commit. Pre-commitment analysis for launches, hires, rewrites, and strategic bets." />
+  <meta property="og:description" content="Test the plan before you commit. For launches, hires, rewrites, and other decisions you can't easily undo." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mrbinnacle.github.io/azimuth/" />
   <meta property="og:image" content="https://mrbinnacle.github.io/azimuth/og-image.png" />
@@ -15,7 +15,7 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AZIMUTH — Decision Analysis for Claude Code and Claude.ai" />
-  <meta name="twitter:description" content="Pressure-test decisions before you commit." />
+  <meta name="twitter:description" content="Test the plan before you commit." />
   <meta name="twitter:image" content="https://mrbinnacle.github.io/azimuth/og-image.png" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -771,7 +771,7 @@
       <p class="eyebrow">Claude Code Skill</p>
       <h1>Verify the<br/><em>bearing</em><br/>before you<br/>step off.</h1>
       <p class="hero-sub">
-        AZIMUTH pressure-tests decisions before you commit to them. Run it before you greenlight the rewrite, the hire, the launch, or the bet.
+        AZIMUTH tests your plan before you commit to it. Run it before you greenlight the rewrite, the hire, the launch, or the bet.
       </p>
       <div class="install-wrap">
         <div class="install-block">
@@ -796,11 +796,11 @@
         The risks that sink projects are usually the ones nobody questioned —
         the <strong>assumption holding everything together</strong>,
         the <strong>dependency nobody secured</strong>,
-        the <strong>failure mode that's common in decisions like this one</strong>
-        but invisible from inside it.
+        the <strong>kind of failure that's common for projects like yours</strong>
+        but invisible from the inside.
       </p>
       <div class="problem-pull">
-        <p>AZIMUTH runs the structured pressure-test before you're committed.</p>
+        <p>AZIMUTH runs that check before you're committed.</p>
       </div>
     </div>
   </section>
@@ -816,14 +816,14 @@
           <div class="analysis-label">Assumptions</div>
           <div class="analysis-body">
             <h3>Assumption audit</h3>
-            <p>Every assumption is classified — strong, partial, unsupported, or contradicted — and paired with the observable evidence that would prove it wrong. Not a list of what you assumed. A test of whether each assumption holds.</p>
+            <p>Every assumption gets rated — strong, partial, unsupported, or contradicted — and paired with the evidence that would prove it wrong. Not a list of what you assumed. A test of whether each assumption holds.</p>
           </div>
         </div>
         <div class="analysis-item">
           <div class="analysis-label">Failure paths</div>
           <div class="analysis-body">
             <h3>Failure path analysis</h3>
-            <p>The most plausible ways this fails, traced trigger → cascade → business cost — not a severity matrix. Includes pair-interaction analysis: where two risks together produce a worse outcome than either alone.</p>
+            <p>The most likely ways this fails, traced trigger → cascade → cost — not a severity matrix. Including the cases where two risks combine into something worse than either alone.</p>
           </div>
         </div>
         <div class="analysis-item">
@@ -844,7 +844,7 @@
       <p class="section-label">Signals</p>
       <h2>How to know it's working</h2>
       <ul class="signals">
-        <li>Assumptions you treated as given are being validated, not accepted</li>
+        <li>Assumptions you treated as given are being tested, not accepted</li>
         <li>The verdict surprises you — or confirms what you suspected but couldn't articulate</li>
         <li>The failure paths describe something that has actually happened to similar decisions</li>
         <li>The incentive scan names a conflict you hadn't explicitly surfaced</li>
@@ -905,14 +905,14 @@ either departure.
    → legacy system maintained indefinitely → original problem compounds</span>
         </div>
       </div>
-      <p class="domains-note">Works on <strong>launches</strong> · <strong>hires</strong> · <strong>service rewrites</strong> · <strong>partnerships &amp; M&amp;A</strong> · <strong>build vs. buy decisions</strong> · <strong>org changes</strong> · <strong>startups</strong> · <strong>PE secondaries</strong> · <strong>strategic bets</strong></p>
+      <p class="domains-note">Works on <strong>launches</strong> · <strong>hires</strong> · <strong>rewrites</strong> · <strong>partnerships &amp; M&amp;A</strong> · <strong>build vs. buy</strong> · <strong>org changes</strong> · <strong>startups</strong> · <strong>strategic bets</strong></p>
     </div>
   </section>
 
   <!-- Boeing 737 MAX case study -->
   <section class="section" id="case-study">
     <div class="container">
-      <p class="section-label">Methodology validation · Boeing 737 MAX</p>
+      <p class="section-label">Methodology calibration · Boeing 737 MAX</p>
       <h2>Confidence reflects evidence, not framing.</h2>
       <p class="case-lead">
         Three prompt variants. Three runs on Opus 4.5, each from a fresh conversation. The verdicts varied — because each one tracked what its input actually supported.
@@ -935,32 +935,32 @@ either departure.
               <td>Full framing — institutional context, December 2011, $280M penalty clause, software compensation system named</td>
               <td><span class="vtag v-reject">REJECT</span></td>
               <td>HIGH</td>
-              <td>Full 10-module analysis identifying the penalty structure as the root organizational pathology</td>
+              <td>Returned REJECT, naming the penalty clause as the structural root cause</td>
             </tr>
             <tr>
               <td>2</td>
               <td>Thin — parameters only, no company name, no aircraft name</td>
               <td><span class="vtag v-reject">REJECT</span></td>
               <td>HIGH</td>
-              <td>The model conducted the structural interview internally, judged the parameters sufficient to answer it, and returned a verdict</td>
+              <td>The model worked through the structural questions silently, judged it had enough to answer, and returned a verdict</td>
             </tr>
             <tr>
               <td>3</td>
               <td>Adversarial — confident commercial framing, penalty clause omitted</td>
               <td><span class="vtag v-delay">DELAY PENDING EVIDENCE</span></td>
               <td>LOW†</td>
-              <td>The model issued five structural questions, proceeded to a verdict on what it had, and used the confidence ceiling to flag what was missing</td>
+              <td>The model asked five structural questions, gave a verdict on what it had, and used LOW confidence to flag what was missing</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <p class="case-footnote">
-        † LOW confidence on Run 3 is not a hedge. It's an explicit signal that the input lacks the evidence required to support higher confidence — paired with a named upgrade path: answer the five questions, and the verdict can be revisited.
+        † LOW confidence on Run 3 is not a hedge. It's an explicit signal that the input doesn't carry enough evidence to support higher confidence — with a clear way to upgrade: answer the five questions, and the verdict can be revisited.
       </p>
 
       <p class="case-note">
-        AZIMUTH returns hard verdicts when the input supports them. When the input is thin or adversarially framed, the model either runs the structural interview internally (Run 2) or externalizes it as part of the verdict (Run 3). On re-runs, the model sometimes refuses to proceed past the interview without operator response. All three behaviors express the same principle: the verdict and confidence track what the evidence supports, not what the framing suggests.
+        AZIMUTH returns hard verdicts when the evidence supports them. When the evidence is thin or the framing is adversarial, the model either works through the structural questions silently (Run 2) or makes them visible as part of the verdict (Run 3). On re-runs, the model sometimes refuses to give a verdict until you answer them. All three behaviors express the same principle: the verdict and confidence reflect what the evidence actually supports, not how the question was framed.
       </p>
 
       <a href="https://azimuth-testbed.netlify.app" class="case-run-link">Run the Boeing prompts yourself →</a>
@@ -1006,7 +1006,7 @@ either departure.
           </tr>
           <tr>
             <td><span class="vtag v-pilot">PILOT FIRST</span></td>
-            <td>Validate the highest-risk assumption before committing full scope</td>
+            <td>Test the highest-risk assumption before committing full scope</td>
           </tr>
           <tr>
             <td><span class="vtag v-reduce">REDUCE SCOPE</span></td>
@@ -1026,11 +1026,11 @@ either departure.
           </tr>
           <tr>
             <td><span class="vtag v-null">WRONG TOOL</span></td>
-            <td>Input is not a pre-commitment decision question</td>
+            <td>Input is not a real go/no-go decision</td>
           </tr>
           <tr>
             <td><span class="vtag v-register">RESIDUAL-RISK-REGISTER</span></td>
-            <td>Decision already made — produces a forward-looking residual risk register, not a go/no-go verdict</td>
+            <td>Decision is already made — produces a forward-looking list of remaining risks instead of a go/no-go verdict</td>
           </tr>
         </tbody>
       </table>
