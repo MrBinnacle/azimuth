@@ -22,7 +22,6 @@ docs/*
 !docs/azimuth-runs
 !docs/adr
 !docs/agents
-!docs/CODEBASE_MAP.md
 reddit-update-drafts.md
 
 # Agent skill install artifacts — local only
@@ -30,6 +29,10 @@ reddit-update-drafts.md
 .continue/
 .windsurf/
 skills-lock.json
+.claude/skills/azimuth/
+
+# Playwright MCP cache
+.playwright-mcp/
 
 # OS metadata
 .DS_Store
