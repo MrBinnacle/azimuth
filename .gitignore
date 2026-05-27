@@ -9,9 +9,11 @@
 # Graphify knowledge graph — local only, rebuilt from source
 graphify-out/
 
-# Claude Code config — settings and session state are local-only
+# Claude Code config — settings.json + hooks ship with the repo; everything else is local-only
 .claude/*
 !.claude/skills/
+!.claude/settings.json
+!.claude/hooks/
 research/
 
 # Internal strategy docs — not for public repo
