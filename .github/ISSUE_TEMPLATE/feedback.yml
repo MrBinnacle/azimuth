@@ -1,0 +1,32 @@
+name: Feedback or question
+description: Share feedback, ask a question, or report something you noticed
+title: "[Feedback]: "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. This template is for feedback, questions,
+        observations, or requests — anything that isn't a defect in the skill
+        itself.
+
+        If you'd rather send this directly, email **mlpgruber@gmail.com**.
+  - type: textarea
+    id: feedback
+    attributes:
+      label: What's on your mind?
+      description: Free-form. Be as brief or detailed as you like.
+      placeholder: |
+        Examples:
+        - "I ran AZIMUTH on a decision and the verdict surprised me — here's what happened…"
+        - "The Boeing case lands but the Healthcare.gov context isn't clear to me."
+        - "Would you consider adding a domain template for X?"
+        - "I'm an evaluator looking at this for a hiring context — happy to chat."
+    validations:
+      required: true
+  - type: input
+    id: context
+    attributes:
+      label: Where are you running this?
+      description: Optional. Helpful but not required.
+      placeholder: Claude Code · Claude.ai · azimuth-testbed.netlify.app · other
