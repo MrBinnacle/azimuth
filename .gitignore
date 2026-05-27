@@ -20,6 +20,7 @@ CLAUDE.md
 README_v1.1.1.md
 docs/*
 !docs/azimuth-runs
+!docs/adr
 reddit-update-drafts.md
 
 # Agent skill install artifacts — local only
