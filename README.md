@@ -2,7 +2,7 @@
 
 Decision-quality pre-commitment analysis. You put in a decision. You get a real analysis back.
 
-AZIMUTH pressure-tests decisions before commitment. It surfaces the assumption holding everything together, the dependency nobody secured, and the failure mode that's common in decisions like this one but invisible from inside it.
+AZIMUTH tests your plan before you commit to it. It surfaces the assumption holding everything together, the dependency nobody secured, and the kind of failure that's common for projects like yours but invisible from the inside.
 
 ---
 
@@ -18,9 +18,9 @@ Your key goes directly to Anthropic from your browser. Nothing touches our serve
 
 ## The Problem
 
-Plans look fine until they don't. The risks that sink projects are usually the ones nobody questioned — the assumption holding everything together, the dependency nobody secured, the failure mode that's common in decisions like this one but invisible from inside it.
+Plans look fine until they don't. The risks that sink projects are usually the ones nobody questioned — the assumption holding everything together, the dependency nobody secured, the kind of failure that's common for projects like yours but invisible from the inside.
 
-AZIMUTH runs the structured pressure-test before you're committed.
+AZIMUTH runs that check before you're committed.
 
 ---
 
@@ -30,7 +30,7 @@ AZIMUTH runs the structured pressure-test before you're committed.
 
 **Assumption audit.** Every assumption classified as strong, partial, unsupported, or contradicted — plus a falsifier for each: the specific observable evidence that would prove it wrong.
 
-**Failure path analysis.** The most plausible ways this fails, traced trigger → cascade → business cost. Pair-interaction analysis where two risks together produce a worse outcome than either alone.
+**Failure path analysis.** The most likely ways this fails, traced trigger → cascade → cost. Including the cases where two risks combine into something worse than either alone.
 
 **Incentive scan.** Who proposed this, who benefits, who absorbs the downside if it fails, whether dissent was heard. Structured into the verdict — not an afterthought.
 
@@ -55,26 +55,34 @@ Then invoke on any decision:
 /azimuth Should we make this hire?
 /azimuth We're launching next week — is the plan sound?
 /azimuth Build vs. buy vs. partner for this capability?
-/azimuth Pressure test our Q3 timeline
+/azimuth Stress-test our Q3 timeline
 ```
 
 ---
 
-## The Boeing methodology runs
+## Methodology calibration · Boeing 737 MAX
 
 Confidence reflects evidence, not framing.
+
+**Decision under analysis.** Boeing's 2011 choice to retrofit the existing 737 airframe (rather than design a new aircraft) to compete with the Airbus A320neo. The retrofit required the MCAS automated trim system to compensate for changed aerodynamics, and Boeing committed to delivering the result with **no new pilot training required** — backed by a $1M-per-plane penalty clause to Southwest if simulator training became necessary.
+
+**Outcome.** Two fatal crashes (Lion Air 610, 2018; Ethiopian Airlines 302, 2019). **346 deaths.** Worldwide fleet grounding for ~20 months. $20B+ in direct losses. Deferred Prosecution Agreement with the DOJ for conspiracy to defraud the FAA. Continuing compliance failures since, including the 2024 Alaska Airlines door-plug incident.
+
+**What this tests.** AZIMUTH applied retroactively to a decision brief built only from **pre-2011 evidence** — what was knowable before the commitment was made. The three runs below vary how that brief is framed: full context, parameters only, and adversarial commercial framing. The goal isn't to claim AZIMUTH would have prevented the outcome. It's to show how the verdict and confidence track the evidence stack across hostile prompts.
+
+**What to look for.** Runs 1 and 2 returning the same verdict from very different prompts (the methodology isn't reading from a pre-supplied conclusion). Run 3 returning **DELAY at LOW confidence — not PROCEED** — when the adversarial prompt drops the penalty clause. That's the confidence ceiling working as designed: when the evidence thins, confidence is capped, not abandoned.
 
 Three prompt variants. Three runs on Opus 4.5, each from a fresh conversation. The verdicts varied — because each one tracked what its input actually supported.
 
 | Run | Prompt | Verdict | Confidence | What happened |
 |---|---|---|---|---|
-| 1 | Full framing — institutional context, December 2011, $280M penalty clause, software compensation system named | REJECT | HIGH | Full 10-module analysis identifying the penalty structure as the root organizational pathology |
-| 2 | Thin — parameters only, no company name, no aircraft name | REJECT | HIGH | The model conducted the structural interview internally, judged the parameters sufficient to answer it, and returned a verdict |
-| 3 | Adversarial — confident commercial framing, penalty clause omitted | DELAY PENDING EVIDENCE | LOW† | The model issued five structural questions, proceeded to a verdict on what it had, and used the confidence ceiling to flag what was missing |
+| 1 | Full framing — institutional context, December 2011, $280M penalty clause, software compensation system named | REJECT | HIGH | Returned REJECT, naming the penalty clause as the structural root cause |
+| 2 | Thin — parameters only, no company name, no aircraft name | REJECT | HIGH | The model worked through the structural questions silently, judged it had enough to answer, and returned a verdict |
+| 3 | Adversarial — confident commercial framing, penalty clause omitted | DELAY PENDING EVIDENCE | LOW† | The model asked five structural questions, gave a verdict on what it had, and used LOW confidence to flag what was missing |
 
-† LOW confidence on Run 3 is not a hedge. It's an explicit signal that the input lacks the evidence required to support higher confidence — paired with a named upgrade path: answer the five questions, and the verdict can be revisited.
+† LOW confidence on Run 3 is not a hedge. It's an explicit signal that the input doesn't carry enough evidence to support higher confidence — with a clear way to upgrade: answer the five questions, and the verdict can be revisited.
 
-AZIMUTH returns hard verdicts when the input supports them. When the input is thin or adversarially framed, the model either runs the structural interview internally (Run 2) or externalizes it as part of the verdict (Run 3). On re-runs, the model sometimes refuses to proceed past the interview without operator response. All three behaviors express the same principle: the verdict and confidence track what the evidence supports, not what the framing suggests.
+AZIMUTH returns hard verdicts when the evidence supports them. When the evidence is thin or the framing is adversarial, the model either works through the structural questions silently (Run 2) or makes them visible as part of the verdict (Run 3). On re-runs, the model sometimes refuses to give a verdict until you answer them. All three behaviors express the same principle: the verdict and confidence reflect what the evidence actually supports, not how the question was framed.
 
 [Run the Boeing prompts yourself →](https://azimuth-testbed.netlify.app)
 
@@ -82,7 +90,7 @@ AZIMUTH returns hard verdicts when the input supports them. When the input is th
 
 ## How to know it's working
 
-- Assumptions you treated as given are being validated, not accepted
+- Assumptions you treated as given are being tested, not accepted
 - The verdict surprises you — or confirms what you suspected but couldn't articulate
 - The failure paths describe something that has actually happened to similar decisions
 - The incentive scan names a conflict you hadn't explicitly surfaced
@@ -142,7 +150,7 @@ No evidence present that shifts this.
 
 ## Domains
 
-Works on any initiative-level decision with real downside: product launches, service rewrites, key hires, partnerships and M&A, build vs. buy decisions, org changes, startup and early-stage decisions, PE secondaries, and timeline commitments. Domain-specific templates load automatically.
+Works on any initiative-level decision with real downside: product launches, rewrites, key hires, partnerships and M&A, build vs. buy decisions, org changes, startup and early-stage decisions, and timeline commitments. Domain-specific templates load automatically.
 
 ---
 
@@ -155,13 +163,13 @@ Works on any initiative-level decision with real downside: product launches, ser
 | --- | --- |
 | `PROCEED` | Evidence supports moving forward; risks are manageable |
 | `PROCEED WITH SAFEGUARDS` | Proceed only if specific structural changes are made |
-| `PILOT FIRST` | Validate the highest-risk assumption before committing full scope |
+| `PILOT FIRST` | Test the highest-risk assumption before committing full scope |
 | `REDUCE SCOPE` | Current scope is not supportable; a smaller version may be |
 | `DELAY PENDING EVIDENCE` | Decision is premature; specific information is needed |
 | `REJECT` | Evidence or structure does not support proceeding |
 | `INSUFFICIENT SIGNAL` | Input is too sparse, vague, or contradictory to ground analysis |
-| `WRONG TOOL` | Input is not a pre-commitment decision question |
-| `RESIDUAL-RISK-REGISTER` | Decision already made — produces a forward-looking residual risk register (leading indicators, escalation triggers, owners), not a go/no-go verdict |
+| `WRONG TOOL` | Input is not a real go/no-go decision |
+| `RESIDUAL-RISK-REGISTER` | Decision is already made — produces a forward-looking list of remaining risks (leading indicators, escalation triggers, owners) instead of a go/no-go verdict |
 
 **Three verdict categories:** Action verdicts (PROCEED through REJECT) are go/no-go positions. Refusal verdicts (INSUFFICIENT SIGNAL, WRONG TOOL) mean analysis cannot be grounded in the input. RESIDUAL-RISK-REGISTER is an alternative-deliverable verdict — it produces useful analysis for a closed decision, not a refusal.
 
