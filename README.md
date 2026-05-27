@@ -230,6 +230,12 @@ Issues and PRs welcome. Priority areas: additional domain templates, base rate d
 
 ---
 
+## Feedback or questions
+
+[Open a feedback issue](https://github.com/MrBinnacle/azimuth/issues/new?template=feedback.yml) or email [mlpgruber@gmail.com](mailto:mlpgruber@gmail.com). For defects in the skill itself, open a regular issue.
+
+---
+
 ## License
 
 MIT
