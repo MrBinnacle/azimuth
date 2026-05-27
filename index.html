@@ -648,27 +648,50 @@
       margin-bottom: 40px;
     }
 
-    .case-quote-block {
+    .case-preamble {
       border: 1px solid var(--border);
       background: rgba(201,168,76,0.04);
       border-radius: 6px;
-      padding: 28px 32px;
-      margin: 0 0 24px;
+      padding: 24px 28px;
+      margin: 32px 0 0;
+      display: grid;
+      gap: 16px;
     }
 
-    .case-quote-text {
+    .case-preamble-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 24px;
+      align-items: baseline;
+    }
+
+    .case-preamble-label {
       font-family: var(--mono);
-      font-size: 14px;
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding-top: 2px;
+      line-height: 1.4;
+    }
+
+    .case-preamble-body {
+      font-family: var(--sans);
+      font-size: 15px;
       color: var(--text);
-      line-height: 1.7;
-      margin-bottom: 12px;
+      line-height: 1.65;
     }
 
-    .case-quote-source {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
+    .case-preamble-body strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      .case-preamble-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
     }
 
     .case-note {
@@ -917,6 +940,25 @@ either departure.
       <p class="case-lead">
         Three prompt variants. Three runs on Opus 4.5, each from a fresh conversation. The verdicts varied — because each one tracked what its input actually supported.
       </p>
+
+      <div class="case-preamble">
+        <div class="case-preamble-row">
+          <div class="case-preamble-label">Decision</div>
+          <div class="case-preamble-body">Boeing's 2011 choice to retrofit the existing 737 airframe (rather than design a new aircraft) to compete with the Airbus A320neo. The retrofit required the MCAS automated trim system to compensate for changed aerodynamics, and Boeing committed to delivering the result with <strong>no new pilot training required</strong> — backed by a $1M-per-plane penalty clause to Southwest if simulator training became necessary.</div>
+        </div>
+        <div class="case-preamble-row">
+          <div class="case-preamble-label">Outcome</div>
+          <div class="case-preamble-body">Two fatal crashes (Lion Air 610 in 2018; Ethiopian Airlines 302 in 2019). <strong>346 deaths.</strong> Worldwide fleet grounding for ~20 months. $20B+ in direct losses. Deferred Prosecution Agreement with the DOJ for conspiracy to defraud the FAA. Continuing compliance failures since (the 2024 Alaska Airlines door-plug incident among them).</div>
+        </div>
+        <div class="case-preamble-row">
+          <div class="case-preamble-label">What this tests</div>
+          <div class="case-preamble-body">AZIMUTH applied retroactively to a decision brief built only from <strong>pre-2011 evidence</strong> — what was knowable before the commitment was made. The three runs vary how that brief is framed: full context, parameters only, and adversarial commercial framing. The goal isn't to claim AZIMUTH would have prevented the outcome. It's to show how the verdict and confidence track the evidence stack across hostile prompts.</div>
+        </div>
+        <div class="case-preamble-row">
+          <div class="case-preamble-label">What to look for</div>
+          <div class="case-preamble-body">Runs 1 and 2 returning the same verdict from very different prompts (the methodology isn't reading from a pre-supplied conclusion). Run 3 returning <strong>DELAY at LOW confidence — not PROCEED</strong> — when the adversarial prompt drops the penalty clause. That's the confidence ceiling working as designed: when the evidence thins, confidence is capped, not abandoned.</div>
+        </div>
+      </div>
 
       <div class="v-table-wrap" style="margin-top: 32px;">
         <table class="v-table">
