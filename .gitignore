@@ -21,6 +21,8 @@ README_v1.1.1.md
 docs/*
 !docs/azimuth-runs
 !docs/adr
+!docs/agents
+!docs/CODEBASE_MAP.md
 reddit-update-drafts.md
 
 # Agent skill install artifacts — local only
