@@ -3,7 +3,7 @@ name: AZIMUTH
 description: Decision-quality pressure-testing skill for Claude Code and Claude.ai
 colors:
   bearing-gold: "#C9A84C"
-  bearing-gold-dim: "#7A6430"
+  bearing-gold-dim: "#9C8040"
   instrument-black: "#0C0C0E"
   surface-raised: "#141417"
   surface-elevated: "#1C1C21"
@@ -124,7 +124,7 @@ One dominant accent used with discipline. Everything else is tonal neutral.
 
 ### Primary
 - **Bearing Gold** (`#C9A84C`): The direction marker. Used on labels, eyebrows, accent lines, the wordmark, active command prompts, and verdict highlights. Never used as a fill on large surfaces. Rarity is the signal.
-- **Bearing Gold Dim** (`#7A6430`): The receded bearing — used for secondary accent elements, terminal number labels, and the dimmed state of gold-adjacent UI. Reads as gold under shadow.
+- **Bearing Gold Dim** (`#9C8040`): The receded bearing — used for secondary accent elements, terminal number labels, and the dimmed state of gold-adjacent UI. Reads as gold under shadow. Lifted from #7A6430 to clear WCAG AA (4.5:1) on both `#0C0C0E` and `#08080A` surfaces; the token sees body-text use on `.t-num`.
 
 ### Neutral (surfaces, text, borders)
 - **Instrument Black** (`#0C0C0E`): The base chassis — page background and the default state of all capability cards. A near-black with a barely-visible cool undertone; never pure `#000`.
@@ -196,7 +196,7 @@ The six-cell grid in the "What you get" section. Uses a 1px gap / shared-border 
 The `/azimuth [decision]` example rows in the Quick Start section.
 - `background: #141417`, `border: 1px solid #252529`, `border-radius: 6px`, `padding: 14px 20px`
 - IBM Plex Mono 14px, `#7A7A8A`. The slash command prefix is Bearing Gold.
-- Hover: `border-color: #7A6430` (Bearing Gold Dim), `background: #1C1C21`, transition 0.15s
+- Hover: `border-color: #9C8040` (Bearing Gold Dim), `background: #1C1C21`, transition 0.15s
 
 ### Verdict Badge (Table)
 Color-coded by verdict category. Font-only treatment — no background fill.

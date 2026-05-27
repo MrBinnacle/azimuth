@@ -42,4 +42,4 @@ WCAG 2.1 AA minimum. Reduced-motion media query already implemented in index.htm
 
 ## Known Design Deviations to Resolve
 
-- `.problem-pull` in index.html uses `border-left: 2px solid var(--accent)` — side-stripe pattern. Replace with full border, background tint, or nothing in next design pass.
+_None at this time. Last cleared: 2026-05-27 (post-`/impeccable audit` 19/20)._
