@@ -6,7 +6,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-Planned. See `ROADMAP.md` for the why on each.
+### Maintenance orchestration
+
+- **ADR-0001 added.** `docs/adr/0001-bespoke-orchestration-layer.md` records the producer/consumer split, lazy file creation, hard-dep vs soft-dep maintenance skills, and what is deliberately not built (no pipeline skill, no verify-mode flag, no upfront CONTEXT.md, no ADR backfill).
+- **`.out-of-scope/` directory seeded.** Two rejection-rationale files promoted from private maintainer notes to durable, citable repo artifacts: `template-expansion-without-evidence.md` and `breadth-before-reliability.md`.
+- **`docs/agents/domain.md` updated.** Now points consumer skills at `docs/adr/` as the durable record; CHANGELOG remains the record for shipped behavioural changes.
+- **`.gitignore` adjustments.** `docs/adr/` and `docs/agents/` now ship with the repo so forks get a working orchestration substrate. `docs/CODEBASE_MAP.md` remains maintainer-only. `.claude/skills/azimuth/` (local install-test self-copy) and `.playwright-mcp/` (MCP cache) now ignored.
+
+### Planned
+
+See `ROADMAP.md` for the why on each.
 
 - **Evidence tags.** Every output claim carries a provenance tag.
 - **Audit trail.** Output lists modules run and what each surfaced.

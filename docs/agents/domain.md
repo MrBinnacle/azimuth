@@ -14,8 +14,10 @@ Before working on module logic, routing, or analysis claims, check `SKILL.md` an
 
 ## ADRs
 
-No `docs/adr/` directory exists yet. Architectural decisions are currently tracked via the CHANGELOG and commit history. If a meaningful architectural decision is made, create `docs/adr/0001-<decision>.md`.
+`docs/adr/` is the durable record of architectural decisions going forward. Read it before proposing structural changes. ADR-0001 records the bespoke maintenance orchestration layer; future ADRs are created lazily by `/grill-with-docs` when a real decision is resolved.
+
+CHANGELOG.md remains the record for shipped behavioural changes (versioned releases); ADRs cover meta-design decisions about how the repo itself is structured and maintained.
 
 ## Flag ADR conflicts
 
-If your output contradicts a past architectural decision visible in CHANGELOG.md, surface it explicitly rather than silently overriding.
+If your output contradicts an existing ADR in `docs/adr/`, surface it explicitly rather than silently overriding. Quote the ADR and explain why it should be reopened. Also check CHANGELOG.md for prior behavioural decisions that may bear on the change.
