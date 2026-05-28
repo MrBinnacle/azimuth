@@ -33,6 +33,7 @@ docs/*
 !docs/VALIDATION.md
 !docs/DESIGN.md
 !docs/PRODUCT.md
+!docs/STATE.md
 
 # Agent skill install artifacts — local only
 .agents/

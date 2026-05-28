@@ -153,6 +153,14 @@ Never:
 - Use `--amend` after a commit lands in this branch. Create a new commit; reference the prior one in the message. Per `~/.claude/CLAUDE.md` global rules, amends are only acceptable when the user explicitly requests them.
 - Squash spec + runtime commits at merge. Preserve the SPEC→RUNTIME causal chain in the log.
 
+### STATE.md upkeep (commit ritual)
+
+`docs/STATE.md` is the terse, greppable state record the Desktop instance and Matthew read before asserting facts about version, topology, surfaces, or open items. It is only load-bearing if it stays current.
+
+**Ritual: any commit that changes version, topology, surfaces, or open items updates `docs/STATE.md` in the SAME commit.** A STATE.md that drifts is worse than none, because Desktop will trust it.
+
+This tracked line is the clone-portable source of truth for that obligation. The CC role header (in `CLAUDE.md`) states the same duty, but `CLAUDE.md` is gitignored / local-only — a fresh clone or a different machine will **not** carry it. This line will. If the two ever conflict, this file governs.
+
 ### Path renames (git mv)
 
 When renaming a directory or file:
