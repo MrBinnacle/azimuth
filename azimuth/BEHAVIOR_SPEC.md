@@ -1,6 +1,6 @@
 # AZIMUTH Behavior Spec
 
-Authoritative specification of engine behaviour. Single decision authority. Deterministic; no rationale. For why these rules exist, see `docs/adr/0002-engine-layer-governance.md`.
+Authoritative specification of engine behaviour. Single decision authority. Deterministic; no rationale. For why these rules exist, see `../docs/adr/0002-engine-layer-governance.md`.
 
 The runtime layer (`SKILL.md`, `references/`, `domain-policies/`, `gotchas.md`) MUST mirror this spec exactly. If the spec and the runtime diverge, the spec is authoritative — fix the runtime.
 

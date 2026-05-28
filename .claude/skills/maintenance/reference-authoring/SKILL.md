@@ -1,5 +1,7 @@
 ---
 name: reference-authoring
+metadata:
+  internal: true
 description: |
   Authoring discipline for new AZIMUTH reference files and templates. Use when
   adding a new domain reference file, extending an existing one, or creating a

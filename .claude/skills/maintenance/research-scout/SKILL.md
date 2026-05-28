@@ -1,5 +1,7 @@
 ---
 name: research-scout
+metadata:
+  internal: true
 description: Tracks AZIMUTH's 8 primary citation source families for new publications or significant updates. Stages validated findings in research/staged-findings.md for human review before promotion to references/base-rates.md. Invoke with 'run the research scout' or 'promote staged findings'.
 ---
 

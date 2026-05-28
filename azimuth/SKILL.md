@@ -7,7 +7,7 @@ description: "Decision-quality pre-commitment analysis for initiative-level go/n
 
 Stress-test plans before commitment. Convert proposed plans into operational truth.
 
-> **Runtime is self-sufficient.** Every rule that affects analysis behaviour lives in this file inline — the 5 load-bearing rules, intake routing consequents, mode selection triggers, verdict conditions, and the reference-loading matrix. Canonical specification of the same rules lives in `BEHAVIOR_SPEC.md` (single decision authority). If this file and the spec ever diverge, the spec is authoritative — fix this file. Maintainers: see `docs/MAINTENANCE.md`.
+> **Runtime is self-sufficient.** Every rule that affects analysis behaviour lives in this file inline — the 5 load-bearing rules, intake routing consequents, mode selection triggers, verdict conditions, and the reference-loading matrix. Canonical specification of the same rules lives in `BEHAVIOR_SPEC.md` (single decision authority). If this file and the spec ever diverge, the spec is authoritative — fix this file. Maintainers: see `../docs/MAINTENANCE.md`.
 
 ---
 

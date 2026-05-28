@@ -1,5 +1,7 @@
 ---
 name: verdict-auditor
+metadata:
+  internal: true
 description: Stress-tests an AZIMUTH output against the skill's own structural rules. Paste an AZIMUTH output and invoke to get a severity-rated diagnostic. Diagnoses only — does not rewrite. Use after any real AZIMUTH session to detect quality drift.
 ---
 

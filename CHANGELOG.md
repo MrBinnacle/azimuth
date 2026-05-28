@@ -10,6 +10,20 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.6.0] — 2026-05-28
+
+### Distribution boundary — shipped skill relocated into `azimuth/`
+
+- **Runtime skill relocated to the `azimuth/` subdirectory.** `SKILL.md`, `BEHAVIOR_SPEC.md`, `gotchas.md`, `references/`, `diagnostics/`, and `domain-policies/` moved (via `git mv`) from the repo root into `azimuth/`, joined by a shipped `LICENSE` copy and a 3-line `README.md` carrying the version marker. `npx skills add MrBinnacle/azimuth` now copies **only** `azimuth/`; the repo-internal dev harness (`.claude/`), `docs/`, `evals/`, `examples/`, and landing-page assets are no longer delivered to external users. The documented install command is unchanged — with no root `SKILL.md`, discovery resolves to the subdirectory. Driven by the finding that the `skills` CLI (v1.5.9) has no `.gitignore` / `.skillignore` / manifest-based exclusion; see `docs/adr/0003-distribution-boundary.md`.
+- **Maintenance skills hidden from default install.** `gap-scanner`, `reference-authoring`, `research-scout`, and `verdict-auditor` now carry `metadata.internal: true`, removing them from the default selectable set on both the clone and blob install paths (installable only under `INSTALL_INTERNAL_SKILLS=1`). Guarantees a default install resolves to exactly one skill (`azimuth`).
+- **Validation realigned to the new layout (lockstep).** `.claude/hooks/validate-azimuth.sh` Checks 1/2/4 retargeted to `azimuth/SKILL.md` and `azimuth/gotchas.md` (Rule 4 resolves paths relative to `azimuth/`); `docs/VALIDATION.md` updated as the authoritative spec; `docs/MAINTENANCE.md` gains a Distribution-boundary section and re-pointed paths.
+
+### Verification
+
+- Default `--list` finds **1** skill (`azimuth`); `INSTALL_INTERNAL_SKILLS=1 --list` finds **5** (proving `internal: true` is the active gate); a default `--copy` install produces a tree **identical** to `azimuth/` (no stray files).
+
+---
+
 ## [1.5.0] — 2026-05-27
 
 ### Engine-layer governance (canonical spec + always-loaded runtime mirror)

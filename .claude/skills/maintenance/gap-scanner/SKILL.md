@@ -1,5 +1,7 @@
 ---
 name: gap-scanner
+metadata:
+  internal: true
 description: Audits AZIMUTH's coverage completeness. Cross-references what SKILL.md claims to handle against what reference, diagnostic, and domain-policy files actually cover. Identifies thin coverage, missing domains, and structural inconsistencies. Run before major version planning.
 ---
 

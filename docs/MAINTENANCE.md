@@ -1,8 +1,24 @@
 # AZIMUTH Maintenance Orchestration
 
-Single operational document describing how AZIMUTH is maintained and evolved. Read this before authoring a migration, refactor, or any structural change. Pairs with [`docs/adr/0001-bespoke-orchestration-layer.md`](adr/0001-bespoke-orchestration-layer.md) (structural decisions) and [`docs/adr/0002-engine-layer-governance.md`](adr/0002-engine-layer-governance.md) (layer taxonomy).
+Single operational document describing how AZIMUTH is maintained and evolved. Read this before authoring a migration, refactor, or any structural change. Pairs with [`docs/adr/0001-bespoke-orchestration-layer.md`](adr/0001-bespoke-orchestration-layer.md) (structural decisions), [`docs/adr/0002-engine-layer-governance.md`](adr/0002-engine-layer-governance.md) (layer taxonomy), and [`docs/adr/0003-distribution-boundary.md`](adr/0003-distribution-boundary.md) (distribution topology).
 
 This file is operational. ADRs are decisional. CLAUDE.md is maintainer-local context. The three are co-authoritative; if any conflict, fix the conflict explicitly rather than letting them drift.
+
+---
+
+## Distribution boundary (what ships vs. what stays)
+
+`npx skills add MrBinnacle/azimuth` copies the **directory that contains the discovered `SKILL.md`** — nothing more, nothing less. The `skills` CLI has no `.gitignore` / `.skillignore` / manifest-based exclusion; it copies that directory tree minus only `.git`, `__pycache__`, and `__pypackages__`. The repo is therefore split into two zones:
+
+- **Shipped skill — `azimuth/`.** The only directory an external user receives: `SKILL.md`, `BEHAVIOR_SPEC.md`, `gotchas.md`, `references/`, `diagnostics/`, `domain-policies/`, plus a shipped `LICENSE` and a 3-line `README.md` carrying the version marker. Keep this directory pristine — anything added here ships verbatim to every installer.
+- **Repo-internal — everything at the repo root.** `.claude/` (dev harness: hooks, maintenance skills, agents, settings), `docs/`, `evals/`, `examples/`, `.github/`, `.out-of-scope/`, the root `README.md` / `CHANGELOG.md` / `LICENSE`, and landing-page assets. These live at the root to function and are never copied into the installed skill, because the skill now lives one level down in `azimuth/`.
+
+Two guarantees keep a default install resolving to exactly one skill (`azimuth`):
+
+1. **No root `SKILL.md`.** With no root skill to short-circuit on, discovery walks subdirectories and resolves to `azimuth/SKILL.md`.
+2. **The four maintenance skills carry `metadata: { internal: true }`.** This removes them from the default selectable set on both the clone and blob install paths; they are installable only under `INSTALL_INTERNAL_SKILLS=1`. The gitignored `.claude/skills/azimuth/` install-test self-copy is uncommitted, so it is absent from the GitHub tree and from any fresh clone — non-discoverable regardless of the internal flag.
+
+See [`docs/adr/0003-distribution-boundary.md`](adr/0003-distribution-boundary.md) for the full decision, the source-level verification of the `skills` CLI behaviour, and the rejected alternatives.
 
 ---
 
@@ -12,9 +28,9 @@ Per ADR-0002, every artifact belongs to exactly one layer:
 
 | Layer | Authority | Examples |
 |---|---|---|
-| **SPEC** | Enforced contract; deterministic; no rationale | `docs/VALIDATION.md`, `BEHAVIOR_SPEC.md` |
-| **RUNTIME** | Engine behaviour at analysis time | `SKILL.md`, `references/`, `domain-policies/`, `diagnostics/` (override portions) |
-| **DIAGNOSTICS** | Failure detection + maintenance tooling | `.claude/skills/maintenance/`, `.claude/agents/`, `diagnostics/` (taxonomy portions) |
+| **SPEC** | Enforced contract; deterministic; no rationale | `docs/VALIDATION.md`, `azimuth/BEHAVIOR_SPEC.md` |
+| **RUNTIME** | Engine behaviour at analysis time | `azimuth/SKILL.md`, `azimuth/references/`, `azimuth/domain-policies/`, `azimuth/diagnostics/` (override portions) |
+| **DIAGNOSTICS** | Failure detection + maintenance tooling | `.claude/skills/maintenance/`, `.claude/agents/`, `azimuth/diagnostics/` (taxonomy portions) |
 | **RATIONALE** | Why the others exist; not load-bearing | `CLAUDE.md`, `docs/adr/`, `.out-of-scope/`, README, CHANGELOG, this file |
 
 A change crossing layer boundaries (e.g., a SPEC rule that demands a new RUNTIME file) MUST update both layers in the same commit set, with the SPEC commit landing first (or atomically) so RUNTIME never references a rule that doesn't exist.
@@ -56,10 +72,10 @@ Enforces the four `docs/VALIDATION.md` repo-integrity rules as a PreToolUse hook
 
 | Rule | What it catches |
 |---|---|
-| Rule 1 — description = 489 chars | Drift in `SKILL.md` frontmatter that breaks the `npx skills add` install warning |
-| Rule 2 — gotchas.md = 8 sections | Structural drift in the gotchas catalog |
+| Rule 1 — description = 489 chars | Drift in `azimuth/SKILL.md` frontmatter that breaks the `npx skills add` install warning |
+| Rule 2 — gotchas.md = 8 sections | Structural drift in the `azimuth/gotchas.md` catalog |
 | Rule 3 — no `precommitment` typo | Vocabulary discipline (the canonical term is `pre-commitment`) |
-| Rule 4 — SKILL.md paths exist | Conditional-load architecture integrity |
+| Rule 4 — SKILL.md paths exist | `azimuth/SKILL.md` conditional-load architecture integrity (paths resolved relative to `azimuth/`) |
 
 Bypass: `git commit --no-verify` when intentional. Every bypass MUST leave a CHANGELOG[Unreleased] note explaining why.
 
@@ -191,7 +207,7 @@ The unguarded drift classes (rows with "audited manually") are the highest-prior
 If a new session opens with no context beyond the repo:
 
 1. **Read this file first.** It is the operational anchor.
-2. Read [`SKILL.md`](../SKILL.md) and [`BEHAVIOR_SPEC.md`](../BEHAVIOR_SPEC.md) — the public-facing skill surface + canonical engine spec.
+2. Read [`SKILL.md`](../azimuth/SKILL.md) and [`BEHAVIOR_SPEC.md`](../azimuth/BEHAVIOR_SPEC.md) — the public-facing skill surface + canonical engine spec.
 3. Read [`CLAUDE.md`](../CLAUDE.md) — maintainer-local context (validation rationale, environment notes, Obsidian / graphify integration).
 4. Read [`docs/adr/0001-bespoke-orchestration-layer.md`](adr/0001-bespoke-orchestration-layer.md) and [`docs/adr/0002-engine-layer-governance.md`](adr/0002-engine-layer-governance.md) — structural decisions that govern any new proposal.
 5. Run `git log --oneline -20` to surface what's changed recently. Each commit's message is scoped to one decision; the message body explains the why.

@@ -8,21 +8,21 @@ The hook MUST mirror this spec exactly. If the spec and the hook diverge, the sp
 
 ### Rule 1 — SKILL.md frontmatter description character count
 
-The `description:` field in `SKILL.md` frontmatter MUST be exactly **489 characters**, counting the entire quoted string and stripping newlines.
+The `description:` field in `azimuth/SKILL.md` frontmatter MUST be exactly **489 characters**, counting the entire quoted string and stripping newlines.
 
 Reference implementation:
 ```bash
-awk '/^description: /{flag=1} flag{print; if(/"$/) flag=0}' SKILL.md | tr -d '\n' | wc -c
+awk '/^description: /{flag=1} flag{print; if(/"$/) flag=0}' azimuth/SKILL.md | tr -d '\n' | wc -c
 ```
 Expected output: `489`.
 
 ### Rule 2 — gotchas.md section count
 
-`gotchas.md` MUST contain exactly **8** top-level numbered sections matching the regex `^## [0-9]+\.`.
+`azimuth/gotchas.md` MUST contain exactly **8** top-level numbered sections matching the regex `^## [0-9]+\.`.
 
 Reference implementation:
 ```bash
-grep -cE '^## [0-9]+\.' gotchas.md
+grep -cE '^## [0-9]+\.' azimuth/gotchas.md
 ```
 Expected output: `8`.
 
@@ -44,11 +44,11 @@ Expected output: empty.
 
 ### Rule 4 — Path integrity in SKILL.md
 
-Every path matching the regex `(references|diagnostics|domain-policies)/[^ "]+\.md` referenced inside `SKILL.md` MUST exist as a real file at that path.
+Every path matching the regex `(references|diagnostics|domain-policies)/[^ "]+\.md` referenced inside `azimuth/SKILL.md` MUST exist as a real file at that path, resolved relative to `azimuth/`.
 
 Reference implementation:
 ```bash
-grep -oE '(references|diagnostics|domain-policies)/[^ "]+\.md' SKILL.md | sort -u | while read -r f; do test -f "$f" || echo "MISSING: $f"; done
+grep -oE '(references|diagnostics|domain-policies)/[^ "]+\.md' azimuth/SKILL.md | sort -u | while read -r f; do test -f "azimuth/$f" || echo "MISSING: $f"; done
 ```
 Expected output: empty.
 
