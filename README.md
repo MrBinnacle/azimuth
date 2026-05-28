@@ -212,7 +212,7 @@ Issues and PRs welcome. Priority areas: additional domain policies, base-rate da
 
 ## Feedback or questions
 
-[Open a feedback issue](https://github.com/MrBinnacle/azimuth/issues/new?template=feedback.yml) or email [mlpgruber@gmail.com](mailto:mlpgruber@gmail.com). For defects in the skill itself, open a regular issue.
+[Open a feedback issue](https://github.com/MrBinnacle/azimuth/issues/new?template=feedback.yml) or email [mlp.gruber@gmail.com](mailto:mlp.gruber@gmail.com). For defects in the skill itself, open a regular issue.
 
 ---
 
