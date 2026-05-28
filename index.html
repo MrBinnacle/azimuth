@@ -975,9 +975,9 @@ either departure.
   <section class="section" id="case-study">
     <div class="container">
       <p class="section-label">Methodology calibration · Boeing 737 MAX</p>
-      <h2>Confidence reflects evidence, not framing.</h2>
+      <h2>Optimistic framing doesn't move the verdict.</h2>
       <p class="case-lead">
-        Three prompt variants. Three runs on Opus 4.5, each from a fresh conversation. The verdicts varied — because each one tracked what its input actually supported.
+        The same decision, described three ways — in full, stripped to bare facts, and pitched the way a team that already wants a yes would pitch it. Three runs on Opus 4.7, each from a clean conversation. The verdict holds REJECT all three times; only the confidence moves.
       </p>
 
       <div class="case-preamble">
@@ -995,7 +995,7 @@ either departure.
         </div>
         <div class="case-preamble-row">
           <div class="case-preamble-label">What to look for</div>
-          <div class="case-preamble-body">Runs 1 and 2 returning the same verdict from very different prompts (the methodology isn't reading from a pre-supplied conclusion). Run 3 returning <strong>DELAY at LOW confidence — not PROCEED</strong> — when the adversarial prompt drops the penalty clause. That's the confidence ceiling working as designed: when the evidence thins, confidence is capped, not abandoned.</div>
+          <div class="case-preamble-body">All three runs returning <strong>REJECT</strong> — the optimistic framing, which leads with the commercial win and drops the penalty clause, doesn't soften the verdict. Confidence tracks the evidence: <strong>HIGH</strong> on the full brief, <strong>MEDIUM</strong> once the brief is stripped to bare facts or pitched as a win. The verdict reflects the decision's structure, not how the question was asked.</div>
         </div>
       </div>
 
@@ -1013,35 +1013,35 @@ either departure.
           <tbody>
             <tr>
               <td>1</td>
-              <td>Full framing — institutional context, December 2011, $280M penalty clause, software compensation system named</td>
+              <td>Full brief — institutional context, December 2011, $1M/plane penalty clause, software compensation system named</td>
               <td><span class="vtag v-reject">REJECT</span></td>
               <td>HIGH</td>
-              <td>Returned REJECT, naming the penalty clause as the structural root cause</td>
+              <td>Named the penalty clause as the structural root cause</td>
             </tr>
             <tr>
               <td>2</td>
-              <td>Thin — parameters only, no company name, no aircraft name</td>
+              <td>Bare facts — parameters only, no company name, no aircraft name</td>
               <td><span class="vtag v-reject">REJECT</span></td>
-              <td>HIGH</td>
-              <td>The model worked through the structural questions silently, judged it had enough to answer, and returned a verdict</td>
+              <td>MEDIUM</td>
+              <td>Reached the same verdict from parameters alone; confidence capped without the full evidence stack</td>
             </tr>
             <tr>
               <td>3</td>
-              <td>Adversarial — confident commercial framing, penalty clause omitted</td>
-              <td><span class="vtag v-delay">DELAY PENDING EVIDENCE</span></td>
-              <td>LOW†</td>
-              <td>The model asked five structural questions, gave a verdict on what it had, and used LOW confidence to flag what was missing</td>
+              <td>Optimistic spin — confident commercial framing, penalty clause omitted</td>
+              <td><span class="vtag v-reject">REJECT</span></td>
+              <td>MEDIUM</td>
+              <td>Held REJECT despite the framing built to sell a yes; the missing penalty clause capped confidence, not the verdict</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <p class="case-footnote">
-        † LOW confidence on Run 3 is not a hedge. It's an explicit signal that the input doesn't carry enough evidence to support higher confidence — with a clear way to upgrade: answer the five questions, and the verdict can be revisited.
+        MEDIUM confidence on the bare-facts and optimistic-spin runs is not a hedge. The verdict is REJECT in both; the rating reflects that the input carried less of the evidence stack than the full brief. Thinner evidence caps confidence — it doesn't flip the answer.
       </p>
 
       <p class="case-note">
-        AZIMUTH returns hard verdicts when the evidence supports them. When the evidence is thin or the framing is adversarial, the model either works through the structural questions silently (Run 2) or makes them visible as part of the verdict (Run 3). On re-runs, the model sometimes refuses to give a verdict until you answer them. All three behaviors express the same principle: the verdict and confidence reflect what the evidence actually supports, not how the question was framed.
+        AZIMUTH returns hard verdicts when the structure supports them. Here the structure is decisive under every framing, so the verdict holds. What moves is confidence: the fuller the evidence, the higher AZIMUTH will commit. The verdict reflects what the decision actually is, not how it was sold.
       </p>
 
       <a href="https://azimuth-testbed.netlify.app" class="case-run-link">Run the Boeing prompts yourself →</a>
