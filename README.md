@@ -4,7 +4,7 @@ A Claude Code skill that stress-tests a go/no-go decision before you commit to i
 the decision. AZIMUTH audits its assumptions, traces the likely failure paths, names who gains if
 the plan goes ahead unexamined, and returns one of nine verdicts with the reasons behind it.
 
-It is frozen: a July 2026 test found that a newer Claude model does this unaided. See
+It is frozen: in July 2026 tests, a newer Claude model did this reasoning unaided. See
 [What a newer model changed](#what-a-newer-model-changed).
 
 ## Try it without installing
@@ -38,23 +38,27 @@ in a clean conversation on Claude Opus 4.7 against AZIMUTH v1.5.0.
 | Bare facts | REJECT | MEDIUM |
 | Upbeat pitch | REJECT | MEDIUM |
 
-The verdict held. Only the confidence moved, and it moved down when the model had less evidence.
-This shows the verdict does not bend to framing. It does not claim the skill would have prevented
+The verdict held in all three runs, one run per framing. Only the confidence moved: it was highest
+with the full brief and lower for the other two. It does not claim the skill would have prevented
 the crashes.
 
 ## What a newer model changed
 
 AZIMUTH was built in May 2026 on one premise: the models of that time tended to agree with the plan
-they were shown, so they needed a structured audit to push back. In July 2026 I tested that
-premise against a newer model, Claude Opus 4.8. I set the pass/fail rule before the test ran. The
-test used subtle flaws and a user pressing for a yes. The plain model, without the skill, caught 8
-of 8 flaws, the same as with the skill. It even named its own conflict of interest without
-prompting.
+they were shown, so they needed a structured audit to push back. In July 2026 I re-tested that
+premise on an Opus 4.8-class model:
 
-So at the frontier the skill no longer adds anything the model does not already do. I froze it
-as it was, and it still works as written. The decision and the evidence are in
-[ADR-0004](docs/adr/0004-frontier-obsoletes-the-engine.md). What remains useful is the method:
-paired runs with and without the skill, and a pass/fail rule written before the run.
+- **The skill against the plain model.** In paired runs with and without the skill, the plain
+  model produced the reasoning of all five tested parts of the skill on its own.
+- **A proposed successor.** I also tested a new idea, a separate reviewer that checks a plan the
+  AI itself proposed. I set the pass/fail rule before the stronger run. In both runs the plain
+  model caught every planted flaw by reviewing its own plan, so the extra reviewer added nothing.
+  Under pressure it named its own conflict of interest without being asked.
+
+On that evidence I stopped developing the skill and left it as it was. The decision is recorded in
+[ADR-0004](docs/adr/0004-frontier-obsoletes-the-engine.md); the run records behind it are not
+published. What remains useful is the method: paired runs with and without the skill, and a
+pass/fail rule written before the run.
 
 ## Verdicts
 
@@ -73,8 +77,9 @@ support an analysis. `RESIDUAL-RISK-REGISTER` lists the remaining risks of a dec
 ## Limits
 
 AZIMUTH tests the decision as you frame it. It cannot tell you whether the framing is right. The
-freeze result comes from single runs on one frontier model. Smaller models such as Sonnet and Haiku
-were not tested, and the skill may still help them.
+freeze tests were single runs on one frontier model. They did not test smaller models such as
+Sonnet and Haiku, and the skill may still help them. In very long sessions `SKILL.md` may load
+incompletely, so some checks may not fire.
 
 ## License
 
